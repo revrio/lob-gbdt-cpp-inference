@@ -1,0 +1,22 @@
+# Python virtual environment & cache
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+
+# C++ CMake build artifacts
+build/
+cmake-build-*/
+*.o
+*.a
+*.so
+compile_commands.json
+
+# OS / Editor files
+.vscode/
+.idea/
+.DS_Store
+*~
