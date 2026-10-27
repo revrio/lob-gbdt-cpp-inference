@@ -20,3 +20,6 @@ compile_commands.json
 .idea/
 .DS_Store
 *~
+
+# Internal instructions and non-direct scratch/notes
+instructions/
