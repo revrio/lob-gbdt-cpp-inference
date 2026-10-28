@@ -63,7 +63,7 @@ null_count = df.isna().sum().sum()
 df["time_diff_ms"] = df["timestamp_ms"].diff().fillna(0)
 df["segment_id"] = (df["time_diff_ms"] > 500).cumsum()
 
-print("=== STEP 1: DATA HYGIENE AUDIT ===")
+print("  STEP 1: DATA HYGIENE AUDIT  ")
 print(f"Total raw snapshots loaded : {len(df):,}")
 print(f"Crossed books (bid >= ask) : {crossed_books}")
 print(f"Missing / NaN values       : {null_count}")
@@ -72,7 +72,7 @@ print("Top 5 largest contiguous segments (rows):")
 print(df["segment_id"].value_counts().head(5).to_string())
 
 # %% [markdown]
-# ## Step 2: Engineer the 11 Custom LOB Features & $t+50$ Target Labels
+# Step 2: Engineer the 11 Custom LOB Features & $t+50$ Target Labels
 
 # %%
 # 2A. Stateless Snapshot Features (Vectorized across entire table)
@@ -148,7 +148,7 @@ df_clean["label"] = np.where(
     np.where(df_clean["future_ret_50"] < -LABEL_THRESHOLD, 0, 1),
 )
 
-print("\n=== STEP 2: FEATURE & LABEL SUMMARY ===")
+print("\n  STEP 2: FEATURE & LABEL SUMMARY  ")
 print(f"Clean modeling rows after segment warm-up/horizon trim: {len(df_clean):,}")
 label_counts = df_clean["label"].value_counts(normalize=True).sort_index() * 100
 print(
@@ -159,7 +159,7 @@ print(
 )
 
 # %% [markdown]
-# ## Step 3: Time-Ordered Split with Embargo (70% Train / 15% Val / 15% Test)
+# Step 3: Time-Ordered Split with Embargo (70% Train / 15% Val / 15% Test)
 
 # %%
 n_total = len(df_clean)
@@ -184,7 +184,7 @@ print(f"Embargo 2 : {EMBARGO_TICKS} rows dropped")
 print(f"Test Set  : {len(test_df):,} rows (indices {test_start} .. {n_total - 1})")
 
 # %% [markdown]
-# ## Step 4: Baseline Models (Always-Flat, Heuristic Rule, and Logistic Regression)
+#  Step 4: Baseline Models (Always-Flat, Heuristic Rule, and Logistic Regression)
 
 # %%
 # Baseline 0: Trivial Majority Class ("Always Predict Flat")
@@ -207,7 +207,7 @@ for c in np.linspace(0.10, 0.95, 18):
 imb_test = test_df["imb_l1"].to_numpy()
 y_pred_rule = np.where(imb_test > best_c, 2, np.where(imb_test < -best_c, 0, 1))
 
-print(f"\n=== BASELINE 1: LEVEL-1 IMBALANCE RULE (Tuned cutoff c = {best_c:.2f}) ===")
+print(f"\n   BASELINE 1: LEVEL-1 IMBALANCE RULE (Tuned cutoff c = {best_c:.2f})   ")
 print(f"Test Accuracy : {accuracy_score(y_test, y_pred_rule):.4f}")
 print(f"Test Macro-F1 : {f1_score(y_test, y_pred_rule, average='macro'):.4f}")
 print(classification_report(y_test, y_pred_rule, target_names=["Down (0)", "Flat (1)", "Up (2)"], digits=4))
@@ -228,7 +228,7 @@ clf_lr.fit(X_train_scaled, y_train)
 y_pred_lr = clf_lr.predict(X_test_scaled)
 y_prob_lr = clf_lr.predict_proba(X_test_scaled)
 
-print("\n=== BASELINE 2: MULTINOMIAL LOGISTIC REGRESSION ===")
+print("\n   BASELINE 2: MULTINOMIAL LOGISTIC REGRESSION   ")
 print(f"Test Log-Loss : {log_loss(y_test, y_prob_lr):.4f}")
 print(f"Test Accuracy : {accuracy_score(y_test, y_pred_lr):.4f}")
 print(f"Test Macro-F1 : {f1_score(y_test, y_pred_lr, average='macro'):.4f}")
@@ -263,7 +263,7 @@ model_lgb = lgb.train(
     callbacks=[lgb.early_stopping(stopping_rounds=30, verbose=False)],
 )
 
-print("\n=== STEP 5: LIGHTGBM TRAINING ===")
+print("\n   STEP 5: LIGHTGBM TRAINING   ")
 print(f"Optimal iteration: {model_lgb.best_iteration}")
 
 # Raw Argmax Predictions
