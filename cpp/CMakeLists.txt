@@ -13,7 +13,10 @@ FetchContent_Declare(googletest
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
-add_executable(tests tests/test_smoke.cpp)
-target_link_libraries(tests GTest::gtest_main)
+add_library(lob INTERFACE)
+target_include_directories(lob INTERFACE include)
+
+add_executable(tests tests/test_smoke.cpp tests/test_ring_buffer.cpp)
+target_link_libraries(tests lob GTest::gtest_main)
 include(GoogleTest)
 gtest_discover_tests(tests)
