@@ -7,7 +7,7 @@ inline double mid_price(const BookSnapshot& s) {
   return (s.bid_px[0] + s.ask_px[0]) / 2.0;
 }
 
-// Fills indices 0..5 of f. Indices 6..10 (windowed) come later.
+// Fills indices 0..5 of f. FeatureEngine fills windowed indices 6..10.
 inline void compute_stateless(const BookSnapshot& s, FeatureVector& f) {
   const double mid = mid_price(s);
   const double b1 = s.bid_sz[0];

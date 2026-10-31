@@ -57,3 +57,71 @@ At tick index $t$, given top-10 bid prices $P_{1}^B \dots P_{10}^B$, bid sizes $
 | **`8`** | `ofi_300` | $\sum_{k=0}^{299} e_{t-k}$ | `300` (`~30s`) | `RingBuffer<double, 300>` + running sum |
 | **`9`** | `ret_50` | $P_{\text{mid}}(t) - P_{\text{mid}}(t-50)$ | `51` (`~5s`) | `RingBuffer<double, 51>` of `mid_px` |
 | **`10`** | `vol_50` | $\text{std}_{\text{pop}}(\Delta P_{\text{mid}}(t-49 \dots t), \text{ddof}=0)$ | `50` (`~5s`) | `RingBuffer<double, 50>` + $\sum x, \sum x^2$ |
+
+---
+
+## 5. Reference Bundle (Schema Version 1)
+
+`python/export_contract.py` exports these files together:
+
+| File | Contents |
+| :--- | :--- |
+| `model.txt` | Native LightGBM model, saved at its best validation iteration |
+| `golden_input_lob.csv` | Zero-based `row_id`, integer `timestamp_ms`, integer `last_update_id`, then the 40 price/quantity columns in recorder order: `bid_px_1,bid_sz_1,ask_px_1,ask_sz_1,...,ask_sz_10` |
+| `golden_features.csv` | `row_id,ready`, followed by the 11 features in section 4 order |
+| `golden_predictions.csv` | Ready rows only: `row_id,raw_down,raw_flat,raw_up,p_down,p_flat,p_up,class_id` |
+| `training_manifest.json` | Frozen source-file list with SHA-256 hashes and row counts |
+| `metadata.json` | Schema version, feature order, class mapping, numerical constants, selected threshold, training settings, package versions, and payload hashes |
+
+All numeric CSV outputs use 17 significant digits. Readers must preserve float64
+round-trip precision and 64-bit integer IDs/timestamps. `ready` is integer 0/1.
+For every segment, positions 0 through 299 have `ready=0` and empty feature
+fields; position 300 is the first ready row. Compare model outputs only for row
+IDs present in `golden_predictions.csv`. Equal timestamps are permitted, while
+decreasing timestamps are invalid. Raw input validation requires finite values,
+positive prices/quantities, ordered ladders and strictly increasing update IDs.
+
+Inference does **not** discard the final 50 snapshots: that training-only trim
+exists because future target labels are unavailable there. A ready input needs
+only past/current snapshots to produce features and predictions.
+
+The decision policy uses the validation-selected `conviction_tau` from metadata:
+Up when `p_up > tau` and `p_up > p_down`; Down when `p_down > tau` and
+`p_down > p_up`; Flat otherwise, including an exact directional probability tie.
+Raw scores are before softmax. Export verifies both raw scores and probabilities
+after loading the saved model again; it also checks predictions on CSV-read
+features so serialization cannot silently change tree branches.
+
+The default real-data fixture is the first 5,000 rows of the longest contiguous
+segment, with ties resolved by the earliest segment. It begins at a real reset
+boundary and includes all 300 warm-up inputs. Synthetic unit tests additionally
+cover reset gaps and readiness boundaries. A bundle is a numerical reference,
+not evidence that a C++ implementation has passed parity yet.
+
+## 6. C++ Streaming Feature API
+
+`FeatureEngine` in `lob/feature_engine.hpp` provides:
+
+```cpp
+bool update(const BookSnapshot& snapshot, FeatureVector& output);
+void reset() noexcept;
+```
+
+The caller supplies finite, valid book snapshots in timestamp order. An update
+consumes one snapshot, maintaining OFI, mid-price history and volatility in fixed
+storage. It returns `false` for the first 300 snapshots of each segment and
+leaves `output` untouched. Snapshot 301 returns `true` and writes all 11 features.
+A gap strictly greater than 500ms clears history **before** processing the new
+snapshot, which becomes the first warm-up snapshot of a new segment.
+
+Equal timestamps still count as distinct updates. Negative or decreasing
+timestamps throw `std::invalid_argument` without changing state or output.
+Explicit `reset()` clears history and permits a new stream to start at any
+nonnegative timestamp. Readiness is capped after warm-up so its counter cannot
+overflow on a long-running stream. Valid updates perform no heap allocation;
+the 51-mid-price buffer includes the current value and the value 50 updates ago.
+
+The C++ golden test streams the complete input fixture through this API, checks
+every readiness flag, and compares all ready features with the Python reference
+using the strict `< 1e-6` absolute tolerance. It does not yet test C++ model
+probabilities; model loading and evaluation are separate milestones.

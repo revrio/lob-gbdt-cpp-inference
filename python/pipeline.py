@@ -24,25 +24,17 @@ from sklearn.metrics import (
 )
 from sklearn.preprocessing import StandardScaler
 
-EPS = 1e-9
-WARMUP_TICKS = 300       # 30s warm-up for ofi_300 rolling window
-HORIZON_TICKS = 50       # 5s prediction horizon
-LABEL_THRESHOLD = 0.50   # $0.50 move required for Up (+1) or Down (-1)
-EMBARGO_TICKS = 100      # 10s buffer (> 50-tick label horizon) between splits
-
-FEATURE_COLS = [
-    "spread",
-    "micro_minus_mid",
-    "imb_l1",
-    "imb_l2_3",
-    "imb_l4_10",
-    "span_asym",
-    "ofi_10",
-    "ofi_50",
-    "ofi_300",
-    "ret_50",
-    "vol_50",
-]
+# Shared formulas also generate the C++ reference bundle.
+if __package__:
+    from .lob_features import (
+        EPS, WARMUP_TICKS, HORIZON_TICKS, LABEL_THRESHOLD, EMBARGO_TICKS,
+        FEATURE_COLS, engineer_features, modeling_frame,
+    )
+else:
+    from lob_features import (
+        EPS, WARMUP_TICKS, HORIZON_TICKS, LABEL_THRESHOLD, EMBARGO_TICKS,
+        FEATURE_COLS, engineer_features, modeling_frame,
+    )
 
 # %% [markdown]
 # ## Step 1: Load Raw Parquet Chunks & Run Data Hygiene Audit
@@ -75,78 +67,9 @@ print(df["segment_id"].value_counts().head(5).to_string())
 # Step 2: Engineer the 11 Custom LOB Features & $t+50$ Target Labels
 
 # %%
-# 2A. Stateless Snapshot Features (Vectorized across entire table)
-df["mid_px"] = (df["bid_px_1"] + df["ask_px_1"]) / 2.0
-df["spread"] = df["ask_px_1"] - df["bid_px_1"]
-
-b1, a1 = df["bid_sz_1"], df["ask_sz_1"]
-df["micro_minus_mid"] = ((df["bid_px_1"] * a1 + df["ask_px_1"] * b1) / (b1 + a1 + EPS)) - df["mid_px"]
-
-# Non-overlapping volume imbalance zones: L1, L2..3, L4..10
-b2_3 = df[["bid_sz_2", "bid_sz_3"]].sum(axis=1)
-a2_3 = df[["ask_sz_2", "ask_sz_3"]].sum(axis=1)
-b4_10 = df[[f"bid_sz_{i}" for i in range(4, 11)]].sum(axis=1)
-a4_10 = df[[f"ask_sz_{i}" for i in range(4, 11)]].sum(axis=1)
-
-df["imb_l1"] = (b1 - a1) / (b1 + a1 + EPS)
-df["imb_l2_3"] = (b2_3 - a2_3) / (b2_3 + a2_3 + EPS)
-df["imb_l4_10"] = (b4_10 - a4_10) / (b4_10 + a4_10 + EPS)
-
-# Book price span asymmetry across all 10 levels
-ask_span = df["ask_px_10"] - df["ask_px_1"]
-bid_span = df["bid_px_1"] - df["bid_px_10"]
-df["span_asym"] = (ask_span - bid_span) / (ask_span + bid_span + EPS)
-
-
-# 2B. Stateful Rolling Features & Future Target Label (Strictly inside each segment_id)
-def compute_segment_stateful(g: pd.DataFrame) -> pd.DataFrame:
-    if len(g) <= WARMUP_TICKS + HORIZON_TICKS:
-        return pd.DataFrame()
-
-    bp, bs = g["bid_px_1"].to_numpy(), g["bid_sz_1"].to_numpy()
-    ap, asz = g["ask_px_1"].to_numpy(), g["ask_sz_1"].to_numpy()
-    mid = g["mid_px"].to_numpy()
-
-    # 1-tick Cont-Kukanov-Stoikov OFI
-    wb = np.zeros(len(g), dtype=np.float64)
-    wa = np.zeros(len(g), dtype=np.float64)
-
-    bp_diff = bp[1:] - bp[:-1]
-    ap_diff = ap[1:] - ap[:-1]
-
-    wb[1:] = np.where(bp_diff > 0, bs[1:], np.where(bp_diff == 0, bs[1:] - bs[:-1], -bs[:-1]))
-    wa[1:] = np.where(ap_diff < 0, asz[1:], np.where(ap_diff == 0, asz[1:] - asz[:-1], -asz[:-1]))
-    ofi_1 = pd.Series(wb - wa, index=g.index)
-
-    g = g.copy()
-    g["ofi_10"] = ofi_1.rolling(10).sum()
-    g["ofi_50"] = ofi_1.rolling(50).sum()
-    g["ofi_300"] = ofi_1.rolling(300).sum()
-
-    # 50-tick past price change & 50-tick realized volatility (ddof=0)
-    dmid = pd.Series(np.r_[0.0, np.diff(mid)], index=g.index)
-    g["ret_50"] = g["mid_px"] - g["mid_px"].shift(50)
-    g["vol_50"] = dmid.rolling(50).std(ddof=0)
-
-    # Future 5-second (50-tick) mid-price change
-    g["future_ret_50"] = g["mid_px"].shift(-HORIZON_TICKS) - g["mid_px"]
-
-    # Trim warm-up ticks at start and unlabelled horizon ticks at end of segment
-    return g.iloc[WARMUP_TICKS : len(g) - HORIZON_TICKS]
-
-
-df_clean = (
-    df.groupby("segment_id", group_keys=False)
-    .apply(compute_segment_stateful)
-    .reset_index(drop=True)
-)
-
-# Encode 3 classes: 0 = Down (< -$0.50), 1 = Flat ([-$0.50, +$0.50]), 2 = Up (> +$0.50)
-df_clean["label"] = np.where(
-    df_clean["future_ret_50"] > LABEL_THRESHOLD,
-    2,
-    np.where(df_clean["future_ret_50"] < -LABEL_THRESHOLD, 0, 1),
-)
+# Segment boundaries are supplied by Step 1; formulas are shared with export.
+df = engineer_features(df)
+df_clean = modeling_frame(df)
 
 print("\n  STEP 2: FEATURE & LABEL SUMMARY  ")
 print(f"Clean modeling rows after segment warm-up/horizon trim: {len(df_clean):,}")

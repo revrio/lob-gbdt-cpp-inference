@@ -1,0 +1,541 @@
+{
+  "files": [
+    {
+      "path": "data/raw/btcusdt_lob_20261023_184955_part0000.parquet",
+      "rows": 668,
+      "bytes": 51439,
+      "sha256": "3210849234bba76b926826e0ccf2d9573da1aabba1769da3b32a6f077e9f198e",
+      "start_IST": "2026-10-24 00:19:56.403000+05:30",
+      "end_IST": "2026-10-24 00:21:03.301000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_185452_part0000.parquet",
+      "rows": 10000,
+      "bytes": 487508,
+      "sha256": "ef21cac2dde6c1263346aed078564c56f9564af972161d5f35875f57862f6c6f",
+      "start_IST": "2026-10-24 00:24:53.110000+05:30",
+      "end_IST": "2026-10-24 00:41:40.603000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_185452_part0001.parquet",
+      "rows": 2174,
+      "bytes": 111320,
+      "sha256": "7af1b247e815e8194d586040bdd679c168e5f028e1890f57c4a5a1baeaf46b89",
+      "start_IST": "2026-10-24 00:41:40.805000+05:30",
+      "end_IST": "2026-10-24 00:45:18.800000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_185452_part0002.parquet",
+      "rows": 10000,
+      "bytes": 472380,
+      "sha256": "932b79e43b07d82a6d6ddeeda72066a6f3fceefa1f5c4ad16fe5a453e4343d9f",
+      "start_IST": "2026-10-24 00:45:34.822000+05:30",
+      "end_IST": "2026-10-24 01:02:19.595000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_185452_part0003.parquet",
+      "rows": 3043,
+      "bytes": 155229,
+      "sha256": "6357a20100dc5ed6d495a622a328d45aa2f00901133f93539262d2e4a87d7ff1",
+      "start_IST": "2026-10-24 01:02:19.721000+05:30",
+      "end_IST": "2026-10-24 01:07:24.700000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_185452_part0004.parquet",
+      "rows": 1095,
+      "bytes": 76923,
+      "sha256": "207aff91b7755e4936022c876dd0d116cebd0a1475d9cccd50716871caf0e666",
+      "start_IST": "2026-10-24 01:07:34.696000+05:30",
+      "end_IST": "2026-10-24 01:09:24.591000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_185452_part0005.parquet",
+      "rows": 948,
+      "bytes": 71385,
+      "sha256": "6f0e58e9b77783c0f75b2042445b32aa18a1581a4fe650e74e6a3cec5424a4f4",
+      "start_IST": "2026-10-24 01:09:36.311000+05:30",
+      "end_IST": "2026-10-24 01:11:11.309000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0000.parquet",
+      "rows": 10000,
+      "bytes": 445831,
+      "sha256": "6f74f79620a4c391bd6a76dc43b43af7b071330899977dfd59a27aff5d9bdc0e",
+      "start_IST": "2026-10-24 01:12:34.992000+05:30",
+      "end_IST": "2026-10-24 01:29:19.686000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0001.parquet",
+      "rows": 10000,
+      "bytes": 470092,
+      "sha256": "0e77aa86ad9d5916285f23ab23f368c971f8b3021c36b94fef9888625052a71b",
+      "start_IST": "2026-10-24 01:29:19.868000+05:30",
+      "end_IST": "2026-10-24 01:46:04.482000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0002.parquet",
+      "rows": 10000,
+      "bytes": 386994,
+      "sha256": "af6c2d878f30a0a3e4e83e2cdf8e494abe1a88b0ca775d6f11147e1e8bbc2073",
+      "start_IST": "2026-10-24 01:46:04.615000+05:30",
+      "end_IST": "2026-10-24 02:02:52.183000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0003.parquet",
+      "rows": 10000,
+      "bytes": 407601,
+      "sha256": "ad44924fd403ece359a625b351cdd56a93964e5a567b499bae311d68003d0724",
+      "start_IST": "2026-10-24 02:02:52.495000+05:30",
+      "end_IST": "2026-10-24 02:19:38.986000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0004.parquet",
+      "rows": 10000,
+      "bytes": 402491,
+      "sha256": "05852a41c005103e286e83cc313d0eb5794a4eae44275c5125e1e581e80f01d0",
+      "start_IST": "2026-10-24 02:19:39.219000+05:30",
+      "end_IST": "2026-10-24 02:36:25.482000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0005.parquet",
+      "rows": 8361,
+      "bytes": 250973,
+      "sha256": "502aaa9b5ea393d620f2fb8ff4ed230d5479be69c2973a3c94b603ddcc3ffd9a",
+      "start_IST": "2026-10-24 02:36:25.690000+05:30",
+      "end_IST": "2026-10-24 02:50:36.920000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0006.parquet",
+      "rows": 10000,
+      "bytes": 285028,
+      "sha256": "36e38b4f1be3a051b44c966847838af45655e5acc272d63e0d21cda7ce88777f",
+      "start_IST": "2026-10-24 02:50:48.931000+05:30",
+      "end_IST": "2026-10-24 03:07:44.935000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0007.parquet",
+      "rows": 8313,
+      "bytes": 247257,
+      "sha256": "412aab84c4cd98f518c014f6648a8e93665728fd0f131ff23a661b5407889071",
+      "start_IST": "2026-10-24 03:07:45.048000+05:30",
+      "end_IST": "2026-10-24 03:21:46.735000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0008.parquet",
+      "rows": 10000,
+      "bytes": 341234,
+      "sha256": "a064375fc0056a02a85858b3acaa2b946390f72d345ad85a2313d97248353bc6",
+      "start_IST": "2026-10-24 03:21:58.595000+05:30",
+      "end_IST": "2026-10-24 03:38:51.213000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0009.parquet",
+      "rows": 6617,
+      "bytes": 200333,
+      "sha256": "6e07acbf1e31a407b36dfa2be1ae59d26cff21aa8566b5e42665198bdc72ab09",
+      "start_IST": "2026-10-24 03:38:51.326000+05:30",
+      "end_IST": "2026-10-24 03:50:01.597000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0010.parquet",
+      "rows": 1268,
+      "bytes": 63541,
+      "sha256": "34120e76a0f3795d033302b5ac4b7d6f66d09d0e7b534205bdaa3999a7e07716",
+      "start_IST": "2026-10-24 03:50:23.514000+05:30",
+      "end_IST": "2026-10-24 03:52:31.611000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0011.parquet",
+      "rows": 1556,
+      "bytes": 64966,
+      "sha256": "863aece26e8003d6a3f7f43515e2b9ed7a0dda338581d6052c827303fc0f04b1",
+      "start_IST": "2026-10-24 03:52:54.205000+05:30",
+      "end_IST": "2026-10-24 03:55:31.703000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0012.parquet",
+      "rows": 10000,
+      "bytes": 519295,
+      "sha256": "fd0fec966e8d2ca1ce714be701a8a13766c737d3ea03ba5e036e96eb72d26be3",
+      "start_IST": "2026-10-24 03:55:53.535000+05:30",
+      "end_IST": "2026-10-24 04:12:39.313000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261023_194234_part0013.parquet",
+      "rows": 2593,
+      "bytes": 104452,
+      "sha256": "208ca014bccf2689f83010b117520a55440566b84e053377145f163f0f88c900",
+      "start_IST": "2026-10-24 04:12:39.497000+05:30",
+      "end_IST": "2026-10-24 04:17:00.111000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0000.parquet",
+      "rows": 2476,
+      "bytes": 236248,
+      "sha256": "76a8eef5cd014e781e4787ae1004846c4021664020c849bb7103b2c860cfcede",
+      "start_IST": "2026-10-30 20:58:30.838000+05:30",
+      "end_IST": "2026-10-30 21:02:38.304000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0001.parquet",
+      "rows": 10000,
+      "bytes": 842023,
+      "sha256": "2e110acbd6a69b5fd184f13e4f8645d8bf7bc4f3d2458bd09632f77984437c1f",
+      "start_IST": "2026-10-30 21:03:00.404000+05:30",
+      "end_IST": "2026-10-30 21:19:40.404000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0002.parquet",
+      "rows": 10000,
+      "bytes": 847494,
+      "sha256": "8d3274680869447160e23fa1b5dc77ba2af76e8d26501ae31ce02b78a6ff6cfe",
+      "start_IST": "2026-10-30 21:19:40.549000+05:30",
+      "end_IST": "2026-10-30 21:36:21.004000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0003.parquet",
+      "rows": 10000,
+      "bytes": 757341,
+      "sha256": "50fb6c872fcbdff41a6cba8ca70ada3ba98c38be4907714d259cd6114bf31614",
+      "start_IST": "2026-10-30 21:36:21.265000+05:30",
+      "end_IST": "2026-10-30 21:53:02.105000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0004.parquet",
+      "rows": 10000,
+      "bytes": 725744,
+      "sha256": "106c36c96384f8b6470647fe1133776521f05d0491d07c822a15d5a3d0b656ab",
+      "start_IST": "2026-10-30 21:53:02.240000+05:30",
+      "end_IST": "2026-10-30 22:09:43.105000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0005.parquet",
+      "rows": 2252,
+      "bytes": 189965,
+      "sha256": "23ae75acab227e9a8a0a422887d9f8a59cd23b57cf0a66299befb01aa0ac4a52",
+      "start_IST": "2026-10-30 22:09:43.242000+05:30",
+      "end_IST": "2026-10-30 22:13:28.404000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0006.parquet",
+      "rows": 10000,
+      "bytes": 857189,
+      "sha256": "6bd6a2a4b5782fe0ad52d6acad60da3e5dd70e57696acbacae1a2db4df361836",
+      "start_IST": "2026-10-30 22:13:40.613000+05:30",
+      "end_IST": "2026-10-30 22:30:21.315000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0007.parquet",
+      "rows": 10000,
+      "bytes": 740243,
+      "sha256": "45b860c98778130051af709e4b040d103d35853f69851395a1101fcee770b6e8",
+      "start_IST": "2026-10-30 22:30:21.524000+05:30",
+      "end_IST": "2026-10-30 22:47:02.115000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0008.parquet",
+      "rows": 10000,
+      "bytes": 615554,
+      "sha256": "04eb7b267c38f299eba1800a888c48aea377fd182c80586435564c57c200589a",
+      "start_IST": "2026-10-30 22:47:02.250000+05:30",
+      "end_IST": "2026-10-30 23:03:43.322000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0009.parquet",
+      "rows": 10000,
+      "bytes": 635194,
+      "sha256": "d623955281c88a64326407a984bb73510f6102ac795f108f5d6df9b04ecd8cea",
+      "start_IST": "2026-10-30 23:03:43.461000+05:30",
+      "end_IST": "2026-10-30 23:20:24.517000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0010.parquet",
+      "rows": 10000,
+      "bytes": 580980,
+      "sha256": "ccf483119ac978388f362b74e0803891f68a19665140cf497192c94e952ab9d4",
+      "start_IST": "2026-10-30 23:20:24.661000+05:30",
+      "end_IST": "2026-10-30 23:37:05.715000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0011.parquet",
+      "rows": 10000,
+      "bytes": 648862,
+      "sha256": "47107b693d3c9cf1cd76ff8557b61fc6ffc7fe54912b9440afa3cd29fa62ee8b",
+      "start_IST": "2026-10-30 23:37:05.917000+05:30",
+      "end_IST": "2026-10-30 23:53:46.517000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0012.parquet",
+      "rows": 10000,
+      "bytes": 730236,
+      "sha256": "6e30d4cb22d65b4a00d7dcd7ea8fe724ca14ce2fc9f5c2462fa6167682b52ee7",
+      "start_IST": "2026-10-30 23:53:46.656000+05:30",
+      "end_IST": "2026-10-31 00:10:27.457000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0013.parquet",
+      "rows": 10000,
+      "bytes": 787297,
+      "sha256": "b933a96897927b096e4a8283197b57810e3023a8845db387e5ade68850b0d741",
+      "start_IST": "2026-10-31 00:10:27.635000+05:30",
+      "end_IST": "2026-10-31 00:27:08.515000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0014.parquet",
+      "rows": 10000,
+      "bytes": 919507,
+      "sha256": "a5eff258191643a7dafbc6b120216e57d51f1c12fc7fc367f383ab7c4d103883",
+      "start_IST": "2026-10-31 00:27:08.720000+05:30",
+      "end_IST": "2026-10-31 00:43:48.815000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0015.parquet",
+      "rows": 10000,
+      "bytes": 786308,
+      "sha256": "bd6c3d1cf7cb09898ba29b50e4a104a35d399ee5fbe6c52c4378ad87a0c4af54",
+      "start_IST": "2026-10-31 00:43:48.975000+05:30",
+      "end_IST": "2026-10-31 01:00:29.115000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0016.parquet",
+      "rows": 10000,
+      "bytes": 782716,
+      "sha256": "d1fb4e340e78bab3f2ec5a677c84c42c68c95b8129d26c52e4f7c57e5592fdf6",
+      "start_IST": "2026-10-31 01:00:29.242000+05:30",
+      "end_IST": "2026-10-31 01:17:10.216000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0017.parquet",
+      "rows": 10000,
+      "bytes": 828847,
+      "sha256": "5f2e30acf479a328165fd7ba63407649a447bf3c258b9bc0db3b123f76db099e",
+      "start_IST": "2026-10-31 01:17:10.372000+05:30",
+      "end_IST": "2026-10-31 01:33:50.514000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0018.parquet",
+      "rows": 10000,
+      "bytes": 631624,
+      "sha256": "25a89f6759d5d58826a329a098b12aff89cc7edacb194291879e5505cb8d9fdb",
+      "start_IST": "2026-10-31 01:33:50.655000+05:30",
+      "end_IST": "2026-10-31 01:50:32.415000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0019.parquet",
+      "rows": 10000,
+      "bytes": 584592,
+      "sha256": "086137c70bd6e84a8c3294418dca6e85b5af1320c455830c0115a3ef98d72b0b",
+      "start_IST": "2026-10-31 01:50:32.560000+05:30",
+      "end_IST": "2026-10-31 02:07:14.116000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0020.parquet",
+      "rows": 10000,
+      "bytes": 488753,
+      "sha256": "c365d33c83c9e6955911c06983a1935f6ec8b24c42bef121d801cfa4d1262c7c",
+      "start_IST": "2026-10-31 02:07:14.236000+05:30",
+      "end_IST": "2026-10-31 02:23:56.914000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0021.parquet",
+      "rows": 10000,
+      "bytes": 597266,
+      "sha256": "a2c91ddd544c9188be3ce5217fe10c2fc10dbd5092706f09b796f51eb488aaa5",
+      "start_IST": "2026-10-31 02:23:57.059000+05:30",
+      "end_IST": "2026-10-31 02:40:39.513000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0022.parquet",
+      "rows": 4591,
+      "bytes": 272942,
+      "sha256": "5edb252835bb45d421a4432a8bb4a63f3ffa570bb142768021a0d5381b9c8a9a",
+      "start_IST": "2026-10-31 02:40:39.690000+05:30",
+      "end_IST": "2026-10-31 02:48:19.913000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0023.parquet",
+      "rows": 10000,
+      "bytes": 452791,
+      "sha256": "42a09b6f45bf8a8ad81eac24642c7e3711f6fd2f259f521c5561ccbd84648be3",
+      "start_IST": "2026-10-31 02:48:31.914000+05:30",
+      "end_IST": "2026-10-31 03:05:16.913000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0024.parquet",
+      "rows": 10000,
+      "bytes": 412938,
+      "sha256": "fa3b3eab25694ee0d3b7f2387faed3e6a0590568dc59d8f2797b0ec6e63911b4",
+      "start_IST": "2026-10-31 03:05:17.026000+05:30",
+      "end_IST": "2026-10-31 03:22:00.813000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0025.parquet",
+      "rows": 10000,
+      "bytes": 403871,
+      "sha256": "f027f5e49d043e964ef807b649745ab13e0e9099010333a5b2741759ceeec4b7",
+      "start_IST": "2026-10-31 03:22:00.946000+05:30",
+      "end_IST": "2026-10-31 03:38:45.212000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0026.parquet",
+      "rows": 10000,
+      "bytes": 385230,
+      "sha256": "2214a175720695562e8f5cc66d071a7f50649a4169e9ff2c8508d846272124bc",
+      "start_IST": "2026-10-31 03:38:45.346000+05:30",
+      "end_IST": "2026-10-31 03:55:28.212000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0027.parquet",
+      "rows": 10000,
+      "bytes": 374775,
+      "sha256": "ab8fecde6a2950a1775b049909a74e89667d388cb4850bcf047ac4418ec0dd06",
+      "start_IST": "2026-10-31 03:55:28.326000+05:30",
+      "end_IST": "2026-10-31 04:12:14.213000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0028.parquet",
+      "rows": 10000,
+      "bytes": 311036,
+      "sha256": "0b444a904ae61d51316654db9bf078c03cabcbe754acf232fd7dc6be38318dbf",
+      "start_IST": "2026-10-31 04:12:14.349000+05:30",
+      "end_IST": "2026-10-31 04:29:00.215000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0029.parquet",
+      "rows": 10000,
+      "bytes": 421049,
+      "sha256": "4a6a4a3d9e9037562194e43268fac1e7d520b41a52c8f4939a72957251a87073",
+      "start_IST": "2026-10-31 04:29:00.338000+05:30",
+      "end_IST": "2026-10-31 04:45:43.715000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0030.parquet",
+      "rows": 10000,
+      "bytes": 431248,
+      "sha256": "b668d595c6dc99a1d5483cb709e2c2e6f7e6a4e0593e045f6651f4f333dfe2a6",
+      "start_IST": "2026-10-31 04:45:43.823000+05:30",
+      "end_IST": "2026-10-31 05:02:28.715000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0031.parquet",
+      "rows": 10000,
+      "bytes": 450013,
+      "sha256": "28735318c53f50e0c2b90d94b02214ee6a33b006912d2284660868128b68a0cf",
+      "start_IST": "2026-10-31 05:02:28.847000+05:30",
+      "end_IST": "2026-10-31 05:19:10.916000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0032.parquet",
+      "rows": 10000,
+      "bytes": 410252,
+      "sha256": "2f488bc5153f878ed2c75418775265ef6f36f7d6cf769ddf44072028994aea2b",
+      "start_IST": "2026-10-31 05:19:11.059000+05:30",
+      "end_IST": "2026-10-31 05:35:54.616000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0033.parquet",
+      "rows": 10000,
+      "bytes": 455638,
+      "sha256": "737bcb70285461f9b9282e71fb14868d8e5af54f48554e3096ea1d711d89e628",
+      "start_IST": "2026-10-31 05:35:54.729000+05:30",
+      "end_IST": "2026-10-31 05:52:38.213000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0034.parquet",
+      "rows": 10000,
+      "bytes": 430096,
+      "sha256": "4bba6ca322acb9c5018aab43c6970d7070452ae80e62073c78f5475d4dbc2add",
+      "start_IST": "2026-10-31 05:52:38.360000+05:30",
+      "end_IST": "2026-10-31 06:09:21.917000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0035.parquet",
+      "rows": 10000,
+      "bytes": 454562,
+      "sha256": "72738cc37b0c0d933c2b6ea6c71131367bfff5751f4003c82bbb7aadcb19d812",
+      "start_IST": "2026-10-31 06:09:22.026000+05:30",
+      "end_IST": "2026-10-31 06:26:04.714000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0036.parquet",
+      "rows": 10000,
+      "bytes": 454846,
+      "sha256": "90144ee5dcf740e6e9dceb531adc5c1458fd75532149ebcf75c2cef19bf9b2f6",
+      "start_IST": "2026-10-31 06:26:04.851000+05:30",
+      "end_IST": "2026-10-31 06:42:47.666000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0037.parquet",
+      "rows": 10000,
+      "bytes": 498375,
+      "sha256": "72f3e9d451917be3a4f912be4a60565fc674120ddeea82a510654e8015e8e31f",
+      "start_IST": "2026-10-31 06:42:47.775000+05:30",
+      "end_IST": "2026-10-31 06:59:30.414000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0038.parquet",
+      "rows": 10000,
+      "bytes": 405499,
+      "sha256": "f5f21e231dedb27c3d936d381bf7553e4070858dbe762c8f9fe1d6c6f66ebc39",
+      "start_IST": "2026-10-31 06:59:30.527000+05:30",
+      "end_IST": "2026-10-31 07:16:14.613000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0039.parquet",
+      "rows": 10000,
+      "bytes": 402749,
+      "sha256": "b14914a337cb640b6ae2f7611a89607a3fe2e08456fe5c5c8df70925f7a8b8f5",
+      "start_IST": "2026-10-31 07:16:14.749000+05:30",
+      "end_IST": "2026-10-31 07:32:59.716000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0040.parquet",
+      "rows": 10000,
+      "bytes": 420822,
+      "sha256": "c9417a80ab59af121ca570f3cf3089d111dd3a493cbdf8065a64e286a788cc42",
+      "start_IST": "2026-10-31 07:32:59.850000+05:30",
+      "end_IST": "2026-10-31 07:49:42.595000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0041.parquet",
+      "rows": 10000,
+      "bytes": 406919,
+      "sha256": "52e6b2b21f5f235be65b9a56fe57f1a85f8fb9c7208cf5f5fa717737cf6f437c",
+      "start_IST": "2026-10-31 07:49:42.730000+05:30",
+      "end_IST": "2026-10-31 08:06:25.413000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0042.parquet",
+      "rows": 10000,
+      "bytes": 330854,
+      "sha256": "203469db298f275c5409835e6266d2cda4d8299aaf3624107b20a81168f9f8ce",
+      "start_IST": "2026-10-31 08:06:25.526000+05:30",
+      "end_IST": "2026-10-31 08:23:11.614000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0043.parquet",
+      "rows": 10000,
+      "bytes": 308201,
+      "sha256": "cb304c11e1a8315ecdcb93443a35e04e81ac12f12fd01c1e7a7f82c879dbcb19",
+      "start_IST": "2026-10-31 08:23:11.735000+05:30",
+      "end_IST": "2026-10-31 08:39:56.914000+05:30"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0044.parquet",
+      "rows": 10000,
+      "bytes": 321248,
+      "sha256": "92a1e3a52b0cf5a32a020e2b95cba7c0c09c0cc2ae2aa1218f2bfb8ded1d9e15",
+      "start_IST": "2026-10-31 08:39:57.027000+05:30",
+      "end_IST": "2026-10-31 08:56:40.211000+05:30"
+    }
+  ],
+  "skipped_incomplete_files": [],
+  "pipeline_sha256": "0d2f93ee7523fb1eae7aae78c137e8f170aca79075bc4ca3ab833a9723077c3f",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "lightgbm": "4.7.0",
+    "pyarrow": "26.0.0"
+  }
+}

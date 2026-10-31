@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "feature_names": [
+    "spread",
+    "micro_minus_mid",
+    "imb_l1",
+    "imb_l2_3",
+    "imb_l4_10",
+    "span_asym",
+    "ofi_10",
+    "ofi_50",
+    "ofi_300",
+    "ret_50",
+    "vol_50"
+  ],
+  "classes": {
+    "0": "Down",
+    "1": "Flat",
+    "2": "Up"
+  },
+  "max_gap_ms": 500,
+  "warmup_ticks": 300,
+  "eps": 1e-09,
+  "horizon_ticks": 50,
+  "label_threshold": 0.5,
+  "conviction_tau": 0.39,
+  "parity_absolute_tolerance": 1e-06,
+  "floating_point": "float64; CSV uses 17 significant digits",
+  "input_rows": 5000,
+  "ready_rows": 4700,
+  "warmup_rows": 300,
+  "warmup_feature_fields": "empty",
+  "prediction_rows": "ready rows only, joined by row_id",
+  "num_trees": 186,
+  "training": {
+    "params": {
+      "objective": "multiclass",
+      "num_class": 3,
+      "metric": "multi_logloss",
+      "boosting_type": "gbdt",
+      "learning_rate": 0.05,
+      "num_leaves": 31,
+      "max_depth": 5,
+      "min_child_samples": 50,
+      "feature_fraction": 0.8,
+      "verbose": -1,
+      "seed": 42,
+      "num_threads": 2
+    },
+    "max_boost_rounds": 300,
+    "early_stopping_rounds": 30,
+    "best_iteration": 62,
+    "raw_rows": 565955,
+    "clean_rows": 448199,
+    "train_rows": 313739,
+    "validation_rows": 67130,
+    "test_rows": 67130,
+    "embargo_ticks": 100,
+    "validation_macro_f1": 0.5274894094184613,
+    "threshold_search": {
+      "min": 0.2,
+      "max": 0.45,
+      "step": 0.01,
+      "split": "validation"
+    },
+    "golden_segment_id": 657,
+    "golden_segment_available_rows": 121283
+  },
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "pyarrow": "26.0.0",
+    "lightgbm": "4.7.0",
+    "scikit-learn": "1.9.1"
+  },
+  "reference_source_sha256": "2e18eef3459e20eb92444cca596d1184987ee1f49f4a95ddd2c18cb0a454ed63",
+  "files": {
+    "model.txt": {
+      "sha256": "6feb42b44f19eeecc38653de4dac23850e15460219c110309926d9bcda991af5"
+    },
+    "golden_input_lob.csv": {
+      "sha256": "e8847038e5b69293cb5b40ca329f57e3872f4a15ee4c601c9e404ad9a3188736"
+    },
+    "golden_features.csv": {
+      "sha256": "b593b190541a0f203393d02bbc24a95d4455850915023f3c9640c912905b664e"
+    },
+    "golden_predictions.csv": {
+      "sha256": "019b6e3644f61dc52c2441e3476f74cabd4359d099e6e8686351ba269d63fd3c"
+    },
+    "training_manifest.json": {
+      "sha256": "120fe8e218f1a2c4c70e3b5b1d0eac836caa77dd2e1e71521c2d9bc518f4a138"
+    }
+  }
+}
