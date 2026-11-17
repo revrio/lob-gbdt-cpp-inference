@@ -33,3 +33,16 @@ TEST(RollingSum, PopulationStd) {
   // mean = 3.5, variance = (2.25 + 0.25*3)/4 = 0.75
   EXPECT_NEAR(rs.std_pop(), std::sqrt(0.75), 1e-12);
 }
+
+TEST(RollingVariance, PopulationVarianceAndReset) {
+  lob::RollingVariance<3> variance;
+  variance.push(1);
+  variance.push(2);
+  variance.push(3);
+  EXPECT_NEAR(variance.std_pop(), std::sqrt(2.0 / 3.0), 1e-14);
+  variance.push(4);
+  EXPECT_NEAR(variance.std_pop(), std::sqrt(2.0 / 3.0), 1e-14);
+  variance.clear();
+  for (int i = 0; i < 10; ++i) variance.push(7);
+  EXPECT_DOUBLE_EQ(variance.std_pop(), 0);
+}

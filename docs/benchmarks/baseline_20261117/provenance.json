@@ -1,0 +1,36 @@
+{
+  "date_IST": "2026-11-17",
+  "git_base_commit": "4aaa9eb48992e102d6102df3fa49cae15d2cc4de",
+  "working_tree_note": "Includes the uncommitted parser/evaluator and benchmark changes; source hashes identify the measured code.",
+  "kernel": "7.2.13-200.fc44.x86_64",
+  "system": "Linux",
+  "source_sha256": {
+    "cpp/CMakeLists.txt": "6d51b6fb84c437719949f5a8b9706f3be5b7ed6dd5135ad413528008f32d8fdd",
+    "cpp/bench/benchmark.cpp": "a1d94f45fc2ae0f2cf323827c4aee9636e58db51fa1a706aabb2be1e955c5507",
+    "cpp/include/lob/feature_engine.hpp": "b0014b86575a326d8e5895528b46d161b61a32df5e842db42315b729ad385725",
+    "cpp/include/lob/features.hpp": "3e0c1d00a46fbb6f0fa8d194117ab512cf917f5f6e6a3680306966e277fe3688",
+    "cpp/include/lob/model.hpp": "d02095ac0d9abf2bbe34e889b44f665b880e97b216cf55770d449cd34bb50972",
+    "cpp/include/lob/ring_buffer.hpp": "6d68dee00efbaf26e193a5ace1754a844c8520692f8c2345acbe1aaaa2aa388a",
+    "cpp/include/lob/tree.hpp": "a438ebb309d6468ccdc24e0518064074fb82eeb6699f011ae667c5224889a15b",
+    "cpp/include/lob/types.hpp": "62665af2cba350bef218b5d1a01603c257cce72ec02e3766716a291ddae348a6",
+    "cpp/src/model.cpp": "fdf45ac388f13b3b04781d67621f00effdc48342689876c1ecaa21d6a9192948",
+    "cpp/src/tree.cpp": "c3dd84a9ee94c3adfd7f1d2ac4eaa3730dc87d2dd23cd5cfeef6577d8e269390"
+  },
+  "input_sha256": {
+    "contract/model.txt": "b4ee2a9efbd3af20f2a81eda96dd74e2654366414d18481ac5ea3d6fe6843bda",
+    "contract/golden_input_lob.csv": "e8847038e5b69293cb5b40ca329f57e3872f4a15ee4c601c9e404ad9a3188736"
+  },
+  "binary_sha256": "3743b0ba6591d396fb58fbeaa75f0a8668f2f5f2990d1eef033050fae384633a",
+  "command": [
+    "cpp/build/lob_bench",
+    "--tau",
+    "0.31",
+    "--passes",
+    "20",
+    "--latency-passes",
+    "5"
+  ],
+  "repetitions": 3,
+  "parallel_benchmark_processes": 1,
+  "conditions": "Normal laptop session. No affinity, frequency or background-load controls. Modes always run features, inference, combined."
+}

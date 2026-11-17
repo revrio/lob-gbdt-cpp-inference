@@ -1,0 +1,58 @@
+{
+  "benchmark": "warm in-memory engine baseline",
+  "compiler": "GNU-16.2.1",
+  "build_type": "Release",
+  "configured_cxx_flags": " -O3 -DNDEBUG",
+  "cpu": "Intel(R) Core(TM) 5 210H",
+  "hardware_threads": 12,
+  "model_path": "/home/revrio/lob-project/contract/model.txt",
+  "input_path": "/home/revrio/lob-project/contract/golden_input_lob.csv",
+  "trees": 549,
+  "tau": 0.31,
+  "snapshots": 5000,
+  "ready_updates_per_pass": 4700,
+  "warmup_updates_excluded_per_pass": 300,
+  "untimed_warming_passes_per_mode": 2,
+  "throughput_passes": 20,
+  "latency_passes": 5,
+  "clock_empty_interval_p50_ns": 30,
+  "clock_empty_interval_p99_ns": 32,
+  "cpu_pinned": false,
+  "includes": "engine work and result stores; no clock-overhead subtraction",
+  "excludes": "loading, parsing, checksum reduction, screen output, networking, per-segment warm-up",
+  "results": {
+    "features": {
+      "latency_samples": 23500,
+      "p50_ns": 139,
+      "p95_ns": 162,
+      "p99_ns": 197,
+      "max_ns": 35234,
+      "median_pass_ns": 271395,
+      "ns_per_update_from_median_pass": 57.7436170213,
+      "updates_per_second_from_median_pass": 17317931.4284,
+      "checksum": 2556569.05767
+    },
+    "inference": {
+      "latency_samples": 23500,
+      "p50_ns": 12369,
+      "p95_ns": 33348,
+      "p99_ns": 47583,
+      "max_ns": 142461,
+      "median_pass_ns": 113506239,
+      "ns_per_update_from_median_pass": 24150.263617,
+      "updates_per_second_from_median_pass": 41407.415499,
+      "checksum": -246341.694149
+    },
+    "combined": {
+      "latency_samples": 23500,
+      "p50_ns": 22357,
+      "p95_ns": 63831,
+      "p99_ns": 83484,
+      "max_ns": 825681,
+      "median_pass_ns": 127185253,
+      "ns_per_update_from_median_pass": 27060.6921277,
+      "updates_per_second_from_median_pass": 36953.9698128,
+      "checksum": -246341.694149
+    }
+  }
+}

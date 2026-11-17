@@ -94,7 +94,7 @@ class FeatureEngine {
   RollingSum<10> ofi_10_;
   RollingSum<50> ofi_50_;
   RollingSum<300> ofi_300_;
-  RollingSum<50> dmid_50_;
+  RollingVariance<50> dmid_50_;
   RingBuffer<double, 51> mid_history_;
 
   std::size_t ticks_seen_ = 0;

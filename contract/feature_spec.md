@@ -123,8 +123,8 @@ the 51-mid-price buffer includes the current value and the value 50 updates ago.
 
 The C++ golden test streams the complete input fixture through this API, checks
 every readiness flag, and compares all ready features with the Python reference
-using the strict `< 1e-6` absolute tolerance. It does not yet test C++ model
-probabilities; model loading and evaluation are separate milestones.
+using the strict `< 1e-6` absolute tolerance. A separate prediction test checks
+raw scores, probabilities and classes from both stored and streamed features.
 
 ## Locked training snapshot
 
@@ -134,3 +134,36 @@ files are used for export and pipeline evaluation. Training ends before
 Targets must end inside their training/validation period, with a 100-raw-update
 embargo at each subsequent boundary. Test scores never select the tree count
 or conviction threshold. The gap cutoff is 1,000ms; it does not add latency.
+
+## C++ model evaluation
+
+`LightGBMModel::load(path)` parses the v4 numerical three-class model into
+validated `Tree` instances. Children >=0 index split nodes; children <0 select
+leaf `-child-1`. A split uses `<=` for its left branch. The constructor rejects
+cycles, repeated children and unreachable nodes before prediction can begin.
+A one-leaf tree returns its constant score.
+
+For every ready feature vector, tree `i` contributes its leaf value to class
+`i % 3`. Exported leaves already include shrinkage and initial bias. Softmax
+subtracts the largest score before exponentiation. `predict(features, tau)`
+returns raw scores, probabilities and the strict-threshold class from Section 5.
+The caller supplies the metadata threshold; the model parser does not load JSON.
+
+Supported decision types are 0 and 2 (numerical comparison, MissingType=None);
+all input features must be finite. Other decision types, categorical/linear
+trees, averaged outputs, reordered features and other objectives are rejected.
+`tree_sizes` is checked for count and positive integers, not used as byte offsets.
+The parser bounds the inference section to 64 MiB, 10,000 trees and 65,536 leaves
+per tree. It requires the `end of trees` marker; trailing importance/training
+metadata is ignored.
+
+`vol_50` in C++ uses compensated rolling Welford variance with separate
+addition/removal compensation and cancellation recovery, matching the frozen
+pandas 3.1.0 numerical reference. Tiny positive residuals are preserved: the
+model contains thresholds near zero. This replaces the earlier sum-of-squares
+implementation, which passed feature tolerance but could take different tree
+branches. The Python formulas, frozen model and fixtures are unchanged.
+
+The prediction parity test checks both stored Python features and streamed C++
+features for all ready golden rows. Raw-score/probability absolute errors must
+be below 1e-6 and class IDs must agree exactly.

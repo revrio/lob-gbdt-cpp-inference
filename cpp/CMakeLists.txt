@@ -13,16 +13,27 @@ FetchContent_Declare(googletest
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
-add_library(lob INTERFACE)
-target_include_directories(lob INTERFACE include)
+add_library(lob STATIC src/tree.cpp src/model.cpp)
+target_include_directories(lob PUBLIC include)
 
 add_executable(tests
   tests/test_smoke.cpp
   tests/test_ring_buffer.cpp
   tests/test_features.cpp
   tests/test_feature_engine.cpp
-  tests/test_feature_parity.cpp)
+  tests/test_feature_parity.cpp
+  tests/test_tree.cpp
+  tests/test_model.cpp)
 target_link_libraries(tests lob GTest::gtest_main)
 target_compile_definitions(tests PRIVATE LOB_CONTRACT_DIR="${CMAKE_CURRENT_SOURCE_DIR}/../contract")
 include(GoogleTest)
 gtest_discover_tests(tests)
+
+# A separate executable keeps benchmark timing code out of the engine and tests.
+add_executable(lob_bench bench/benchmark.cpp)
+target_link_libraries(lob_bench PRIVATE lob)
+string(TOUPPER "${CMAKE_BUILD_TYPE}" LOB_BENCH_CONFIG)
+target_compile_definitions(lob_bench PRIVATE
+  LOB_BENCH_COMPILER="${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}"
+  LOB_BENCH_BUILD_TYPE="${CMAKE_BUILD_TYPE}"
+  LOB_BENCH_FLAGS="${CMAKE_CXX_FLAGS}\ ${CMAKE_CXX_FLAGS_${LOB_BENCH_CONFIG}}")

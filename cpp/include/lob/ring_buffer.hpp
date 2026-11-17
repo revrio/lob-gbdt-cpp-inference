@@ -2,6 +2,7 @@
 #include <array>
 #include <cmath>
 #include <cstddef>
+#include <limits>
 
 namespace lob {
 
@@ -37,7 +38,8 @@ class RingBuffer {
 };
 
 // Rolling sum and sum of squares over the last N values, O(1) per update.
-// Used for ofi_10/50/300 (sum) and vol_50 (sum and sum of squares).
+// Used for ofi_10/50/300. std_pop is useful for simple checks; inference
+// volatility uses RollingVariance to preserve Python's numerical behaviour.
 template <std::size_t N>
 class RollingSum {
  public:
@@ -62,6 +64,66 @@ class RollingSum {
   RingBuffer<double, N> buf_;
   double sum_ = 0.0;
   double sum_sq_ = 0.0;
+};
+
+// Compensated rolling Welford variance for finite inputs. The operation order
+// follows pandas 3.1.0's rolling variance (our frozen reference), including
+// separate add/remove compensation and recomputation on severe cancellation.
+// See pandas/_libs/window/aggregations.pyx, tag v3.1.0 (BSD-3-Clause).
+// Small positive residuals must be preserved: the frozen trees split near zero.
+template <std::size_t N>
+class RollingVariance {
+  static_assert(N > 1);
+ public:
+  void push(double value) {
+    bool unstable = false;
+    if (buffer_.full()) update(buffer_.oldest(), false, unstable);
+    buffer_.push(value);
+    update(value, true, unstable);
+    if (unstable) {
+      count_ = 0;
+      mean_ = m2_ = add_compensation_ = remove_compensation_ = 0;
+      for (std::size_t i = buffer_.size(); i > 0; --i) {
+        update(buffer_.back(i - 1), true, unstable);
+      }
+    }
+  }
+
+  double std_pop() const {
+    return std::sqrt(m2_ > 0 && count_ > 0 ? m2_ / static_cast<double>(count_) : 0.0);
+  }
+
+  void clear() {
+    buffer_.clear();
+    count_ = 0;
+    mean_ = m2_ = add_compensation_ = remove_compensation_ = 0;
+  }
+
+ private:
+  void update(double value, bool adding, bool& unstable) {
+    const double before = m2_;
+    if (adding) ++count_;
+    else --count_;
+    if (!count_) {
+      mean_ = m2_ = 0;
+      unstable = false;
+      return;
+    }
+    double& compensation = adding ? add_compensation_ : remove_compensation_;
+    const double previous_mean = mean_ - compensation;
+    const double corrected = value - compensation;
+    const double delta = corrected - mean_;
+    compensation = (delta + mean_) - corrected;
+    mean_ += (adding ? delta : -delta) / static_cast<double>(count_);
+    const double product = (value - previous_mean) * (value - mean_);
+    m2_ += adding ? product : -product;
+    if (before * (std::numeric_limits<double>::epsilon() * 1000) > m2_) unstable = true;
+  }
+
+  RingBuffer<double, N> buffer_;
+  std::size_t count_ = 0;
+  double mean_ = 0, m2_ = 0;
+  double add_compensation_ = 0, remove_compensation_ = 0;
 };
 
 }  // namespace lob
