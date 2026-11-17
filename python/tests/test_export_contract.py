@@ -13,7 +13,10 @@ from python.export_contract import (
     FEATURE_COLS, RAW_COLS, classify, digest, load_snapshot,
     verify_bundle, write_bundle,
 )
-from python.lob_features import engineer_features, modeling_frame, segment_snapshots
+from python.lob_features import (
+    engineer_features, modeling_frame, segment_snapshots,
+    prepare_modeling_frame, calendar_split, TRAIN_END_MS, VALIDATION_END_MS,
+)
 
 
 def book_sequence(n=340):
@@ -28,6 +31,31 @@ def book_sequence(n=340):
 
 
 class FeatureReferenceTests(unittest.TestCase):
+    def test_segment_batching_matches_full_reference(self):
+        raw = book_sequence(900)
+        raw.loc[400:, "timestamp_ms"] += 1001
+        actual = prepare_modeling_frame(raw)
+        expected = modeling_frame(engineer_features(segment_snapshots(raw)))
+        np.testing.assert_array_equal(actual[FEATURE_COLS], expected[FEATURE_COLS])
+        np.testing.assert_array_equal(actual.label, expected.label)
+        np.testing.assert_array_equal(actual.raw_index, np.r_[300:350, 700:850])
+
+    def test_calendar_split_purges_targets_and_embargoes_raw_rows(self):
+        times = np.r_[TRAIN_END_MS - 200 + np.arange(200),
+                      TRAIN_END_MS + np.arange(200),
+                      VALIDATION_END_MS + np.arange(200)]
+        clean = pd.DataFrame({"timestamp_ms": times, "raw_index": np.arange(600),
+                              "target_timestamp_ms": times + 50})
+        train, val, test = calendar_split(clean, times)
+        self.assertEqual(len(train), 150)
+        self.assertEqual(len(val), 100)
+        self.assertEqual(len(test), 100)
+        self.assertEqual(val.raw_index.min(), 300)
+        self.assertEqual(test.raw_index.min(), 500)
+        crossing = clean.copy()
+        crossing.loc[350, 'target_timestamp_ms'] = VALIDATION_END_MS
+        self.assertNotIn(350, calendar_split(crossing, times)[1].raw_index.to_list())
+
     def test_hand_computed_book_and_one_price_jump(self):
         raw = book_sequence(301)
         prices = [name for name in RAW_COLS if "_px_" in name]
@@ -49,9 +77,9 @@ class FeatureReferenceTests(unittest.TestCase):
 
     def test_gap_boundary_and_new_segment_warmup(self):
         raw = book_sequence(641)
-        raw.loc[320:, "timestamp_ms"] += 400  # Exactly 500ms: stays in segment.
+        raw.loc[320:, "timestamp_ms"] += 900  # Exactly 1000ms: stays in segment.
         self.assertTrue(engineer_features(segment_snapshots(raw)).ready.iloc[320])
-        raw.loc[320:, "timestamp_ms"] += 1  # 501ms: reset.
+        raw.loc[320:, "timestamp_ms"] += 1  # 1001ms: reset.
         f = engineer_features(segment_snapshots(raw))
         self.assertFalse(f.ready.iloc[320:620].any())
         self.assertTrue(f.ready.iloc[620:].all())
@@ -112,7 +140,7 @@ class ExportTests(unittest.TestCase):
 
     def test_model_bundle_with_a_reset(self):
         raw = book_sequence(641)
-        raw.loc[320:, "timestamp_ms"] += 401
+        raw.loc[320:, "timestamp_ms"] += 901
         with tempfile.TemporaryDirectory() as tmp:
             summary = write_bundle(self.model, raw, .39, {}, {}, Path(tmp))
             self.assertEqual(summary["warmup_rows"], 600)

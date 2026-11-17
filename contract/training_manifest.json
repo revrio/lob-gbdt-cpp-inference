@@ -1,541 +1,2623 @@
 {
+  "max_gap_ms": 1000,
+  "raw_rows": 3855454,
+  "last_saved_IST": "2026-11-07 11:23:24.466000+05:30",
   "files": [
     {
       "path": "data/raw/btcusdt_lob_20261023_184955_part0000.parquet",
       "rows": 668,
       "bytes": 51439,
-      "sha256": "3210849234bba76b926826e0ccf2d9573da1aabba1769da3b32a6f077e9f198e",
-      "start_IST": "2026-10-24 00:19:56.403000+05:30",
-      "end_IST": "2026-10-24 00:21:03.301000+05:30"
+      "sha256": "3210849234bba76b926826e0ccf2d9573da1aabba1769da3b32a6f077e9f198e"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_185452_part0000.parquet",
       "rows": 10000,
       "bytes": 487508,
-      "sha256": "ef21cac2dde6c1263346aed078564c56f9564af972161d5f35875f57862f6c6f",
-      "start_IST": "2026-10-24 00:24:53.110000+05:30",
-      "end_IST": "2026-10-24 00:41:40.603000+05:30"
+      "sha256": "ef21cac2dde6c1263346aed078564c56f9564af972161d5f35875f57862f6c6f"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_185452_part0001.parquet",
       "rows": 2174,
       "bytes": 111320,
-      "sha256": "7af1b247e815e8194d586040bdd679c168e5f028e1890f57c4a5a1baeaf46b89",
-      "start_IST": "2026-10-24 00:41:40.805000+05:30",
-      "end_IST": "2026-10-24 00:45:18.800000+05:30"
+      "sha256": "7af1b247e815e8194d586040bdd679c168e5f028e1890f57c4a5a1baeaf46b89"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_185452_part0002.parquet",
       "rows": 10000,
       "bytes": 472380,
-      "sha256": "932b79e43b07d82a6d6ddeeda72066a6f3fceefa1f5c4ad16fe5a453e4343d9f",
-      "start_IST": "2026-10-24 00:45:34.822000+05:30",
-      "end_IST": "2026-10-24 01:02:19.595000+05:30"
+      "sha256": "932b79e43b07d82a6d6ddeeda72066a6f3fceefa1f5c4ad16fe5a453e4343d9f"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_185452_part0003.parquet",
       "rows": 3043,
       "bytes": 155229,
-      "sha256": "6357a20100dc5ed6d495a622a328d45aa2f00901133f93539262d2e4a87d7ff1",
-      "start_IST": "2026-10-24 01:02:19.721000+05:30",
-      "end_IST": "2026-10-24 01:07:24.700000+05:30"
+      "sha256": "6357a20100dc5ed6d495a622a328d45aa2f00901133f93539262d2e4a87d7ff1"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_185452_part0004.parquet",
       "rows": 1095,
       "bytes": 76923,
-      "sha256": "207aff91b7755e4936022c876dd0d116cebd0a1475d9cccd50716871caf0e666",
-      "start_IST": "2026-10-24 01:07:34.696000+05:30",
-      "end_IST": "2026-10-24 01:09:24.591000+05:30"
+      "sha256": "207aff91b7755e4936022c876dd0d116cebd0a1475d9cccd50716871caf0e666"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_185452_part0005.parquet",
       "rows": 948,
       "bytes": 71385,
-      "sha256": "6f0e58e9b77783c0f75b2042445b32aa18a1581a4fe650e74e6a3cec5424a4f4",
-      "start_IST": "2026-10-24 01:09:36.311000+05:30",
-      "end_IST": "2026-10-24 01:11:11.309000+05:30"
+      "sha256": "6f0e58e9b77783c0f75b2042445b32aa18a1581a4fe650e74e6a3cec5424a4f4"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0000.parquet",
       "rows": 10000,
       "bytes": 445831,
-      "sha256": "6f74f79620a4c391bd6a76dc43b43af7b071330899977dfd59a27aff5d9bdc0e",
-      "start_IST": "2026-10-24 01:12:34.992000+05:30",
-      "end_IST": "2026-10-24 01:29:19.686000+05:30"
+      "sha256": "6f74f79620a4c391bd6a76dc43b43af7b071330899977dfd59a27aff5d9bdc0e"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0001.parquet",
       "rows": 10000,
       "bytes": 470092,
-      "sha256": "0e77aa86ad9d5916285f23ab23f368c971f8b3021c36b94fef9888625052a71b",
-      "start_IST": "2026-10-24 01:29:19.868000+05:30",
-      "end_IST": "2026-10-24 01:46:04.482000+05:30"
+      "sha256": "0e77aa86ad9d5916285f23ab23f368c971f8b3021c36b94fef9888625052a71b"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0002.parquet",
       "rows": 10000,
       "bytes": 386994,
-      "sha256": "af6c2d878f30a0a3e4e83e2cdf8e494abe1a88b0ca775d6f11147e1e8bbc2073",
-      "start_IST": "2026-10-24 01:46:04.615000+05:30",
-      "end_IST": "2026-10-24 02:02:52.183000+05:30"
+      "sha256": "af6c2d878f30a0a3e4e83e2cdf8e494abe1a88b0ca775d6f11147e1e8bbc2073"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0003.parquet",
       "rows": 10000,
       "bytes": 407601,
-      "sha256": "ad44924fd403ece359a625b351cdd56a93964e5a567b499bae311d68003d0724",
-      "start_IST": "2026-10-24 02:02:52.495000+05:30",
-      "end_IST": "2026-10-24 02:19:38.986000+05:30"
+      "sha256": "ad44924fd403ece359a625b351cdd56a93964e5a567b499bae311d68003d0724"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0004.parquet",
       "rows": 10000,
       "bytes": 402491,
-      "sha256": "05852a41c005103e286e83cc313d0eb5794a4eae44275c5125e1e581e80f01d0",
-      "start_IST": "2026-10-24 02:19:39.219000+05:30",
-      "end_IST": "2026-10-24 02:36:25.482000+05:30"
+      "sha256": "05852a41c005103e286e83cc313d0eb5794a4eae44275c5125e1e581e80f01d0"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0005.parquet",
       "rows": 8361,
       "bytes": 250973,
-      "sha256": "502aaa9b5ea393d620f2fb8ff4ed230d5479be69c2973a3c94b603ddcc3ffd9a",
-      "start_IST": "2026-10-24 02:36:25.690000+05:30",
-      "end_IST": "2026-10-24 02:50:36.920000+05:30"
+      "sha256": "502aaa9b5ea393d620f2fb8ff4ed230d5479be69c2973a3c94b603ddcc3ffd9a"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0006.parquet",
       "rows": 10000,
       "bytes": 285028,
-      "sha256": "36e38b4f1be3a051b44c966847838af45655e5acc272d63e0d21cda7ce88777f",
-      "start_IST": "2026-10-24 02:50:48.931000+05:30",
-      "end_IST": "2026-10-24 03:07:44.935000+05:30"
+      "sha256": "36e38b4f1be3a051b44c966847838af45655e5acc272d63e0d21cda7ce88777f"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0007.parquet",
       "rows": 8313,
       "bytes": 247257,
-      "sha256": "412aab84c4cd98f518c014f6648a8e93665728fd0f131ff23a661b5407889071",
-      "start_IST": "2026-10-24 03:07:45.048000+05:30",
-      "end_IST": "2026-10-24 03:21:46.735000+05:30"
+      "sha256": "412aab84c4cd98f518c014f6648a8e93665728fd0f131ff23a661b5407889071"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0008.parquet",
       "rows": 10000,
       "bytes": 341234,
-      "sha256": "a064375fc0056a02a85858b3acaa2b946390f72d345ad85a2313d97248353bc6",
-      "start_IST": "2026-10-24 03:21:58.595000+05:30",
-      "end_IST": "2026-10-24 03:38:51.213000+05:30"
+      "sha256": "a064375fc0056a02a85858b3acaa2b946390f72d345ad85a2313d97248353bc6"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0009.parquet",
       "rows": 6617,
       "bytes": 200333,
-      "sha256": "6e07acbf1e31a407b36dfa2be1ae59d26cff21aa8566b5e42665198bdc72ab09",
-      "start_IST": "2026-10-24 03:38:51.326000+05:30",
-      "end_IST": "2026-10-24 03:50:01.597000+05:30"
+      "sha256": "6e07acbf1e31a407b36dfa2be1ae59d26cff21aa8566b5e42665198bdc72ab09"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0010.parquet",
       "rows": 1268,
       "bytes": 63541,
-      "sha256": "34120e76a0f3795d033302b5ac4b7d6f66d09d0e7b534205bdaa3999a7e07716",
-      "start_IST": "2026-10-24 03:50:23.514000+05:30",
-      "end_IST": "2026-10-24 03:52:31.611000+05:30"
+      "sha256": "34120e76a0f3795d033302b5ac4b7d6f66d09d0e7b534205bdaa3999a7e07716"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0011.parquet",
       "rows": 1556,
       "bytes": 64966,
-      "sha256": "863aece26e8003d6a3f7f43515e2b9ed7a0dda338581d6052c827303fc0f04b1",
-      "start_IST": "2026-10-24 03:52:54.205000+05:30",
-      "end_IST": "2026-10-24 03:55:31.703000+05:30"
+      "sha256": "863aece26e8003d6a3f7f43515e2b9ed7a0dda338581d6052c827303fc0f04b1"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0012.parquet",
       "rows": 10000,
       "bytes": 519295,
-      "sha256": "fd0fec966e8d2ca1ce714be701a8a13766c737d3ea03ba5e036e96eb72d26be3",
-      "start_IST": "2026-10-24 03:55:53.535000+05:30",
-      "end_IST": "2026-10-24 04:12:39.313000+05:30"
+      "sha256": "fd0fec966e8d2ca1ce714be701a8a13766c737d3ea03ba5e036e96eb72d26be3"
     },
     {
       "path": "data/raw/btcusdt_lob_20261023_194234_part0013.parquet",
       "rows": 2593,
       "bytes": 104452,
-      "sha256": "208ca014bccf2689f83010b117520a55440566b84e053377145f163f0f88c900",
-      "start_IST": "2026-10-24 04:12:39.497000+05:30",
-      "end_IST": "2026-10-24 04:17:00.111000+05:30"
+      "sha256": "208ca014bccf2689f83010b117520a55440566b84e053377145f163f0f88c900"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0000.parquet",
       "rows": 2476,
       "bytes": 236248,
-      "sha256": "76a8eef5cd014e781e4787ae1004846c4021664020c849bb7103b2c860cfcede",
-      "start_IST": "2026-10-30 20:58:30.838000+05:30",
-      "end_IST": "2026-10-30 21:02:38.304000+05:30"
+      "sha256": "76a8eef5cd014e781e4787ae1004846c4021664020c849bb7103b2c860cfcede"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0001.parquet",
       "rows": 10000,
       "bytes": 842023,
-      "sha256": "2e110acbd6a69b5fd184f13e4f8645d8bf7bc4f3d2458bd09632f77984437c1f",
-      "start_IST": "2026-10-30 21:03:00.404000+05:30",
-      "end_IST": "2026-10-30 21:19:40.404000+05:30"
+      "sha256": "2e110acbd6a69b5fd184f13e4f8645d8bf7bc4f3d2458bd09632f77984437c1f"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0002.parquet",
       "rows": 10000,
       "bytes": 847494,
-      "sha256": "8d3274680869447160e23fa1b5dc77ba2af76e8d26501ae31ce02b78a6ff6cfe",
-      "start_IST": "2026-10-30 21:19:40.549000+05:30",
-      "end_IST": "2026-10-30 21:36:21.004000+05:30"
+      "sha256": "8d3274680869447160e23fa1b5dc77ba2af76e8d26501ae31ce02b78a6ff6cfe"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0003.parquet",
       "rows": 10000,
       "bytes": 757341,
-      "sha256": "50fb6c872fcbdff41a6cba8ca70ada3ba98c38be4907714d259cd6114bf31614",
-      "start_IST": "2026-10-30 21:36:21.265000+05:30",
-      "end_IST": "2026-10-30 21:53:02.105000+05:30"
+      "sha256": "50fb6c872fcbdff41a6cba8ca70ada3ba98c38be4907714d259cd6114bf31614"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0004.parquet",
       "rows": 10000,
       "bytes": 725744,
-      "sha256": "106c36c96384f8b6470647fe1133776521f05d0491d07c822a15d5a3d0b656ab",
-      "start_IST": "2026-10-30 21:53:02.240000+05:30",
-      "end_IST": "2026-10-30 22:09:43.105000+05:30"
+      "sha256": "106c36c96384f8b6470647fe1133776521f05d0491d07c822a15d5a3d0b656ab"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0005.parquet",
       "rows": 2252,
       "bytes": 189965,
-      "sha256": "23ae75acab227e9a8a0a422887d9f8a59cd23b57cf0a66299befb01aa0ac4a52",
-      "start_IST": "2026-10-30 22:09:43.242000+05:30",
-      "end_IST": "2026-10-30 22:13:28.404000+05:30"
+      "sha256": "23ae75acab227e9a8a0a422887d9f8a59cd23b57cf0a66299befb01aa0ac4a52"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0006.parquet",
       "rows": 10000,
       "bytes": 857189,
-      "sha256": "6bd6a2a4b5782fe0ad52d6acad60da3e5dd70e57696acbacae1a2db4df361836",
-      "start_IST": "2026-10-30 22:13:40.613000+05:30",
-      "end_IST": "2026-10-30 22:30:21.315000+05:30"
+      "sha256": "6bd6a2a4b5782fe0ad52d6acad60da3e5dd70e57696acbacae1a2db4df361836"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0007.parquet",
       "rows": 10000,
       "bytes": 740243,
-      "sha256": "45b860c98778130051af709e4b040d103d35853f69851395a1101fcee770b6e8",
-      "start_IST": "2026-10-30 22:30:21.524000+05:30",
-      "end_IST": "2026-10-30 22:47:02.115000+05:30"
+      "sha256": "45b860c98778130051af709e4b040d103d35853f69851395a1101fcee770b6e8"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0008.parquet",
       "rows": 10000,
       "bytes": 615554,
-      "sha256": "04eb7b267c38f299eba1800a888c48aea377fd182c80586435564c57c200589a",
-      "start_IST": "2026-10-30 22:47:02.250000+05:30",
-      "end_IST": "2026-10-30 23:03:43.322000+05:30"
+      "sha256": "04eb7b267c38f299eba1800a888c48aea377fd182c80586435564c57c200589a"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0009.parquet",
       "rows": 10000,
       "bytes": 635194,
-      "sha256": "d623955281c88a64326407a984bb73510f6102ac795f108f5d6df9b04ecd8cea",
-      "start_IST": "2026-10-30 23:03:43.461000+05:30",
-      "end_IST": "2026-10-30 23:20:24.517000+05:30"
+      "sha256": "d623955281c88a64326407a984bb73510f6102ac795f108f5d6df9b04ecd8cea"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0010.parquet",
       "rows": 10000,
       "bytes": 580980,
-      "sha256": "ccf483119ac978388f362b74e0803891f68a19665140cf497192c94e952ab9d4",
-      "start_IST": "2026-10-30 23:20:24.661000+05:30",
-      "end_IST": "2026-10-30 23:37:05.715000+05:30"
+      "sha256": "ccf483119ac978388f362b74e0803891f68a19665140cf497192c94e952ab9d4"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0011.parquet",
       "rows": 10000,
       "bytes": 648862,
-      "sha256": "47107b693d3c9cf1cd76ff8557b61fc6ffc7fe54912b9440afa3cd29fa62ee8b",
-      "start_IST": "2026-10-30 23:37:05.917000+05:30",
-      "end_IST": "2026-10-30 23:53:46.517000+05:30"
+      "sha256": "47107b693d3c9cf1cd76ff8557b61fc6ffc7fe54912b9440afa3cd29fa62ee8b"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0012.parquet",
       "rows": 10000,
       "bytes": 730236,
-      "sha256": "6e30d4cb22d65b4a00d7dcd7ea8fe724ca14ce2fc9f5c2462fa6167682b52ee7",
-      "start_IST": "2026-10-30 23:53:46.656000+05:30",
-      "end_IST": "2026-10-31 00:10:27.457000+05:30"
+      "sha256": "6e30d4cb22d65b4a00d7dcd7ea8fe724ca14ce2fc9f5c2462fa6167682b52ee7"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0013.parquet",
       "rows": 10000,
       "bytes": 787297,
-      "sha256": "b933a96897927b096e4a8283197b57810e3023a8845db387e5ade68850b0d741",
-      "start_IST": "2026-10-31 00:10:27.635000+05:30",
-      "end_IST": "2026-10-31 00:27:08.515000+05:30"
+      "sha256": "b933a96897927b096e4a8283197b57810e3023a8845db387e5ade68850b0d741"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0014.parquet",
       "rows": 10000,
       "bytes": 919507,
-      "sha256": "a5eff258191643a7dafbc6b120216e57d51f1c12fc7fc367f383ab7c4d103883",
-      "start_IST": "2026-10-31 00:27:08.720000+05:30",
-      "end_IST": "2026-10-31 00:43:48.815000+05:30"
+      "sha256": "a5eff258191643a7dafbc6b120216e57d51f1c12fc7fc367f383ab7c4d103883"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0015.parquet",
       "rows": 10000,
       "bytes": 786308,
-      "sha256": "bd6c3d1cf7cb09898ba29b50e4a104a35d399ee5fbe6c52c4378ad87a0c4af54",
-      "start_IST": "2026-10-31 00:43:48.975000+05:30",
-      "end_IST": "2026-10-31 01:00:29.115000+05:30"
+      "sha256": "bd6c3d1cf7cb09898ba29b50e4a104a35d399ee5fbe6c52c4378ad87a0c4af54"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0016.parquet",
       "rows": 10000,
       "bytes": 782716,
-      "sha256": "d1fb4e340e78bab3f2ec5a677c84c42c68c95b8129d26c52e4f7c57e5592fdf6",
-      "start_IST": "2026-10-31 01:00:29.242000+05:30",
-      "end_IST": "2026-10-31 01:17:10.216000+05:30"
+      "sha256": "d1fb4e340e78bab3f2ec5a677c84c42c68c95b8129d26c52e4f7c57e5592fdf6"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0017.parquet",
       "rows": 10000,
       "bytes": 828847,
-      "sha256": "5f2e30acf479a328165fd7ba63407649a447bf3c258b9bc0db3b123f76db099e",
-      "start_IST": "2026-10-31 01:17:10.372000+05:30",
-      "end_IST": "2026-10-31 01:33:50.514000+05:30"
+      "sha256": "5f2e30acf479a328165fd7ba63407649a447bf3c258b9bc0db3b123f76db099e"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0018.parquet",
       "rows": 10000,
       "bytes": 631624,
-      "sha256": "25a89f6759d5d58826a329a098b12aff89cc7edacb194291879e5505cb8d9fdb",
-      "start_IST": "2026-10-31 01:33:50.655000+05:30",
-      "end_IST": "2026-10-31 01:50:32.415000+05:30"
+      "sha256": "25a89f6759d5d58826a329a098b12aff89cc7edacb194291879e5505cb8d9fdb"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0019.parquet",
       "rows": 10000,
       "bytes": 584592,
-      "sha256": "086137c70bd6e84a8c3294418dca6e85b5af1320c455830c0115a3ef98d72b0b",
-      "start_IST": "2026-10-31 01:50:32.560000+05:30",
-      "end_IST": "2026-10-31 02:07:14.116000+05:30"
+      "sha256": "086137c70bd6e84a8c3294418dca6e85b5af1320c455830c0115a3ef98d72b0b"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0020.parquet",
       "rows": 10000,
       "bytes": 488753,
-      "sha256": "c365d33c83c9e6955911c06983a1935f6ec8b24c42bef121d801cfa4d1262c7c",
-      "start_IST": "2026-10-31 02:07:14.236000+05:30",
-      "end_IST": "2026-10-31 02:23:56.914000+05:30"
+      "sha256": "c365d33c83c9e6955911c06983a1935f6ec8b24c42bef121d801cfa4d1262c7c"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0021.parquet",
       "rows": 10000,
       "bytes": 597266,
-      "sha256": "a2c91ddd544c9188be3ce5217fe10c2fc10dbd5092706f09b796f51eb488aaa5",
-      "start_IST": "2026-10-31 02:23:57.059000+05:30",
-      "end_IST": "2026-10-31 02:40:39.513000+05:30"
+      "sha256": "a2c91ddd544c9188be3ce5217fe10c2fc10dbd5092706f09b796f51eb488aaa5"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0022.parquet",
       "rows": 4591,
       "bytes": 272942,
-      "sha256": "5edb252835bb45d421a4432a8bb4a63f3ffa570bb142768021a0d5381b9c8a9a",
-      "start_IST": "2026-10-31 02:40:39.690000+05:30",
-      "end_IST": "2026-10-31 02:48:19.913000+05:30"
+      "sha256": "5edb252835bb45d421a4432a8bb4a63f3ffa570bb142768021a0d5381b9c8a9a"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0023.parquet",
       "rows": 10000,
       "bytes": 452791,
-      "sha256": "42a09b6f45bf8a8ad81eac24642c7e3711f6fd2f259f521c5561ccbd84648be3",
-      "start_IST": "2026-10-31 02:48:31.914000+05:30",
-      "end_IST": "2026-10-31 03:05:16.913000+05:30"
+      "sha256": "42a09b6f45bf8a8ad81eac24642c7e3711f6fd2f259f521c5561ccbd84648be3"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0024.parquet",
       "rows": 10000,
       "bytes": 412938,
-      "sha256": "fa3b3eab25694ee0d3b7f2387faed3e6a0590568dc59d8f2797b0ec6e63911b4",
-      "start_IST": "2026-10-31 03:05:17.026000+05:30",
-      "end_IST": "2026-10-31 03:22:00.813000+05:30"
+      "sha256": "fa3b3eab25694ee0d3b7f2387faed3e6a0590568dc59d8f2797b0ec6e63911b4"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0025.parquet",
       "rows": 10000,
       "bytes": 403871,
-      "sha256": "f027f5e49d043e964ef807b649745ab13e0e9099010333a5b2741759ceeec4b7",
-      "start_IST": "2026-10-31 03:22:00.946000+05:30",
-      "end_IST": "2026-10-31 03:38:45.212000+05:30"
+      "sha256": "f027f5e49d043e964ef807b649745ab13e0e9099010333a5b2741759ceeec4b7"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0026.parquet",
       "rows": 10000,
       "bytes": 385230,
-      "sha256": "2214a175720695562e8f5cc66d071a7f50649a4169e9ff2c8508d846272124bc",
-      "start_IST": "2026-10-31 03:38:45.346000+05:30",
-      "end_IST": "2026-10-31 03:55:28.212000+05:30"
+      "sha256": "2214a175720695562e8f5cc66d071a7f50649a4169e9ff2c8508d846272124bc"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0027.parquet",
       "rows": 10000,
       "bytes": 374775,
-      "sha256": "ab8fecde6a2950a1775b049909a74e89667d388cb4850bcf047ac4418ec0dd06",
-      "start_IST": "2026-10-31 03:55:28.326000+05:30",
-      "end_IST": "2026-10-31 04:12:14.213000+05:30"
+      "sha256": "ab8fecde6a2950a1775b049909a74e89667d388cb4850bcf047ac4418ec0dd06"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0028.parquet",
       "rows": 10000,
       "bytes": 311036,
-      "sha256": "0b444a904ae61d51316654db9bf078c03cabcbe754acf232fd7dc6be38318dbf",
-      "start_IST": "2026-10-31 04:12:14.349000+05:30",
-      "end_IST": "2026-10-31 04:29:00.215000+05:30"
+      "sha256": "0b444a904ae61d51316654db9bf078c03cabcbe754acf232fd7dc6be38318dbf"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0029.parquet",
       "rows": 10000,
       "bytes": 421049,
-      "sha256": "4a6a4a3d9e9037562194e43268fac1e7d520b41a52c8f4939a72957251a87073",
-      "start_IST": "2026-10-31 04:29:00.338000+05:30",
-      "end_IST": "2026-10-31 04:45:43.715000+05:30"
+      "sha256": "4a6a4a3d9e9037562194e43268fac1e7d520b41a52c8f4939a72957251a87073"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0030.parquet",
       "rows": 10000,
       "bytes": 431248,
-      "sha256": "b668d595c6dc99a1d5483cb709e2c2e6f7e6a4e0593e045f6651f4f333dfe2a6",
-      "start_IST": "2026-10-31 04:45:43.823000+05:30",
-      "end_IST": "2026-10-31 05:02:28.715000+05:30"
+      "sha256": "b668d595c6dc99a1d5483cb709e2c2e6f7e6a4e0593e045f6651f4f333dfe2a6"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0031.parquet",
       "rows": 10000,
       "bytes": 450013,
-      "sha256": "28735318c53f50e0c2b90d94b02214ee6a33b006912d2284660868128b68a0cf",
-      "start_IST": "2026-10-31 05:02:28.847000+05:30",
-      "end_IST": "2026-10-31 05:19:10.916000+05:30"
+      "sha256": "28735318c53f50e0c2b90d94b02214ee6a33b006912d2284660868128b68a0cf"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0032.parquet",
       "rows": 10000,
       "bytes": 410252,
-      "sha256": "2f488bc5153f878ed2c75418775265ef6f36f7d6cf769ddf44072028994aea2b",
-      "start_IST": "2026-10-31 05:19:11.059000+05:30",
-      "end_IST": "2026-10-31 05:35:54.616000+05:30"
+      "sha256": "2f488bc5153f878ed2c75418775265ef6f36f7d6cf769ddf44072028994aea2b"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0033.parquet",
       "rows": 10000,
       "bytes": 455638,
-      "sha256": "737bcb70285461f9b9282e71fb14868d8e5af54f48554e3096ea1d711d89e628",
-      "start_IST": "2026-10-31 05:35:54.729000+05:30",
-      "end_IST": "2026-10-31 05:52:38.213000+05:30"
+      "sha256": "737bcb70285461f9b9282e71fb14868d8e5af54f48554e3096ea1d711d89e628"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0034.parquet",
       "rows": 10000,
       "bytes": 430096,
-      "sha256": "4bba6ca322acb9c5018aab43c6970d7070452ae80e62073c78f5475d4dbc2add",
-      "start_IST": "2026-10-31 05:52:38.360000+05:30",
-      "end_IST": "2026-10-31 06:09:21.917000+05:30"
+      "sha256": "4bba6ca322acb9c5018aab43c6970d7070452ae80e62073c78f5475d4dbc2add"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0035.parquet",
       "rows": 10000,
       "bytes": 454562,
-      "sha256": "72738cc37b0c0d933c2b6ea6c71131367bfff5751f4003c82bbb7aadcb19d812",
-      "start_IST": "2026-10-31 06:09:22.026000+05:30",
-      "end_IST": "2026-10-31 06:26:04.714000+05:30"
+      "sha256": "72738cc37b0c0d933c2b6ea6c71131367bfff5751f4003c82bbb7aadcb19d812"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0036.parquet",
       "rows": 10000,
       "bytes": 454846,
-      "sha256": "90144ee5dcf740e6e9dceb531adc5c1458fd75532149ebcf75c2cef19bf9b2f6",
-      "start_IST": "2026-10-31 06:26:04.851000+05:30",
-      "end_IST": "2026-10-31 06:42:47.666000+05:30"
+      "sha256": "90144ee5dcf740e6e9dceb531adc5c1458fd75532149ebcf75c2cef19bf9b2f6"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0037.parquet",
       "rows": 10000,
       "bytes": 498375,
-      "sha256": "72f3e9d451917be3a4f912be4a60565fc674120ddeea82a510654e8015e8e31f",
-      "start_IST": "2026-10-31 06:42:47.775000+05:30",
-      "end_IST": "2026-10-31 06:59:30.414000+05:30"
+      "sha256": "72f3e9d451917be3a4f912be4a60565fc674120ddeea82a510654e8015e8e31f"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0038.parquet",
       "rows": 10000,
       "bytes": 405499,
-      "sha256": "f5f21e231dedb27c3d936d381bf7553e4070858dbe762c8f9fe1d6c6f66ebc39",
-      "start_IST": "2026-10-31 06:59:30.527000+05:30",
-      "end_IST": "2026-10-31 07:16:14.613000+05:30"
+      "sha256": "f5f21e231dedb27c3d936d381bf7553e4070858dbe762c8f9fe1d6c6f66ebc39"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0039.parquet",
       "rows": 10000,
       "bytes": 402749,
-      "sha256": "b14914a337cb640b6ae2f7611a89607a3fe2e08456fe5c5c8df70925f7a8b8f5",
-      "start_IST": "2026-10-31 07:16:14.749000+05:30",
-      "end_IST": "2026-10-31 07:32:59.716000+05:30"
+      "sha256": "b14914a337cb640b6ae2f7611a89607a3fe2e08456fe5c5c8df70925f7a8b8f5"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0040.parquet",
       "rows": 10000,
       "bytes": 420822,
-      "sha256": "c9417a80ab59af121ca570f3cf3089d111dd3a493cbdf8065a64e286a788cc42",
-      "start_IST": "2026-10-31 07:32:59.850000+05:30",
-      "end_IST": "2026-10-31 07:49:42.595000+05:30"
+      "sha256": "c9417a80ab59af121ca570f3cf3089d111dd3a493cbdf8065a64e286a788cc42"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0041.parquet",
       "rows": 10000,
       "bytes": 406919,
-      "sha256": "52e6b2b21f5f235be65b9a56fe57f1a85f8fb9c7208cf5f5fa717737cf6f437c",
-      "start_IST": "2026-10-31 07:49:42.730000+05:30",
-      "end_IST": "2026-10-31 08:06:25.413000+05:30"
+      "sha256": "52e6b2b21f5f235be65b9a56fe57f1a85f8fb9c7208cf5f5fa717737cf6f437c"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0042.parquet",
       "rows": 10000,
       "bytes": 330854,
-      "sha256": "203469db298f275c5409835e6266d2cda4d8299aaf3624107b20a81168f9f8ce",
-      "start_IST": "2026-10-31 08:06:25.526000+05:30",
-      "end_IST": "2026-10-31 08:23:11.614000+05:30"
+      "sha256": "203469db298f275c5409835e6266d2cda4d8299aaf3624107b20a81168f9f8ce"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0043.parquet",
       "rows": 10000,
       "bytes": 308201,
-      "sha256": "cb304c11e1a8315ecdcb93443a35e04e81ac12f12fd01c1e7a7f82c879dbcb19",
-      "start_IST": "2026-10-31 08:23:11.735000+05:30",
-      "end_IST": "2026-10-31 08:39:56.914000+05:30"
+      "sha256": "cb304c11e1a8315ecdcb93443a35e04e81ac12f12fd01c1e7a7f82c879dbcb19"
     },
     {
       "path": "data/raw/btcusdt_lob_20261030_152708_part0044.parquet",
       "rows": 10000,
       "bytes": 321248,
-      "sha256": "92a1e3a52b0cf5a32a020e2b95cba7c0c09c0cc2ae2aa1218f2bfb8ded1d9e15",
-      "start_IST": "2026-10-31 08:39:57.027000+05:30",
-      "end_IST": "2026-10-31 08:56:40.211000+05:30"
+      "sha256": "92a1e3a52b0cf5a32a020e2b95cba7c0c09c0cc2ae2aa1218f2bfb8ded1d9e15"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0045.parquet",
+      "rows": 10000,
+      "bytes": 394892,
+      "sha256": "ba24e224f34dff424b492b9644ff95bd060761574af7be602a0695fcae74412e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0046.parquet",
+      "rows": 10000,
+      "bytes": 352210,
+      "sha256": "47aa937c6bb0be798ba59a75b0fa9bd819e8d0735272441902032a1a316f5aaa"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0047.parquet",
+      "rows": 10000,
+      "bytes": 366774,
+      "sha256": "dbe20c2424d7e5652fae6b4a12ddae6bce5697c346cd4e2fae03c177a7aeff20"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0048.parquet",
+      "rows": 10000,
+      "bytes": 347233,
+      "sha256": "c13d5b9f0e25540d495c271da20b6958ac34047373cb06f4a6d59a2c75618e0c"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0049.parquet",
+      "rows": 10000,
+      "bytes": 384283,
+      "sha256": "58e8136fbc0da713e23ac3d23a9dec1a2cdf0cbdca6f7eb06812df6ecf3367fd"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0050.parquet",
+      "rows": 10000,
+      "bytes": 331097,
+      "sha256": "3c67a76c0d0e777a09bec268fedf711308ea4bad2bab176789a16335ecc8793e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0051.parquet",
+      "rows": 10000,
+      "bytes": 321533,
+      "sha256": "c99914ec18188aa3ab175b783e38e8b6fd1493bb76e2384e40372c17e691ef36"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0052.parquet",
+      "rows": 10000,
+      "bytes": 304222,
+      "sha256": "bf1f8c3a8b72ad4cc0e9d71e1243cebcf48c6cc4db4c4e74678cfec27d72eca9"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0053.parquet",
+      "rows": 10000,
+      "bytes": 302298,
+      "sha256": "15feae136429e9d2f6ae90bb3d2be3aa455fd4ae246eb4f8baa703c5fd058722"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0054.parquet",
+      "rows": 10000,
+      "bytes": 402197,
+      "sha256": "f1b5dc33219bc9c5c4e53a461b87a463be64a687e389030f4d5c011f242bcf89"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0055.parquet",
+      "rows": 10000,
+      "bytes": 310739,
+      "sha256": "026323c7cc2160243f516be74af0ddcdf8cabd5519599f5fda85ae228bb9c026"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0056.parquet",
+      "rows": 10000,
+      "bytes": 316438,
+      "sha256": "5a2b50c681c9c65dd6100efbc5af23dce796016d609de8ed51c2d38cc9ebdcde"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0057.parquet",
+      "rows": 10000,
+      "bytes": 383338,
+      "sha256": "63c030c60065095b762a540b7df5a47ee050253734692fd03444cc77f42c6710"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0058.parquet",
+      "rows": 10000,
+      "bytes": 365778,
+      "sha256": "fffc13664306115af55cc1b4c13aa11c9705ac8336ad998bc35afa12e24439fb"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0059.parquet",
+      "rows": 10000,
+      "bytes": 318717,
+      "sha256": "c01dbcf78421738d37827b9aab097c902928f40bc4ff64bde2b56a409781d429"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0060.parquet",
+      "rows": 10000,
+      "bytes": 295577,
+      "sha256": "5b3f7a170aa545401272f06de9f95637d24b5b4c79e70f34f7c7a6229cae37f8"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0061.parquet",
+      "rows": 10000,
+      "bytes": 333548,
+      "sha256": "12902667132ebc5331e19556ce5107a78859828fa8549384a107acd1004747e1"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0062.parquet",
+      "rows": 10000,
+      "bytes": 382279,
+      "sha256": "76e70b0aab021ef86a339b4bb6c96a417fc70c2016d08b191587126af8a0f3b8"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0063.parquet",
+      "rows": 10000,
+      "bytes": 373052,
+      "sha256": "4d42395b4547f6687e1b8f35ce789a0d214f30dfc30306327652bc2703503775"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0064.parquet",
+      "rows": 10000,
+      "bytes": 314384,
+      "sha256": "857f2f4e47cd0c79a5e2b4150bacccedba515e6db6462abcbe1b8258b4de3618"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0065.parquet",
+      "rows": 10000,
+      "bytes": 330778,
+      "sha256": "80dfe2a54736b12b972d81085c99fe675f0f2c20651e6d9285a8dc09b7fefcf9"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0066.parquet",
+      "rows": 1798,
+      "bytes": 78249,
+      "sha256": "4d0e5c5f41052929c878b76b1b2a0382137dbd4f0e3b85859e78e03d162f9aa7"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0067.parquet",
+      "rows": 10000,
+      "bytes": 287906,
+      "sha256": "d2f6e329575e52198d832086c25a40a1f5d6d774866f56dca74d25587ab3953d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0068.parquet",
+      "rows": 10000,
+      "bytes": 308698,
+      "sha256": "3565aef49c069a41003cdcfee5b4db4ea3cedc07151a2cc457164267e82bcfda"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0069.parquet",
+      "rows": 10000,
+      "bytes": 319678,
+      "sha256": "b9f79c38753fc9c84272f6796dc40774e73b3769f58a0de24c0389b0f530fe39"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0070.parquet",
+      "rows": 10000,
+      "bytes": 289883,
+      "sha256": "550f89489256f3a3c1c2e2dc1a6284acb525c01eaa9cfe5a4e298c7f05175e85"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0071.parquet",
+      "rows": 10000,
+      "bytes": 285917,
+      "sha256": "a9b8145985b575f80ac3638756efdc913a5149024665a767b6cb663c7ddb1964"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0072.parquet",
+      "rows": 10000,
+      "bytes": 317190,
+      "sha256": "7a6f8c412fa3a64899bbb71c7c558f9527b0c33835b56759d8f148e1b016a627"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0073.parquet",
+      "rows": 10000,
+      "bytes": 267828,
+      "sha256": "ec824c526088e76eea871a155985809098ea8f30f7c004d1a06160ba8dd44b0f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0074.parquet",
+      "rows": 10000,
+      "bytes": 289460,
+      "sha256": "009b918e1f25a0d96ab6df249a55246660f5fb4e57a2d89beae4cd0de7f0958b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0075.parquet",
+      "rows": 10000,
+      "bytes": 384742,
+      "sha256": "a4e6bcf5eb67466c1e6b1cd54da56f03cc8afce5e636065b63de0d385d53040f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0076.parquet",
+      "rows": 10000,
+      "bytes": 401276,
+      "sha256": "db4e5238c460d35e42b196934c51b153dbe94eb0e16f3f611ab997d9d3a172f5"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0077.parquet",
+      "rows": 10000,
+      "bytes": 288757,
+      "sha256": "595887c6c85c8888526d7d9de2a0e61a58c35868c890c3847a8ec7273eaa1e29"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0078.parquet",
+      "rows": 10000,
+      "bytes": 380017,
+      "sha256": "a4609b243516a8b1be3f2116fcd37ae9be5f2871c1855b074cb851e3eb850111"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0079.parquet",
+      "rows": 10000,
+      "bytes": 344562,
+      "sha256": "3b3dc44309633b8d7826a3d4644dba4b57667134acec3e1ae972aadb4bbfb76e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0080.parquet",
+      "rows": 10000,
+      "bytes": 382870,
+      "sha256": "8afda2d60891a2b0903a7d54c0c125795020468cd9f9d64369450139aff9e52e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0081.parquet",
+      "rows": 10000,
+      "bytes": 309527,
+      "sha256": "482e2c895e6e66ff29b2deb8f3672b219c7135e9ff8435cb211ef5caef582510"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0082.parquet",
+      "rows": 10000,
+      "bytes": 328963,
+      "sha256": "c1728a7126491984c9ec026dc746f5309b2372f70bb0b236da21b71403f4418f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0083.parquet",
+      "rows": 10000,
+      "bytes": 340130,
+      "sha256": "4110ca05ce91ca1b37aba62b7fb933303faeeb7f57bf3d81aa32562662543b16"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0084.parquet",
+      "rows": 10000,
+      "bytes": 313652,
+      "sha256": "b0cc9dc4885a1ae87863d1c01bb1b428d38f6abf53ce9e1c745a91177cba15d8"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0085.parquet",
+      "rows": 10000,
+      "bytes": 304535,
+      "sha256": "8e1e26ddf4aa9507e5676b432e9e32c1f2649fbdf232c14a1dc170bf3952c36e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0086.parquet",
+      "rows": 10000,
+      "bytes": 377087,
+      "sha256": "a162cab35d26ac935382f2675cacfff5d52ae1a1960e2675105a490dd49a66c2"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261030_152708_part0087.parquet",
+      "rows": 10000,
+      "bytes": 412568,
+      "sha256": "ba3966697c1bdf24376c15419fab5fae6d830be249f56b9ad4f39a7da0b5127a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0000.parquet",
+      "rows": 10000,
+      "bytes": 508643,
+      "sha256": "97b1c531b70e9135375771850abeb6c5375af9e0f7e85549503574292bbe2465"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0001.parquet",
+      "rows": 10000,
+      "bytes": 483241,
+      "sha256": "a6b91c782c699deae3ed354c7837666f6889491e95fddaea2412eb72bb1fcf03"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0002.parquet",
+      "rows": 10000,
+      "bytes": 503718,
+      "sha256": "e39943c2ea5c5c16589408a1e9e073e7c48b013b5ee5fd7dfccfa6bbd4dc6f2b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0003.parquet",
+      "rows": 10000,
+      "bytes": 437974,
+      "sha256": "36a8ca8a22fec76a53991ff7f34187393d80f9f275bfaf5039c363eecfc3dc18"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0004.parquet",
+      "rows": 10000,
+      "bytes": 406225,
+      "sha256": "2032446ec1ddb4210d61f595deb934d2784b032af026781228c33f38db3ff4d6"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0005.parquet",
+      "rows": 10000,
+      "bytes": 388697,
+      "sha256": "3fdfa1b5f82b3bee34944bfdb193cb7699623ce5bece3310456c5bae7b0c320b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0006.parquet",
+      "rows": 10000,
+      "bytes": 521551,
+      "sha256": "9cafbf895299007dc6977afc24766dc0ff62dc9c38c577787ad1fbe9edcd3d3e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0007.parquet",
+      "rows": 10000,
+      "bytes": 521124,
+      "sha256": "c0302b3090e2488ca9c60f8d3b2ccc110770ef91a51e7df02613aff89d3ec015"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0008.parquet",
+      "rows": 10000,
+      "bytes": 543382,
+      "sha256": "8750ad404b76a2fac1c0b651f28b65b4dfe1a33f105c1a1b1ad927e0470304cc"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0009.parquet",
+      "rows": 836,
+      "bytes": 59593,
+      "sha256": "67148ba22d56b75536fe10a50b7d9eb5c9b491aeb9066665b5fb99846f669f00"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0010.parquet",
+      "rows": 10000,
+      "bytes": 415147,
+      "sha256": "6693bc359d3baba8d56ca03b00b18b74d1630822c799fc46a3f4825265ee44e8"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0011.parquet",
+      "rows": 10000,
+      "bytes": 380865,
+      "sha256": "514a560fde06af2a98bc923c45d74f36a34de7d0aa2765c2671bd727be5e3acd"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0012.parquet",
+      "rows": 10000,
+      "bytes": 419088,
+      "sha256": "f8872f38e0033cd250e9c865d07c4ea1e0f145c432358f4a90552515e54bcbbd"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0013.parquet",
+      "rows": 10000,
+      "bytes": 395700,
+      "sha256": "4e97b8a8167e205d17ac9747bd3b95dcaf4a625b6db9908e8f2f9884559e533f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0014.parquet",
+      "rows": 5653,
+      "bytes": 309889,
+      "sha256": "4d3bbbd9d2c405650e1655e1a2c1d76361dcc0fd2f8bb126753847532d27e7a5"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0015.parquet",
+      "rows": 10000,
+      "bytes": 428501,
+      "sha256": "9f4c1888bc372c6c878acc29768f16a6bab550c8bfac793dc5efe2c5e2c12304"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0016.parquet",
+      "rows": 10000,
+      "bytes": 424736,
+      "sha256": "e8ca0f0bb0eec8eec2889a8df0d68601ed50731fda58fbaeb66d1ba62247bab3"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0017.parquet",
+      "rows": 10000,
+      "bytes": 400800,
+      "sha256": "48d5546818ba2bb885b9e760c04c47b64ed313e7caf991ba0d4070371c6d3c70"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0018.parquet",
+      "rows": 10000,
+      "bytes": 418779,
+      "sha256": "fd9da2449e944624b5466d5f6736662d57db46fb1d7f6bf491bff640b79511c1"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0019.parquet",
+      "rows": 10000,
+      "bytes": 374243,
+      "sha256": "2007d5fe55284628342ffd2e7cc30df49860e39acec7d02780a0310589793cd2"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0020.parquet",
+      "rows": 10000,
+      "bytes": 398114,
+      "sha256": "d66d864ad7ac96414b05f87469dc471ff400d6e3456a0c6543ac37f2c332031a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0021.parquet",
+      "rows": 10000,
+      "bytes": 415967,
+      "sha256": "019e09802f2facf2eb617a2173f66cf13c0abb0050e10afbb10d5261c8f54c63"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0022.parquet",
+      "rows": 10000,
+      "bytes": 454149,
+      "sha256": "e920c9156d6fe25c6e0b12810c6eaa55fd850963546f2077ea2a46c39b38171a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0023.parquet",
+      "rows": 10000,
+      "bytes": 448637,
+      "sha256": "c737fb192ec7ec38e0cff7a8215b0e0fa5c015ee6da260c8a28b4b75e96c1d1e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0024.parquet",
+      "rows": 10000,
+      "bytes": 495687,
+      "sha256": "25f19523efc3bc5205f195902ebee6cc598c684342ef4c8c8aace36d338fc838"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0025.parquet",
+      "rows": 10000,
+      "bytes": 432767,
+      "sha256": "039126d19d5e671398592a72bc7a20ec8ba81b36cfbeff8e09a30a7ac90cea91"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0026.parquet",
+      "rows": 10000,
+      "bytes": 513433,
+      "sha256": "439493f99b6e6dc7933e62d625ee4e9cc655a558d12c0b69ede42faa3605a6d3"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0027.parquet",
+      "rows": 10000,
+      "bytes": 440633,
+      "sha256": "3413422089964f8abded6c85e4032dbd2c84d1d2ade814349728afa783c659f2"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0028.parquet",
+      "rows": 10000,
+      "bytes": 463306,
+      "sha256": "517d0d1b3e5e6572a45adf3b12fe04934bf7021cb68271eab37bdfbbf864b124"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0029.parquet",
+      "rows": 10000,
+      "bytes": 404534,
+      "sha256": "d8aa3b607bebf39608293a3eaa6b3b9fef66eab683bae6127a50d5875142521a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0030.parquet",
+      "rows": 9124,
+      "bytes": 367928,
+      "sha256": "66b361a1ba4539540712d5c8dafc290e139fdd0df5056e9d6885f150a523420f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0031.parquet",
+      "rows": 40,
+      "bytes": 25946,
+      "sha256": "aa5ee83834b2a8039b8d3067b39a7afad2195a64a37580a07b17a6e6b4ba133f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0032.parquet",
+      "rows": 1441,
+      "bytes": 74347,
+      "sha256": "632d4c4ed46e3f77c644e19ddca5341109eee8b99e510a15e7714e520e1c7166"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0033.parquet",
+      "rows": 62,
+      "bytes": 25654,
+      "sha256": "bae32ec8c9c1bb125d96f4a5ff23745e3b36747ea9249e4dc3e30ebceb586596"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0034.parquet",
+      "rows": 10000,
+      "bytes": 395994,
+      "sha256": "bc742ad0661c8a468bc124c2e1c5bb775be38d5a7b608b04a60acb3f3f29b66b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0035.parquet",
+      "rows": 10000,
+      "bytes": 401557,
+      "sha256": "276dc03571b1e4b7c7af6a1b6e8bedcc18a88575b42f98838364f60d5ec356df"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0036.parquet",
+      "rows": 3252,
+      "bytes": 138288,
+      "sha256": "2912cb79373ceb4a4d507de0755de7d4427840218f06412c4dfd1a0637958294"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0049.parquet",
+      "rows": 10000,
+      "bytes": 377953,
+      "sha256": "0bf0ddbd1e248f683a81df171494d05f3d0af972fbf8b46f35fc395c0f27257f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0050.parquet",
+      "rows": 10000,
+      "bytes": 393918,
+      "sha256": "add05ac9e3cd385606a5df4c090dfe860943df4a163f4264e14a929832e2fab8"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0051.parquet",
+      "rows": 10000,
+      "bytes": 364428,
+      "sha256": "2f9d6b40fba9de9cf9af927232572af6869cb0a1ac62d62af91627d16355b845"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0052.parquet",
+      "rows": 10000,
+      "bytes": 373590,
+      "sha256": "57a179b00b36cc02b2e29291d520dfe20ef8c24454af7b00394f291d820e8022"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0053.parquet",
+      "rows": 10000,
+      "bytes": 417416,
+      "sha256": "c1da4f5d9b971bc52e2c10b3a89f091b2bcf0c2d2a396a9eeef694ece52237fa"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0054.parquet",
+      "rows": 10000,
+      "bytes": 418279,
+      "sha256": "7dda4499afe256b983ab27a943280c60ae3ab0dca107b0ea61c162a5c3dd32e3"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0055.parquet",
+      "rows": 7087,
+      "bytes": 426985,
+      "sha256": "63cd009b0746c3bb8d33002d5f6128439ed9ae1a5b12baff13cc36655e56d9d8"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0056.parquet",
+      "rows": 10000,
+      "bytes": 567339,
+      "sha256": "273a6c44a2bf0fb8dca63a4d2fac8bc62790a7a8c7fa09e7357105f7dfd0da48"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0057.parquet",
+      "rows": 10000,
+      "bytes": 479748,
+      "sha256": "68044c4f879155450b89dba5fe05a72410d3366b7ccdf382c3cc6939a34a8a4b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0058.parquet",
+      "rows": 10000,
+      "bytes": 481373,
+      "sha256": "f9e563f1933c3fd1472545ba5711933d8f3915892275a451944c0cc9887c5e46"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0059.parquet",
+      "rows": 6829,
+      "bytes": 721101,
+      "sha256": "3bfea6ecc967d944c1ae090c288a3859ffc0a74035c81d64c75efe831aafe88c"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0060.parquet",
+      "rows": 3665,
+      "bytes": 364811,
+      "sha256": "b4f37d4dc99559e62b9ceb0aa2f5ed0ee9d583c09c3cfd31ac721ae03c77c7db"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0061.parquet",
+      "rows": 10000,
+      "bytes": 657834,
+      "sha256": "82119d5d353969e20b425937fec99680a5c6006105a3d399e77b41dd94e803b3"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0062.parquet",
+      "rows": 1520,
+      "bytes": 101962,
+      "sha256": "cb29c87254b96c807e95d9aa8325e3a9fadbe605030cf213c19ba0adaf7af121"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0063.parquet",
+      "rows": 10000,
+      "bytes": 559049,
+      "sha256": "96f3f2da959b2ce2f4288f6c8d5ac75b6e17831f56d23542ea7b1be565cc97d6"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0064.parquet",
+      "rows": 2442,
+      "bytes": 243495,
+      "sha256": "391d227a307966e430ec3141334f3d0637a91af27f83addfd83ce03516376657"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0065.parquet",
+      "rows": 10000,
+      "bytes": 977620,
+      "sha256": "f0ba372836696c1a37b1ed31cf0939b915ac2a68d6aeeb40577d657de5e80b7c"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0066.parquet",
+      "rows": 10000,
+      "bytes": 820110,
+      "sha256": "863872dc72374f25d8daa4634e6df1ea100a64738a9ddd724c56e8ebbf586b77"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0067.parquet",
+      "rows": 3288,
+      "bytes": 295769,
+      "sha256": "31ba4cd18ce8185fd54f6bb3a94479af6cc4a193dfa1a3a3bd6ea92aaed9a2af"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0068.parquet",
+      "rows": 10000,
+      "bytes": 766970,
+      "sha256": "d7b773ffb63575c2b3277ee46235095d4bd9191579a2ceb42dbfbb11a16b0ebe"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0069.parquet",
+      "rows": 5986,
+      "bytes": 401710,
+      "sha256": "76d7c08d1d02a281949353a1534d2894e4c688da54076f78dd60261ce693c254"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0070.parquet",
+      "rows": 10000,
+      "bytes": 716908,
+      "sha256": "91586a60acd1eebc4f4c1ca842fa953360a4ba38629655adb0d767d79cc09928"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0071.parquet",
+      "rows": 10000,
+      "bytes": 950959,
+      "sha256": "2dd13d717af2487bb2480d0a14c41c5c85580f159361e74ce25a32e43f2f6f23"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0072.parquet",
+      "rows": 10000,
+      "bytes": 786391,
+      "sha256": "738774b93685d65ecf874a06b858ab8cd6873efa43cf85174258925109bc92b7"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0073.parquet",
+      "rows": 10000,
+      "bytes": 668965,
+      "sha256": "9841693ab6f9fe9afbea09413d8016a335ad6d64261145599397b9ce110c91e8"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0074.parquet",
+      "rows": 10000,
+      "bytes": 610007,
+      "sha256": "1959fff15c2d4a41e6f42091febc371a267f43cd395986b31fea28772783a684"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0075.parquet",
+      "rows": 28,
+      "bytes": 27417,
+      "sha256": "a7c9744029f71577042cd1938043f110fe2340a69384b9392ee6ac56a4b452db"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0076.parquet",
+      "rows": 10000,
+      "bytes": 575094,
+      "sha256": "72d16f4d4962e1af24c11f1f22b26d25be10aac4947d66f1d20b404ee699fe2e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0077.parquet",
+      "rows": 10000,
+      "bytes": 734011,
+      "sha256": "a6d51a698e563c5e4740baf0b2892653ad138f7a5bb48cfdf83d12cb2f115881"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0078.parquet",
+      "rows": 9234,
+      "bytes": 776034,
+      "sha256": "1a7cebf203575145ee75240b3ae07b562e1f396c7625b10015966851ccf45e59"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0079.parquet",
+      "rows": 10000,
+      "bytes": 783718,
+      "sha256": "7aa5753ccb2625858d43fa72b779e33545c17322be9662be7a507240087cdb1b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0080.parquet",
+      "rows": 10000,
+      "bytes": 646834,
+      "sha256": "22fc79fbe43f0122166a48be206c503c125e5cd22ac302087a630ba01bf2c5b1"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0081.parquet",
+      "rows": 10000,
+      "bytes": 662159,
+      "sha256": "99ddacaed78f949dd03f0f7dc7bc25cae4dd99260dc991f0d836667211cd7fac"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0082.parquet",
+      "rows": 10000,
+      "bytes": 542103,
+      "sha256": "dcc96f87d012227c0fe08e31a2b0848cbe163f8a0461fca0bba53a95d58f60f2"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0083.parquet",
+      "rows": 10000,
+      "bytes": 519760,
+      "sha256": "768d08a3d3a8147af776b392385c741966d203468dae1951b6118702ad335a36"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0084.parquet",
+      "rows": 10000,
+      "bytes": 635402,
+      "sha256": "925a8e3f89875218732d5394c803422d161d03a0941608515f0014739b9f6839"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0085.parquet",
+      "rows": 10000,
+      "bytes": 667413,
+      "sha256": "795141c85a2e0f9396117087c988bb7b39760f729c86bd99bea11d6133334317"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0086.parquet",
+      "rows": 10000,
+      "bytes": 840523,
+      "sha256": "06c08b2c97648407aef7cae2a99667cdc56577a4230db99d7b7ae7b2c431298f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0087.parquet",
+      "rows": 10000,
+      "bytes": 743110,
+      "sha256": "8bff685c426f8a0fc49ba2cf262065ee82ec945940dfbc4b706ecff2bf4fb03c"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0088.parquet",
+      "rows": 10000,
+      "bytes": 706795,
+      "sha256": "7421a7f5347d8e3a2a21aae3915f475b8796e643cfb27843d9702d3e21a15d5b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0089.parquet",
+      "rows": 10000,
+      "bytes": 686939,
+      "sha256": "b6e4dcf078b45f3777581ad3ea26eb85dd30943a050897292a5ee940aa260e15"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0090.parquet",
+      "rows": 10000,
+      "bytes": 623228,
+      "sha256": "3b55043d7edd670966c738294aeb313615cfea9675ee369f9613d65297a18323"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0091.parquet",
+      "rows": 10000,
+      "bytes": 475547,
+      "sha256": "8619b66b9059ebbf02a377a9027fb951f880588468e756ed121c68cc684493e4"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0092.parquet",
+      "rows": 10000,
+      "bytes": 609363,
+      "sha256": "81dd50dabd8bc863e20c808e1ac50a237d7443074ef311da6754fc1346458bfc"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0093.parquet",
+      "rows": 10000,
+      "bytes": 462555,
+      "sha256": "5ba1d049648d7b2fe263c0dbdc5a7477c520f55584ac2877fa22dfefae96169d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0094.parquet",
+      "rows": 10000,
+      "bytes": 390561,
+      "sha256": "45cf7097f8e873666b8b3d8ee373ea69b154822e693ab3e7b91856c5edfa1642"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0095.parquet",
+      "rows": 10000,
+      "bytes": 378512,
+      "sha256": "1d8f05ed19a21dbd224661501ba2c48d3269ed053c773c76509401709697ddcc"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0096.parquet",
+      "rows": 10000,
+      "bytes": 378294,
+      "sha256": "32a8aaea33290cb3c44534acff23b6813bd2c37ffeedfe207158779cd62c6d56"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0097.parquet",
+      "rows": 10000,
+      "bytes": 499998,
+      "sha256": "2a4508877127c66bbf5250fe590704cf60239cc051172cab1cf76466692b988f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0098.parquet",
+      "rows": 10000,
+      "bytes": 479197,
+      "sha256": "1cdf57fc9b44cbe1e7e1095d305f36b0a11d6f819b97c6e172577cc93bcd6f90"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0099.parquet",
+      "rows": 10000,
+      "bytes": 363402,
+      "sha256": "439c13c27c6cb400c95cda877582326977e9d4263f837cd2cd1621e47494d93a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0100.parquet",
+      "rows": 10000,
+      "bytes": 320182,
+      "sha256": "b55a04e9189464873aace8f9812a40ecf1cae49b1bd6750bc4b6c1043ec8c58a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0101.parquet",
+      "rows": 10000,
+      "bytes": 505061,
+      "sha256": "a252629e919c77c3a3ce0cd0d0fa854291b31ee1a8cabaae1031c4a9aed3ddd8"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0102.parquet",
+      "rows": 10000,
+      "bytes": 519383,
+      "sha256": "292f74c9b4608187c91b427609e15e6311872076e62b7b0ec3ad5721ddd0f9f2"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0103.parquet",
+      "rows": 10000,
+      "bytes": 612061,
+      "sha256": "e0b83b4e0dc62e5c35a78b2b1cbfcfe62158fbf8b1272615681806f957bf6a84"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0104.parquet",
+      "rows": 10000,
+      "bytes": 629249,
+      "sha256": "fd90126c56721ffd6d96c4f4e5e5dd0c2527bd7dbd16055b30dfbd1d3ff0ffc1"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0105.parquet",
+      "rows": 10000,
+      "bytes": 594320,
+      "sha256": "61620ae9b243019099a9b3478c78333994d4a231a6fbc85307f348a565a0fc67"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0106.parquet",
+      "rows": 10000,
+      "bytes": 506246,
+      "sha256": "25ea27acaf1e85d81ef690b782d76fab6f0f9ded77bc5087de9565a3c1a6d809"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0107.parquet",
+      "rows": 10000,
+      "bytes": 525592,
+      "sha256": "7986c55a23fd24ed0bfb1b52b9eea317de931d7fc4909f509eff7af54b1a59c3"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0108.parquet",
+      "rows": 10000,
+      "bytes": 606561,
+      "sha256": "afe8a6a8680336e8ebf8bdec359fae2987a7fd96b472d9ae85e3e4a1a7c671bc"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0109.parquet",
+      "rows": 10000,
+      "bytes": 579369,
+      "sha256": "900682217fee133d3e8ac50c2d92fec0a51a405d9c626c92f15d33a20ffc6f4e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0110.parquet",
+      "rows": 10000,
+      "bytes": 645755,
+      "sha256": "229c5a38d5c38bddb3f1b86fe354961022311d678bd7380de91d0e012149dafd"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0111.parquet",
+      "rows": 10000,
+      "bytes": 648613,
+      "sha256": "091f5b83b1c4fe5de5b3e6f392920ef88876fc474b777181c8d8369a4fb14ceb"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0112.parquet",
+      "rows": 10000,
+      "bytes": 683265,
+      "sha256": "2960d7e9907e64ed59fbfb66d90ddcc4889a7c23596cb06a0f84bedf7385c8b2"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0113.parquet",
+      "rows": 10000,
+      "bytes": 533512,
+      "sha256": "7457a33a18dbd36dcd5bd2cb29d403025ae4c904b1957ec17f74008d1034ac81"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0114.parquet",
+      "rows": 9724,
+      "bytes": 513423,
+      "sha256": "0d2896adc7a3122d6220f96cd76eb88bd6ee37f9eee4f4f2ba77535a8f2f28e2"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0115.parquet",
+      "rows": 10000,
+      "bytes": 436527,
+      "sha256": "643cd1cc5ca6199c2f2ce7d08ccf8cf21f98b9449a7f0f2769a3dbbcadbdd9c4"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0116.parquet",
+      "rows": 10000,
+      "bytes": 441030,
+      "sha256": "58aebfe97a37c17d9b4f5097b68d3e08e2615e36a261ced190306075e1a7e7e7"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0117.parquet",
+      "rows": 1958,
+      "bytes": 138387,
+      "sha256": "07b43bb6d913f6172f90dc60b3cbf0dc3fe34b04643f41e59242cd576e85cf87"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0118.parquet",
+      "rows": 5441,
+      "bytes": 266191,
+      "sha256": "92d8d490aa12e76bd2706328f01a6226202d62dd4b9a91f754f7c248f8d73f58"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0119.parquet",
+      "rows": 10000,
+      "bytes": 393884,
+      "sha256": "596cf2b14b34bd26bb44eba8257b617a983f0499562fb521bdfa2dcc2ee4aff2"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0120.parquet",
+      "rows": 10000,
+      "bytes": 485488,
+      "sha256": "53f532ffcc0e2f229092fa14560bf3aabcb19bf06e08b95516cac2cc1ec88124"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0121.parquet",
+      "rows": 10000,
+      "bytes": 459433,
+      "sha256": "ba0cbbd1a16c3a2f87f043dc72ca972bb131ea8a58219539b8188703ecb2d713"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0122.parquet",
+      "rows": 10000,
+      "bytes": 609703,
+      "sha256": "e572c3b9934a5eb579fbcaf4017324a738e3d3cefa058bfa4fd4e216850a4f93"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0123.parquet",
+      "rows": 10000,
+      "bytes": 501962,
+      "sha256": "0e09ced89b90b12cb7472b838b3c6105e66163166e1cabb07cda675581e92868"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0124.parquet",
+      "rows": 6987,
+      "bytes": 489354,
+      "sha256": "d1f8f1469c8a1b0ba1f8888fe8bf9f6399f03f34be9a2dc87e09db7fcc0587e4"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0125.parquet",
+      "rows": 10000,
+      "bytes": 541552,
+      "sha256": "cdb915692d1ee5bf775b24e5bf0f639eb7b7d383070bc647a2a865d3c53db24a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0126.parquet",
+      "rows": 7496,
+      "bytes": 428966,
+      "sha256": "a9239e6241900f11d31db97093ea70fb141a0c28c89ab32e4f92705de5a36641"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0127.parquet",
+      "rows": 10000,
+      "bytes": 563764,
+      "sha256": "f9a1f48a28b25591113ca14f54ade813e04ab064873d592e9c130d92783ea99b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0128.parquet",
+      "rows": 10000,
+      "bytes": 571510,
+      "sha256": "e6c2fc3b8f6a7345142d113b215d5866599bf3cbf80666009857dd9036c8d792"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0129.parquet",
+      "rows": 10000,
+      "bytes": 604116,
+      "sha256": "1fabc79e4cd96e10a5793ccf7fdc5b7e54d153750b3f0bbad938be134c410dca"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0130.parquet",
+      "rows": 10000,
+      "bytes": 448831,
+      "sha256": "ed4e7850f916a10eed98bec798a159b80cec174ef40e9f8aa936769cbe83aa7f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0131.parquet",
+      "rows": 7223,
+      "bytes": 299147,
+      "sha256": "b106619b984689fbf0e09d73afbb11c9d84608019c756a300a56f54e33d1139d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0132.parquet",
+      "rows": 10000,
+      "bytes": 519280,
+      "sha256": "d786e5455d03b503ecb171bc247f5236127b02172910e332b4c9ddba1d080d95"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0133.parquet",
+      "rows": 1548,
+      "bytes": 83307,
+      "sha256": "ccb39de56ca65d8b269f4b6a1171b99cf5a8b9f35132c5a2f8301f606fe0f1d7"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0134.parquet",
+      "rows": 10000,
+      "bytes": 542634,
+      "sha256": "a702a04bd03e7b2f859546fb02f791b57ea90372d189205880a42086401bfed7"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0135.parquet",
+      "rows": 10000,
+      "bytes": 570982,
+      "sha256": "65547ca572d7458ae2df3d31c7a233f451ecddfe4fdf5323a6bbf24a93183c59"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0136.parquet",
+      "rows": 10000,
+      "bytes": 614271,
+      "sha256": "98f4dbe09ed1035ad8b37d181ce9031793f78b11233bcbc0dfe808fa6f87f9e7"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0137.parquet",
+      "rows": 10000,
+      "bytes": 449763,
+      "sha256": "85653d66459693ae8ec54e28364453b1d67315a4cfec9e1e485e3b617c5e7a7d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0138.parquet",
+      "rows": 10000,
+      "bytes": 529665,
+      "sha256": "940abff8cc33266936dfa73e68d906acdb834ce74479ba3bfc7bb58f303c313f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0139.parquet",
+      "rows": 10000,
+      "bytes": 489246,
+      "sha256": "eebd07a55985af5738456ed5bc0d31081ecc46c95228c50252d4bbd63d10895d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0140.parquet",
+      "rows": 10000,
+      "bytes": 497143,
+      "sha256": "8ef700753b6fbbfb0cb6a9434fc9c91134e13c985eedb65b37cdb59b41dea56d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0141.parquet",
+      "rows": 10000,
+      "bytes": 486808,
+      "sha256": "43232892cd2832b163f6af8a0787eff4a283d9d4a5c0385e44e8fb63acad96fe"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0142.parquet",
+      "rows": 10000,
+      "bytes": 398081,
+      "sha256": "47b279c3f382a8191082605b05fb7c12b10af0e390acdfc6321cd0f97b71d1f5"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0143.parquet",
+      "rows": 10000,
+      "bytes": 526248,
+      "sha256": "15450ce4916d46ed710e0f626076afe46c54981b467562071d6ea312e9b94ae3"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0144.parquet",
+      "rows": 10000,
+      "bytes": 469666,
+      "sha256": "1a2b8d0586a13e6320514193c9deb08af1b0da545e9cc86b885b9caa273420f0"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0145.parquet",
+      "rows": 10000,
+      "bytes": 412159,
+      "sha256": "aecc47c5b73861cac3a3cb49f48bf195822bf193bfa4817fd121b787a93f4dcb"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0146.parquet",
+      "rows": 10000,
+      "bytes": 407817,
+      "sha256": "0e3639738814170bdb2d5b0a4f5fd89daafe30c6309d8f98fb278fa124b02d4f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0147.parquet",
+      "rows": 10000,
+      "bytes": 581401,
+      "sha256": "2f9d94aade4a776fb85d7ea27e8cedd46fc84eafb29ccd9939862cd616862c4f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0148.parquet",
+      "rows": 10000,
+      "bytes": 792213,
+      "sha256": "7488c4fa1983e4aa40a47890ccc4cd1af6ea81fb89ae1d7c41a0591c5d788610"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261102_013222_part0149.parquet",
+      "rows": 10000,
+      "bytes": 626101,
+      "sha256": "a6eba10445200ceaa3e19bef1c686b4a5231e8dffb2ac28d13e21642e45567a5"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_153955_part0000.parquet",
+      "rows": 306,
+      "bytes": 50449,
+      "sha256": "d63d0dabe374acc0de43df86c20318e70c11faec6ced3031b031f7519510fb4e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0000.parquet",
+      "rows": 5719,
+      "bytes": 530896,
+      "sha256": "be5df6923df7d8aedf2eb1db043c4ebd52eb8caa9e05d3feb8a687036978d607"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0001.parquet",
+      "rows": 9852,
+      "bytes": 719392,
+      "sha256": "a9ab6e89b03dd7f02216a7fbf6fc791787b5c89b6c0ab3a3dd81c36877e568d6"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0002.parquet",
+      "rows": 2793,
+      "bytes": 198112,
+      "sha256": "4a7ec892335db7f6a399b1dfbfe57232bf878e5cf657ad068a77566919d83f82"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0003.parquet",
+      "rows": 10000,
+      "bytes": 683044,
+      "sha256": "c548a3cb6d8d47231b1db7081ace93517b86ac735d958d6eb3d2251dc0d5edf2"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0004.parquet",
+      "rows": 10000,
+      "bytes": 609827,
+      "sha256": "f2ab5beb58c4ef275a6c748d92521ce161e171c33da3d4066fc81e2dc5123f95"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0005.parquet",
+      "rows": 10000,
+      "bytes": 564742,
+      "sha256": "34047e3372dd3aa667c86cb07a514b42188ab371c6cdd9b1b46737428185aab6"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0006.parquet",
+      "rows": 6646,
+      "bytes": 388249,
+      "sha256": "8b47e96f0e586c0b6a50857e250757dc2b7447c6dd84770bf72fde426ed46cf2"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0007.parquet",
+      "rows": 10000,
+      "bytes": 483644,
+      "sha256": "e779a7c0613640e7451ee2ec6c157b0eefc967b11da5ee96168ccedf661ce0db"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0008.parquet",
+      "rows": 9755,
+      "bytes": 454680,
+      "sha256": "85203ccab76897c0a5336b3e0ba476f10a520686f689400017b089eae54cfdbf"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0009.parquet",
+      "rows": 10000,
+      "bytes": 450706,
+      "sha256": "f618170c0f97a08485aa235d975a96a97a118b1a348fbe06ad6a973532ca273b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0010.parquet",
+      "rows": 10000,
+      "bytes": 504858,
+      "sha256": "dbfbd51c2e59ab85dbe93c52ef8fca6e6980f38a70ab9b8f402c288a9d969c6b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0011.parquet",
+      "rows": 10000,
+      "bytes": 482370,
+      "sha256": "d2f1eb796b607bc8544be39d0843e2cfd148ba5f79ce8abacaade263913359fc"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0012.parquet",
+      "rows": 10000,
+      "bytes": 458385,
+      "sha256": "ade61ceac78c941bbde4051818320a311810a9fe985ceae44f1a4cf824f5ab99"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0013.parquet",
+      "rows": 10000,
+      "bytes": 423336,
+      "sha256": "834584395f502083e4af2a1a7cb50550ee40ca154c00b3ea5a2b813c35b7552d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0014.parquet",
+      "rows": 10000,
+      "bytes": 479497,
+      "sha256": "4da3fa3974551dd17cfe596d223c4d2ac406f7c81dde587567b4e51ade125c7d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0015.parquet",
+      "rows": 10000,
+      "bytes": 426961,
+      "sha256": "b77d3441e255fc2a3a215a11ab758d446ae3b23cf8b4661fcff580fc8d96d80a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0016.parquet",
+      "rows": 10000,
+      "bytes": 432917,
+      "sha256": "b80e70d9e2e07eac082ebdf3e312bf6b0761da911ff80dab95effe15873ad452"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0017.parquet",
+      "rows": 10000,
+      "bytes": 564008,
+      "sha256": "ffe93b4edbbf968ce7137c8352aae076554c338e1b4869b7bdbf664f88da2d52"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0018.parquet",
+      "rows": 10000,
+      "bytes": 534605,
+      "sha256": "d1abacad9ea242625d2ac5c2cf559e1ab9b6c6c0f84313e7909e182655c9838e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0019.parquet",
+      "rows": 10000,
+      "bytes": 508828,
+      "sha256": "ca99ef01eaaf25e90183ee27f3c5953614d3d072de3b693727028cc67b589414"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0020.parquet",
+      "rows": 10000,
+      "bytes": 505744,
+      "sha256": "ab28cb9643da3c58e63e4d655829b8a686525b79dae02f28377212ed08a16b20"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0021.parquet",
+      "rows": 10000,
+      "bytes": 525712,
+      "sha256": "32880b9674f7e4ee178bc3d7358cd6893460515c695da4dc91edc8d4b194503d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0022.parquet",
+      "rows": 10000,
+      "bytes": 387771,
+      "sha256": "374ff52e085a552583d4e3a7aa066bd40b4dc5ede8d4ff418acde7bf61e26cfc"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0023.parquet",
+      "rows": 10000,
+      "bytes": 428592,
+      "sha256": "4ad04de12325e44fe761a916b1de8c4ec8acedb4cf06782c1d8ff385c1fb99af"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0024.parquet",
+      "rows": 10000,
+      "bytes": 307625,
+      "sha256": "01c886ec53b1cd71872ebd0ec29599d0811a7f0b7ca2c11b0feed39307bebc44"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0025.parquet",
+      "rows": 10000,
+      "bytes": 323234,
+      "sha256": "9ec15074a692ed353304f69f2dab63093a697429c8f9e26ad0b5cd2b24047b9e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0026.parquet",
+      "rows": 10000,
+      "bytes": 301885,
+      "sha256": "fb6d390fa161c84464e33c0cb3155eb6e378ba82778fb61909a0c6e55648c197"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0027.parquet",
+      "rows": 10000,
+      "bytes": 350711,
+      "sha256": "a862a07eb63f5a8eb8ceaa57ab450060a923bd514c0a7c2d9db9fb7092e4d82a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0028.parquet",
+      "rows": 10000,
+      "bytes": 443303,
+      "sha256": "f9a0db810254e6951b207b06f7f1ca1ce4a5555f46bd82ca2f62f87057782519"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0029.parquet",
+      "rows": 10000,
+      "bytes": 432789,
+      "sha256": "dd714055bcb4f750d47206b7d89fe58301a50c79cb9cdf4d92ceb7d8eb166916"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0030.parquet",
+      "rows": 10000,
+      "bytes": 424727,
+      "sha256": "02bbf3a1a786f421db4808934a336850f687a14624ac4c59548b042166279c28"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0031.parquet",
+      "rows": 10000,
+      "bytes": 673286,
+      "sha256": "2cdf5f17acb8e893654650d4565a3bd9351bbf69321e8fd217115778f58a5639"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0032.parquet",
+      "rows": 10000,
+      "bytes": 951266,
+      "sha256": "48b73d6f132bf68a4bf472adc1110dad4c42852d1d96673769c194c4fa6cb462"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0033.parquet",
+      "rows": 10000,
+      "bytes": 987960,
+      "sha256": "bdbc7101642e64dd09c987c1266d7d65c3bf3797528d3cbb5182463799eddb0b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0034.parquet",
+      "rows": 10000,
+      "bytes": 820285,
+      "sha256": "2ac2d4eaa045a0f6df60ef5c76b7d51e6a6dce26596cb6cbd6289e01feb12b21"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0035.parquet",
+      "rows": 10000,
+      "bytes": 1144149,
+      "sha256": "6bd8a7761de2000637161d8b4f25e1257f9d5b6b6eb7681b0857d31a142e24f9"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0036.parquet",
+      "rows": 10000,
+      "bytes": 993011,
+      "sha256": "131c10c20c8273518293e3616a229c69ca3cafc6778d453934487c31bedc0d09"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0037.parquet",
+      "rows": 10000,
+      "bytes": 944621,
+      "sha256": "5c7a2747a62ad3c3bbfaf23c7b5cf1865bca6be8b7738c2728b0597af52cd55c"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0038.parquet",
+      "rows": 10000,
+      "bytes": 787889,
+      "sha256": "2032aa952f8d9c19534f64e65bef495d8e4edb88f4af3ae540824651e92b32f6"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0039.parquet",
+      "rows": 10000,
+      "bytes": 875523,
+      "sha256": "61d68fd0eaefd7d85fac6f28253449aa6d379767ea008a932f05b3463f8dfdf7"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0040.parquet",
+      "rows": 10000,
+      "bytes": 806576,
+      "sha256": "1ae38755ceb3efec369c70e2cb562fd20eb52779e5c1a13095a8d9eb439a94a7"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0041.parquet",
+      "rows": 10000,
+      "bytes": 628947,
+      "sha256": "4cb930b04f79a73c01993f41690a8e7349b07d0193470b10efbbae345f6ad80d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0042.parquet",
+      "rows": 10000,
+      "bytes": 1259769,
+      "sha256": "bcf5835e3834b0a2693e15fe4358fef3b14b01b4cb779b601fe2da3644d00da3"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0043.parquet",
+      "rows": 10000,
+      "bytes": 933010,
+      "sha256": "7e7d226a60d478b0e78010fba2f8a587c05acb23f2a019216442705a6e929ccb"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0044.parquet",
+      "rows": 10000,
+      "bytes": 793410,
+      "sha256": "0cf4458435601ff8c0a2c4dc5db0bf1c1035c89aa9526429aa43f419698e2c1a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0045.parquet",
+      "rows": 1684,
+      "bytes": 156337,
+      "sha256": "b68a892a6047e2fdbefcae3dea13ae8f2087b1af43606e445c3333d367d68a7b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0046.parquet",
+      "rows": 10000,
+      "bytes": 807553,
+      "sha256": "3d0112740e20b243bd54e82abb2b621c059b40f6947487fc389a60b29d20676b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0047.parquet",
+      "rows": 10000,
+      "bytes": 892049,
+      "sha256": "f87a70d6be3019a0500a715641703ed75007db4961ab95ac7f2892afa3936fb2"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0048.parquet",
+      "rows": 10000,
+      "bytes": 699452,
+      "sha256": "599bd2e8f22d6df9f62d288c298bd9e3622c53e8b67a3a37810543de6668a035"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0049.parquet",
+      "rows": 10000,
+      "bytes": 964302,
+      "sha256": "954fa375e8f4035f6766692db7a94271ccaaf5de089f0bda1c8a2207971e96d3"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0050.parquet",
+      "rows": 10000,
+      "bytes": 803855,
+      "sha256": "9c89200f6c01093f67caf2fac2a1e40aa921f4fdc290152589ad7c88ef8f3fad"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0051.parquet",
+      "rows": 9720,
+      "bytes": 734891,
+      "sha256": "17aa33a8303a355bb294751d731b4c639cd34fc82b87e2143027e8c4ed0f07c7"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0052.parquet",
+      "rows": 10000,
+      "bytes": 888934,
+      "sha256": "e0d80f2ba13c10b68a38dfad9fdb432efbd8b6def9f2f283140f2e0a13c2be0f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0053.parquet",
+      "rows": 10000,
+      "bytes": 887061,
+      "sha256": "9a48ac36a044e9000bf075b4ba5b2fb1aa7969f5f5de6bd4fd33a675c1faed55"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0054.parquet",
+      "rows": 6129,
+      "bytes": 432751,
+      "sha256": "9e7f0a06e0b9a6b69068dfecf614e49da64e7a4cb35b33e024bc85362f769316"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0055.parquet",
+      "rows": 456,
+      "bytes": 54548,
+      "sha256": "17a7009dd1b326cbe43b1ca074fcc83605117656ab7a142217e66a7feccd613a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0056.parquet",
+      "rows": 2103,
+      "bytes": 137785,
+      "sha256": "31277db1dd1958f29b1992a3b7ab3268192a976dfcc7cba15b95aaff509fd58d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0057.parquet",
+      "rows": 680,
+      "bytes": 80048,
+      "sha256": "b475d7b815d58686eb47fc12fd39d4fa1142f2f37b9358536eaa958726ea03bb"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0058.parquet",
+      "rows": 181,
+      "bytes": 33972,
+      "sha256": "426b08dfca8a39ca35ff3b56a566aa743a617ec20e43cdf045989dfd0570c56e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0059.parquet",
+      "rows": 16,
+      "bytes": 24892,
+      "sha256": "fbceb4249c555c5f4563702ee8edc7d71a9aa26442fc5124b9fa7c67fa711b08"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0060.parquet",
+      "rows": 245,
+      "bytes": 38525,
+      "sha256": "6851fd29a0c5abad6dbee40442327af481982ee5c1071ae3e69cd4c95bc16226"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0061.parquet",
+      "rows": 10000,
+      "bytes": 569204,
+      "sha256": "58ffb5e495f82a6f510902974626f4d22dd9e5153f8b5864c15e8b5319357699"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0062.parquet",
+      "rows": 10000,
+      "bytes": 519214,
+      "sha256": "2960a45dfdd16f2b198e53186fa56dac9719a209219c49e80496b8d2488bc80f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0063.parquet",
+      "rows": 10000,
+      "bytes": 618567,
+      "sha256": "048eb7632fa7ae3dd41986cfad6a38a2b9ecc77d118b76f43d0a59fad38af2db"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0064.parquet",
+      "rows": 8145,
+      "bytes": 503468,
+      "sha256": "ba07dc49332b716990c9f2b85e22eb8ea6283a05ad333cfcb5d29c89b7bdda56"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0065.parquet",
+      "rows": 4921,
+      "bytes": 251591,
+      "sha256": "95a096729201913b5e907c834d227e59777b4b6ba7c1c9534cb8b950b098ad0a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0066.parquet",
+      "rows": 62,
+      "bytes": 27540,
+      "sha256": "2ef104be8b33cf5e3c663c8231d684965eacf36da5835e4e03dcfe5be7842620"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261103_154111_part0067.parquet",
+      "rows": 3766,
+      "bytes": 222847,
+      "sha256": "6b0ab783c28970a79f804762a1ccf26b043857140db93e5da20f1f4e2c2acde0"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0000.parquet",
+      "rows": 2589,
+      "bytes": 148981,
+      "sha256": "aef9a3f32abcf87a7613120a4a012b31e3a6ed8cf9ea229296a89c2bda17f01a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0001.parquet",
+      "rows": 10000,
+      "bytes": 562449,
+      "sha256": "d8082e51e0fa2f5e10ef20bbf34d3676e63675087f088ced59faafd6ac5476d7"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0002.parquet",
+      "rows": 2310,
+      "bytes": 144031,
+      "sha256": "e499bd006c25239de55a1b0c55acc48a0f606e9ae8b0bee1e29d0c24d40294db"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0003.parquet",
+      "rows": 10000,
+      "bytes": 552272,
+      "sha256": "0058be5725b8195c9514518eb2d88bb1de71ab64c189ef6dcd97c5be1bb6505d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0004.parquet",
+      "rows": 8562,
+      "bytes": 430876,
+      "sha256": "96ca69315080016d9bb9edede4432851d0273714400b85209a1f722a781e4704"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0005.parquet",
+      "rows": 10000,
+      "bytes": 435859,
+      "sha256": "08e27fe945c9f151311c4870abeb05ce9c9fa4571fe0b626c942bf30a1b022bb"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0006.parquet",
+      "rows": 3108,
+      "bytes": 157818,
+      "sha256": "ea5d621156c0e40dc46b2fdcf2f5cbab5050b78609f9da4e8ef42bd0c0f99d2e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0007.parquet",
+      "rows": 10000,
+      "bytes": 402542,
+      "sha256": "6e8761c4ade92eb239a29a0377d1d5dc921923691f6eedd56b123da27a8a24a1"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0008.parquet",
+      "rows": 10000,
+      "bytes": 430235,
+      "sha256": "5fe0a1cc6140a1287fb1d0c39622bb3657bf91b847076ff84cf165c460860cc9"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0009.parquet",
+      "rows": 10000,
+      "bytes": 447212,
+      "sha256": "ea463a45f295dc024937858f0480457738aae5cf3b36ae295b1f530d8efb5b80"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0010.parquet",
+      "rows": 3103,
+      "bytes": 171059,
+      "sha256": "aaee6dde55f1e10fdf45b2f768f438b27313ba31831ecc971ed8b0edfa3fa18a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0011.parquet",
+      "rows": 10000,
+      "bytes": 450940,
+      "sha256": "6ad99d7d4ccbc0e9586c813b2d1590f77e746664a2ae8b92902c15d89ccd5d7a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0012.parquet",
+      "rows": 10000,
+      "bytes": 478566,
+      "sha256": "b2cbdbb0d349984dae3aabf0341976de81c37a39867c1a86009b1905d4e7a1ff"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0013.parquet",
+      "rows": 10000,
+      "bytes": 384131,
+      "sha256": "786da73133cc54a2aed206a6dc399c1df7eba2fb87c9fb3b691e438e5acca59a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0014.parquet",
+      "rows": 10000,
+      "bytes": 544205,
+      "sha256": "c7925fa7aebe6b1507afceffbd1aad9ce076be1277a81fe72e9c18a318498cb6"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0015.parquet",
+      "rows": 10000,
+      "bytes": 533931,
+      "sha256": "01450888732af6833ec333f422acae97ddfa7b47c2f50f8fc866b05863426b72"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0016.parquet",
+      "rows": 10000,
+      "bytes": 788535,
+      "sha256": "3c4e8c098f9ef3e6947a9f66ddc0c0e2283f741ba30f6a7508efe23a9e54d02e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0017.parquet",
+      "rows": 4052,
+      "bytes": 374325,
+      "sha256": "0ea75173ee8adba7cce6ec344eb9d532c14972e4f602c1bf3c4a1b634134c685"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0018.parquet",
+      "rows": 10000,
+      "bytes": 1529954,
+      "sha256": "3d429eb982a2f926ae10e99bd2e336a50745c1e9a99d39849832fe1fc471f92c"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0019.parquet",
+      "rows": 3168,
+      "bytes": 484949,
+      "sha256": "9f6983a96dee4a9f5576f88beecda5d73a1959c61bc05ae9d6d1cf811fceca86"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0020.parquet",
+      "rows": 6813,
+      "bytes": 980349,
+      "sha256": "9bd6936b26966203d0b4dcecd67136eee79c213ab6988b74cbd1bd3fcfbd37d4"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0021.parquet",
+      "rows": 10000,
+      "bytes": 1482069,
+      "sha256": "d361f64a8e0e00cb622ababee4977b14710331876b25cb42e09b2439d79a4934"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0022.parquet",
+      "rows": 10000,
+      "bytes": 1227015,
+      "sha256": "d45cd953dc03710a1faf312e63d771d366661a0842437a8b0807db87752ddfc8"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0023.parquet",
+      "rows": 10000,
+      "bytes": 1203809,
+      "sha256": "d74c947abc56c32406284820cbfc8dccd3ab31df0c674a0bea6b1ca5ae5b28d9"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0024.parquet",
+      "rows": 10000,
+      "bytes": 1239379,
+      "sha256": "915f3ba0e9d3590fc6cbb4575c24da86e27fda84f983c344995c99a0bf0061b4"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0025.parquet",
+      "rows": 10000,
+      "bytes": 1077128,
+      "sha256": "6c0956f70f24b890ce6b1b6cdae29bccc86ef14f0e52bb13a8964941dee29e1b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0026.parquet",
+      "rows": 10000,
+      "bytes": 1053544,
+      "sha256": "14d64e0cca86ace517b43442e08f98fa591d79b21bb39bd6e4dd683f997c0814"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0027.parquet",
+      "rows": 10000,
+      "bytes": 1077749,
+      "sha256": "7e8c3e59c9ff310d883b6952fb40dd55cae158e2bf844f4b447cf599a0d9da87"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0028.parquet",
+      "rows": 6337,
+      "bytes": 658217,
+      "sha256": "bc920e0b1d89240605a1794c5e09e47bf5b664154770cea4dd3e7032b6036479"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0029.parquet",
+      "rows": 10000,
+      "bytes": 949813,
+      "sha256": "63108a44dada155fce48f7048f8c6436ef869a3a09034e6fc907a88524f1e508"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0030.parquet",
+      "rows": 10000,
+      "bytes": 920550,
+      "sha256": "d320cc9d6a1b5fbc819c816c34721c2237974522fab55bb9addf59087735848a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0031.parquet",
+      "rows": 10000,
+      "bytes": 914945,
+      "sha256": "99da040e0e88570ecd23085f6fc9b8a63e6e08f3eb95661b32d9c362c8fbb698"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0032.parquet",
+      "rows": 10000,
+      "bytes": 832730,
+      "sha256": "5d033b501e46c2e38aff4ce67bf4a4df6e672f9463ac09bccc7f4d8c6a0b5bad"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0033.parquet",
+      "rows": 10000,
+      "bytes": 885576,
+      "sha256": "7e3f7495be2f8200df1b708c161706e15215b7ca371e9abb5a5987e06b775b88"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0034.parquet",
+      "rows": 10000,
+      "bytes": 798956,
+      "sha256": "249282c2a055ec037a30cef2ed7f3354e337743f22fef2c7e29fb9ed82b732af"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0035.parquet",
+      "rows": 10000,
+      "bytes": 827940,
+      "sha256": "dcb195033186373d7b87922dd7a93a37dd742fe44920ff3b3754c5cbf3594943"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0036.parquet",
+      "rows": 10000,
+      "bytes": 920754,
+      "sha256": "d291742a2c2bbb6cc72ff54cd58671ad1616682f849688aa1c619f8311524ef0"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0037.parquet",
+      "rows": 10000,
+      "bytes": 871257,
+      "sha256": "cda3e005ee0711ed515f0aa948516bef6068dc2cc52466ca0aed6d66814c97b8"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0038.parquet",
+      "rows": 10000,
+      "bytes": 966710,
+      "sha256": "671e82a33bf0795ce26e61acc5dca2502dd8bb15ac3b984effd0a8abc29dbafd"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0039.parquet",
+      "rows": 10000,
+      "bytes": 981515,
+      "sha256": "2478cd0963aef4ba1e021d018cae22bdbbccea12d95e88102c17835d60be85bd"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0040.parquet",
+      "rows": 10000,
+      "bytes": 733187,
+      "sha256": "5a45a97fffac1e8206dd7a319f4e3404efae8d61234145d06197d395d8bd9fb1"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0041.parquet",
+      "rows": 10000,
+      "bytes": 737425,
+      "sha256": "beb86c79045cd5f9a0862f1e574ede64e35e6d88efe9960144b1b0d453240139"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0042.parquet",
+      "rows": 10000,
+      "bytes": 601974,
+      "sha256": "cc998bb72a14da5d84d1ed4865697e26f2cd72359c16303c6fe6a3b15777d7ab"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0043.parquet",
+      "rows": 10000,
+      "bytes": 497244,
+      "sha256": "30d8d85ad9dfa055e117c0d0fa5bc5622f5b9eac236ae8cdf3056808ab5d10cc"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0044.parquet",
+      "rows": 10000,
+      "bytes": 697140,
+      "sha256": "d14de90c7be79366835606249deb11b54d688f17ef2e11afc97c5a79114a0c02"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0045.parquet",
+      "rows": 10000,
+      "bytes": 1052226,
+      "sha256": "ab58986742921d41216eb493f4c5a0996b97d48caf7e0cac97c90b3b8478212e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0046.parquet",
+      "rows": 10000,
+      "bytes": 1141769,
+      "sha256": "2f27c2e4367764531edd71b6e5d6740543b86bd208f0e88a6c12242ff031f1af"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0047.parquet",
+      "rows": 10000,
+      "bytes": 886412,
+      "sha256": "2e00e341c5138969a1ff088a6531609b3b2a7ce466186c1c5cce4be59b3074d8"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0048.parquet",
+      "rows": 10000,
+      "bytes": 827798,
+      "sha256": "d34d2dbe7e97c0aedc23e080f7e8f81d19d89b1fefaaa243f2d86dffa7959304"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0049.parquet",
+      "rows": 10000,
+      "bytes": 869591,
+      "sha256": "a1b8b38b0603317a22b52c1aeca0ca3d2b7d1f6df9fa5f6c5d7eaf964bedfbfa"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0050.parquet",
+      "rows": 5026,
+      "bytes": 383207,
+      "sha256": "8141418cef08baa72d3f63d43c805592d206a6cff295aad31e9cfac85762c409"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261105_084640_part0051.parquet",
+      "rows": 4529,
+      "bytes": 372643,
+      "sha256": "39cdc65e184b4b5aaae7770c51687487d9ced10e3a52f627ff1a0a4443dc0133"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0000.parquet",
+      "rows": 10000,
+      "bytes": 917189,
+      "sha256": "1c9458328d2ee94c741aba7fd54e8e9d0706a843110a69a8a63e1876b5546482"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0001.parquet",
+      "rows": 10000,
+      "bytes": 804182,
+      "sha256": "35e4ddf68673874c8a01e567b1602c1653c166c77fc85763443e6019ce708a0a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0002.parquet",
+      "rows": 10000,
+      "bytes": 752442,
+      "sha256": "ec2b17ef3a2e486d0072a2b658ab3a919dd8bc3529edc5b6af9be78e82ffee88"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0003.parquet",
+      "rows": 10000,
+      "bytes": 1029112,
+      "sha256": "8e80de23705d70dfd45ff0246ebc6c0e57b5104cc365a65600852cb519b74c05"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0004.parquet",
+      "rows": 10000,
+      "bytes": 1178041,
+      "sha256": "1e45f4e7c5db6efba184cbdc8eacba89bf3f89b9679b7b1d1048a68c859a1932"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0005.parquet",
+      "rows": 10000,
+      "bytes": 1337427,
+      "sha256": "3a7fef8f7450cf2eb138a7fad9c2fe46b4180a3bf928230429fcc612d3df2344"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0006.parquet",
+      "rows": 10000,
+      "bytes": 1168572,
+      "sha256": "839f038a6806fc3c8063c1e627341e9f23f0f31519b3174e32996800d4058534"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0007.parquet",
+      "rows": 10000,
+      "bytes": 1126111,
+      "sha256": "2b99c6146ddc191d15c945a085832edfcffa6312076399c585ff04114df27d7b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0008.parquet",
+      "rows": 3209,
+      "bytes": 371806,
+      "sha256": "34b511257cfa48c0e6a7b871bab5de8f312988b04dca0b996411332c13ad6428"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0009.parquet",
+      "rows": 10000,
+      "bytes": 948010,
+      "sha256": "779ab10c996922a8f131cd950f2efd772d6d2fccb55a6582afe2a0398bea9724"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0010.parquet",
+      "rows": 10000,
+      "bytes": 942995,
+      "sha256": "949bbf67825361eda91b532bdbf5b6a5f41e36065f5cce259b4ef763349aed77"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0011.parquet",
+      "rows": 10000,
+      "bytes": 894427,
+      "sha256": "a9e23d9bc9f0c599f9a0fac9d0dc121eedf45b87ad814a4e96ccb35cb28ce891"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0012.parquet",
+      "rows": 10000,
+      "bytes": 863192,
+      "sha256": "1be865fbb933e1067b7c8f3a90364a4db54c1ce94d2c9b27244be45740b7ce0c"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0013.parquet",
+      "rows": 2601,
+      "bytes": 211367,
+      "sha256": "259ad04f59479814f3ed11ff5ba1954792a4e331295b3e4e5e45d0484ea3263e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0014.parquet",
+      "rows": 1814,
+      "bytes": 173818,
+      "sha256": "2d7d15f5b1edc350b2c65204f8e5649e6c5a1a0f3d6cb6f066574f98fd8a5d38"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0015.parquet",
+      "rows": 175,
+      "bytes": 41804,
+      "sha256": "5491eac357bfcc5feb12caf883cd7f44a4677373bf1e7adbc76194d1fcf8f968"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0016.parquet",
+      "rows": 1907,
+      "bytes": 159683,
+      "sha256": "f90701b50a25ec92928ef1d2a7322d9229d1f5ff91dd57574358a65d1e129af6"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0017.parquet",
+      "rows": 9994,
+      "bytes": 715133,
+      "sha256": "409eb0f0a13f4b26f46dff6288d0e3b5181ea8fa6d52c2822171434cb5d2ee0b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0018.parquet",
+      "rows": 9763,
+      "bytes": 824661,
+      "sha256": "dc92d05aff4d11217e246469c154f21904380bf046fda107d2163524ec452b3a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0019.parquet",
+      "rows": 10000,
+      "bytes": 745326,
+      "sha256": "40ba801de216135119329ebeb9882e3f8de26317a9fd7b93f638cc07701db5be"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0020.parquet",
+      "rows": 10000,
+      "bytes": 740857,
+      "sha256": "bf25b87fde838d0b4dd3eb74099e6d53aa429d52d492d7b90ab72b87ef93d933"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0021.parquet",
+      "rows": 10000,
+      "bytes": 671528,
+      "sha256": "0f760a28886d93c3fb3569a28db099b38deaf6849848f7c52a8824342ad27709"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0022.parquet",
+      "rows": 10000,
+      "bytes": 611523,
+      "sha256": "a4484be27d756fdbfbffd03549f63f9d7b678c7b97988b893e1a1131c047946e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0023.parquet",
+      "rows": 10000,
+      "bytes": 623131,
+      "sha256": "a45c377435e8bc9a3e64d4280f4610b5ff15a122d8aafa20905e16b2653c657a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0024.parquet",
+      "rows": 10000,
+      "bytes": 559688,
+      "sha256": "2a1d5a8a9489e66346e7ff6ba2ffd238e3fe9a56c7178a0e0f1b4e7ceffddeff"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0025.parquet",
+      "rows": 10000,
+      "bytes": 517247,
+      "sha256": "738dcefbf538fdbe6757166be8dad1829475961a8078ee39c3c159774b09b114"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0026.parquet",
+      "rows": 10000,
+      "bytes": 487110,
+      "sha256": "9c260fb669d263db3c491f273ae23b52de93884fef1ba3fcc045b71d196f65cd"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0027.parquet",
+      "rows": 10000,
+      "bytes": 570471,
+      "sha256": "9ada89e2383df5f22ac29cade0eff4b1f02b458a5ef5585a7f27f99edb106a1a"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0028.parquet",
+      "rows": 10000,
+      "bytes": 556585,
+      "sha256": "30120e715face9f5dcebea3fc7384590335aef18a4119c06d905593bf4302616"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0029.parquet",
+      "rows": 10000,
+      "bytes": 553112,
+      "sha256": "adb21a80eb0d2b055399ec57960723630c1d6ba2ee80dec677bec3315075f288"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0030.parquet",
+      "rows": 10000,
+      "bytes": 557858,
+      "sha256": "ea149d54e7d86c36ec53e6c015eeb0e57231f6aee129297d3475b7baf7f0a5c3"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0031.parquet",
+      "rows": 10000,
+      "bytes": 343672,
+      "sha256": "c2941be2a3aed2e69abd719dc4324d8f4b4d204bc09d8af4eeea08cd63762832"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0032.parquet",
+      "rows": 554,
+      "bytes": 38308,
+      "sha256": "41b496b7a30e01d1307e405c65ce4da5a56ddd8368bc24fdc9f51d6e93d05e9e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0033.parquet",
+      "rows": 10000,
+      "bytes": 368620,
+      "sha256": "113bfcac4bce7ac25495bc06b80f2626fe997516ecf04eea53ede5d9af46d09b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0034.parquet",
+      "rows": 10000,
+      "bytes": 327728,
+      "sha256": "eb91df9d4a582610e036f01d1e500602dd4e070ed483610efc78756c98c593a8"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0035.parquet",
+      "rows": 10000,
+      "bytes": 499784,
+      "sha256": "fcf58ce8e3a0330701dc2abe1efb75435bcd88eb1a7b6c11599a7eb3014b5a08"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0036.parquet",
+      "rows": 10000,
+      "bytes": 282059,
+      "sha256": "380f31b8c49f03af3dce985d202fc0353da66f413768d2e72e6a15c8b36d727e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0037.parquet",
+      "rows": 10000,
+      "bytes": 351624,
+      "sha256": "56b5072b255c45797222820bcff9ca6db9677895323d936f03c7c3cfdf5c383d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0038.parquet",
+      "rows": 10000,
+      "bytes": 380331,
+      "sha256": "cdb70f36af5781763bccc6701a0d495535b4f582698196bc67e1a564f271796e"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0039.parquet",
+      "rows": 10000,
+      "bytes": 312045,
+      "sha256": "addccb188893d33ff9545bc15777b2c7bf553dc9a66f42c0c44b971201061ccd"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0040.parquet",
+      "rows": 2050,
+      "bytes": 86244,
+      "sha256": "c6373de382431a2adbb554d431c918bbf08c20bb15293f2437f584bef180842f"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0041.parquet",
+      "rows": 5041,
+      "bytes": 171469,
+      "sha256": "e0b8a13f2364ba308cd33ec99b4513774a69cb4bc306ba96c59c68f824ff7854"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0042.parquet",
+      "rows": 708,
+      "bytes": 40044,
+      "sha256": "b931b56b13d76db0351941f3f63408db48d3cc08c7ec76708774b4e320ac2baa"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0043.parquet",
+      "rows": 10000,
+      "bytes": 326556,
+      "sha256": "ffb87e5d45359173069aa5e27c90b75cb58c753d438e95d375181d308cef420b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0044.parquet",
+      "rows": 10000,
+      "bytes": 322818,
+      "sha256": "58001c1ac6288eafb3b290a1a3f259bd33084765885f8764bb1e222e7650a596"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0045.parquet",
+      "rows": 10000,
+      "bytes": 327986,
+      "sha256": "44979b2301911833ba9bd55576c00f79c355988ff6d87e84976b4b1d59608591"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0046.parquet",
+      "rows": 10000,
+      "bytes": 273837,
+      "sha256": "c3e1b253a7afdac242efe8b319ac9d38b4bbc4ec57b5395b948dc8e987e009d1"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0047.parquet",
+      "rows": 508,
+      "bytes": 37584,
+      "sha256": "7e4d4f41eba4dac507772c545b6b2dbd4f56ca4165d182eae521291fc8ddd141"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0048.parquet",
+      "rows": 10000,
+      "bytes": 254026,
+      "sha256": "25880279e7787ecbe253a1a0bf0cb5aaecfa46ee93abfe301835478822b1c51d"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0049.parquet",
+      "rows": 10000,
+      "bytes": 320112,
+      "sha256": "d75f3da8fd11ce757dbfd61d58992a59afdebe91aa027a399364a080927d06bc"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0050.parquet",
+      "rows": 10000,
+      "bytes": 313679,
+      "sha256": "dd468dac421700694b5579f20ff19aee5df6fd475da8a47e7854e45c5948a04b"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0051.parquet",
+      "rows": 10000,
+      "bytes": 283771,
+      "sha256": "1b2d98753a849af5e38777fd1b2c38acbbf2c4ae31a2afe3ce47679118836c67"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0052.parquet",
+      "rows": 10000,
+      "bytes": 309537,
+      "sha256": "e15af62dc2c8ff8729f380f20cb4ee6d1717942192933eb9a2ecad9398a25260"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0053.parquet",
+      "rows": 10000,
+      "bytes": 316219,
+      "sha256": "b3d5b88e3c5eec8b4c39711da5392ec9621479f8b81ca64491123766c31eecac"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0054.parquet",
+      "rows": 10000,
+      "bytes": 304437,
+      "sha256": "28661d2db83185762b9527a8de0972c0e8a0b1f2c852979fcc0311625f283de3"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0055.parquet",
+      "rows": 10000,
+      "bytes": 278475,
+      "sha256": "ae295fc6579c164d2a4a8a3a6cd140c9268ab7183fef95beb3791b5cbba18b15"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0056.parquet",
+      "rows": 10000,
+      "bytes": 267288,
+      "sha256": "b2fde0c36c45fa9facf471c6eebee177b50dc1fdb40c9978cd686bc942ef3284"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0057.parquet",
+      "rows": 10000,
+      "bytes": 285270,
+      "sha256": "3fbb86206c4ee99411fedb16e93423838a744f57178336208f77fe9be318cd01"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0058.parquet",
+      "rows": 10000,
+      "bytes": 515262,
+      "sha256": "fdab29088108d2888f821beabce66f4a7164766256c7d5ba6fa2c7f30d2f7caa"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0059.parquet",
+      "rows": 10000,
+      "bytes": 336203,
+      "sha256": "045703228b4a8d18e67dc044d083ff795a143d9224d1822add2cc81adfb0c874"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0060.parquet",
+      "rows": 10000,
+      "bytes": 313513,
+      "sha256": "10310458f2beda03000e799ecd0df0df5511d0a19909054279976a02b6f260a6"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0061.parquet",
+      "rows": 10000,
+      "bytes": 296970,
+      "sha256": "a233446ed7472fc1d5b7c504c0b4d2aa44c4df3957c206226e9d33bd5e4e01ea"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0062.parquet",
+      "rows": 10000,
+      "bytes": 319000,
+      "sha256": "c20346c96614dc1178d785f26cdfa51c4f7818c5a0821def570b3cf3e79ac398"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0063.parquet",
+      "rows": 10000,
+      "bytes": 271076,
+      "sha256": "aff2238a804de0a87ce1a4bb54bcb7018712b43d5051698ebc8368cf1d30b3d2"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0064.parquet",
+      "rows": 10000,
+      "bytes": 313538,
+      "sha256": "e69ef08865a600c7d983f9bfa998a2a0dd09273f46cc3279b19a83cbc9cbbd97"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0065.parquet",
+      "rows": 10000,
+      "bytes": 308094,
+      "sha256": "e46a8366f1925eea38607fa127e2b1259116613a2deac7894f46748b710d7059"
+    },
+    {
+      "path": "data/raw/btcusdt_lob_20261106_133256_part0066.parquet",
+      "rows": 5737,
+      "bytes": 169872,
+      "sha256": "06aca91c71836a0a5c799765ede2bcf74cda0baf18f3e963f838a08a5afcd4ee"
     }
   ],
-  "skipped_incomplete_files": [],
-  "pipeline_sha256": "0d2f93ee7523fb1eae7aae78c137e8f170aca79075bc4ca3ab833a9723077c3f",
-  "packages": {
-    "numpy": "2.5.4",
-    "pandas": "3.1.0",
-    "scikit-learn": "1.9.1",
-    "lightgbm": "4.7.0",
-    "pyarrow": "26.0.0"
-  }
+  "split": {
+    "train_through_IST": "2026-11-03",
+    "validation_IST": "2026-11-04",
+    "test_from_IST": "2026-11-05"
+  },
+  "note": "Frozen dataset; gap reset >1000ms. Train through Nov 3, validate Nov 4, test Nov 5 onward (IST)."
 }

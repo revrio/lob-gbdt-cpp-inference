@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 EPS = 1e-9
-MAX_GAP_MS = 500
+MAX_GAP_MS = 1000
 WARMUP_TICKS = 300
 HORIZON_TICKS = 50
 LABEL_THRESHOLD = 0.50
@@ -94,3 +94,48 @@ def modeling_frame(features: pd.DataFrame) -> pd.DataFrame:
         np.where(df["future_ret_50"] < -LABEL_THRESHOLD, 0, 1),
     )
     return df.reset_index(drop=True)
+
+# Locked evaluation dates in Asia/Kolkata, expressed as UTC milliseconds.
+TRAIN_END_MS = int(pd.Timestamp('2026-11-04', tz='Asia/Kolkata').timestamp() * 1000)
+VALIDATION_END_MS = int(pd.Timestamp('2026-11-05', tz='Asia/Kolkata').timestamp() * 1000)
+
+
+def prepare_modeling_frame(raw: pd.DataFrame) -> pd.DataFrame:
+    """Calculate one segment at a time to bound temporary feature memory."""
+    segmented = segment_snapshots(raw)
+    pieces = []
+    for _, group in segmented.groupby('segment_id', sort=False):
+        if len(group) <= WARMUP_TICKS + HORIZON_TICKS:
+            continue
+        f = engineer_features(group)
+        f['target_timestamp_ms'] = f.timestamp_ms.shift(-HORIZON_TICKS)
+        f['raw_index'] = group.index.to_numpy()
+        clean = modeling_frame(f)
+        columns = FEATURE_COLS + ['timestamp_ms', 'last_update_id', 'label',
+                                 'future_ret_50', 'target_timestamp_ms', 'raw_index']
+        pieces.append(clean[columns].copy())
+    if not pieces:
+        raise ValueError('No segments have enough snapshots for training')
+    return pd.concat(pieces, ignore_index=True)
+
+
+def calendar_split(clean: pd.DataFrame, raw_timestamps):
+    """Train through Nov 3, validate Nov 4, test Nov 5 onward (IST).
+
+    Purge targets crossing either calendar boundary and embargo the first 100
+    raw observations of each subsequent period, even after a recording break.
+    """
+    times = np.asarray(raw_timestamps)
+    val_start = int(np.searchsorted(times, TRAIN_END_MS)) + EMBARGO_TICKS
+    test_start = int(np.searchsorted(times, VALIDATION_END_MS)) + EMBARGO_TICKS
+    train = clean.loc[(clean.timestamp_ms < TRAIN_END_MS) &
+                      (clean.target_timestamp_ms < TRAIN_END_MS)]
+    val = clean.loc[(clean.timestamp_ms >= TRAIN_END_MS) &
+                    (clean.timestamp_ms < VALIDATION_END_MS) &
+                    (clean.target_timestamp_ms < VALIDATION_END_MS) &
+                    (clean.raw_index >= val_start)]
+    test = clean.loc[(clean.timestamp_ms >= VALIDATION_END_MS) &
+                     (clean.raw_index >= test_start)]
+    if any(frame.empty for frame in (train, val, test)):
+        raise ValueError('Locked calendar split requires training, validation and test data')
+    return tuple(frame.reset_index(drop=True) for frame in (train, val, test))

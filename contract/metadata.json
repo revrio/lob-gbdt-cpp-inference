@@ -18,12 +18,12 @@
     "1": "Flat",
     "2": "Up"
   },
-  "max_gap_ms": 500,
+  "max_gap_ms": 1000,
   "warmup_ticks": 300,
   "eps": 1e-09,
   "horizon_ticks": 50,
   "label_threshold": 0.5,
-  "conviction_tau": 0.39,
+  "conviction_tau": 0.31,
   "parity_absolute_tolerance": 1e-06,
   "floating_point": "float64; CSV uses 17 significant digits",
   "input_rows": 5000,
@@ -31,7 +31,7 @@
   "warmup_rows": 300,
   "warmup_feature_fields": "empty",
   "prediction_rows": "ready rows only, joined by row_id",
-  "num_trees": 186,
+  "num_trees": 549,
   "training": {
     "params": {
       "objective": "multiclass",
@@ -49,22 +49,28 @@
     },
     "max_boost_rounds": 300,
     "early_stopping_rounds": 30,
-    "best_iteration": 62,
-    "raw_rows": 565955,
-    "clean_rows": 448199,
-    "train_rows": 313739,
-    "validation_rows": 67130,
-    "test_rows": 67130,
+    "best_iteration": 183,
+    "raw_rows": 3855454,
+    "clean_rows": 3363397,
+    "train_rows": 2101898,
+    "validation_rows": 450212,
+    "test_rows": 811231,
     "embargo_ticks": 100,
-    "validation_macro_f1": 0.5274894094184613,
+    "validation_macro_f1": 0.5389281937880163,
+    "split": {
+      "train_through_IST": "2026-11-03",
+      "validation_IST": "2026-11-04",
+      "test_from_IST": "2026-11-05",
+      "purge_cross_boundary_targets": true
+    },
     "threshold_search": {
       "min": 0.2,
       "max": 0.45,
       "step": 0.01,
       "split": "validation"
     },
-    "golden_segment_id": 657,
-    "golden_segment_available_rows": 121283
+    "golden_segment_id": 97,
+    "golden_segment_available_rows": 131983
   },
   "versions": {
     "numpy": "2.5.4",
@@ -73,10 +79,10 @@
     "lightgbm": "4.7.0",
     "scikit-learn": "1.9.1"
   },
-  "reference_source_sha256": "2e18eef3459e20eb92444cca596d1184987ee1f49f4a95ddd2c18cb0a454ed63",
+  "reference_source_sha256": "88274a6230e2dad4d71e7fe2ac4ba32215a5acddbe733513e1ddd0092dcdf3a1",
   "files": {
     "model.txt": {
-      "sha256": "6feb42b44f19eeecc38653de4dac23850e15460219c110309926d9bcda991af5"
+      "sha256": "b4ee2a9efbd3af20f2a81eda96dd74e2654366414d18481ac5ea3d6fe6843bda"
     },
     "golden_input_lob.csv": {
       "sha256": "e8847038e5b69293cb5b40ca329f57e3872f4a15ee4c601c9e404ad9a3188736"
@@ -85,10 +91,10 @@
       "sha256": "b593b190541a0f203393d02bbc24a95d4455850915023f3c9640c912905b664e"
     },
     "golden_predictions.csv": {
-      "sha256": "019b6e3644f61dc52c2441e3476f74cabd4359d099e6e8686351ba269d63fd3c"
+      "sha256": "fae8e960f3ef8a01f3b532fe51a862e35170b8c61f4e6431f09a8cdb0e145c71"
     },
     "training_manifest.json": {
-      "sha256": "120fe8e218f1a2c4c70e3b5b1d0eac836caa77dd2e1e71521c2d9bc518f4a138"
+      "sha256": "7726ba146558f4792af5577aec0056b9f918958eba693add49000665c8a800cd"
     }
   }
 }

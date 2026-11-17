@@ -8,7 +8,7 @@ namespace lob {
 constexpr std::size_t kLevels = 10;
 constexpr std::size_t kNumFeatures = 11;
 constexpr double kEps = 1e-9;
-constexpr std::int64_t kMaxGapMs = 500;
+constexpr std::int64_t kMaxGapMs = 1000;
 constexpr std::size_t kWarmupTicks = 300;
 
 // Index 0 = level 1 (best price), index 9 = level 10.

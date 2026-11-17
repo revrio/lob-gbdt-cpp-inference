@@ -29,7 +29,9 @@ python -m unittest discover -s python/tests -v
 
 The 5,000 inputs include 300 warm-up rows; the remaining 4,700 rows have expected
 features, raw class scores, probabilities, and class IDs. Join files by `row_id`.
-See `contract/feature_spec.md` for exact column order and numerical rules.
+The frozen model has 183 boosting rounds (549 trees) and a validation-selected
+conviction threshold of 0.31. See `contract/feature_spec.md` for exact column
+order and numerical rules.
 
 To deliberately recreate the bundle from its frozen source list (the listed raw
 files must be available locally):
@@ -39,7 +41,7 @@ python python/export_contract.py export \
   --manifest contract/training_manifest.json --output /tmp/lob-reference
 ```
 
-Export uses the established training settings, chronological split and
+Export uses the established training settings, locked calendar split and
 validation-only threshold selection. It refuses to overwrite an existing bundle
 unless `--force` is supplied. CSVs are written at float64 round-trip precision
 and the staged bundle is verified before it replaces any output files.
@@ -68,7 +70,7 @@ if (engine.update(snapshot, features)) {
 
 The first 300 snapshots of each segment return `false`, leaving the output
 untouched; snapshot 301 writes a complete feature vector and returns `true`.
-Gaps greater than 500ms restart warm-up. Equal timestamps are accepted, while
+Gaps greater than 1000ms restart warm-up. Equal timestamps are accepted, while
 negative or decreasing timestamps are rejected without changing engine state.
 Call `reset()` before replaying a separate stream from the beginning.
 
@@ -76,3 +78,24 @@ The golden test checks every fixture readiness flag and all ready feature values
 against Python with an absolute tolerance below `1e-6`. It uses a small test-only
 CSV reader; the user-facing replay executable and model evaluator are not yet
 implemented.
+
+## Locked dataset and evaluation
+
+The checksummed source list in `contract/training_manifest.json` freezes 435
+files and 3,855,454 snapshots through November 7, 2026, 11:23 IST. New recordings
+are excluded until the manifest is deliberately updated. Run `python python/pipeline.py`
+to evaluate the locked data (raw recordings must be available).
+
+Both Python and C++ reset history only for receive-time gaps **greater than
+1,000ms**; exactly 1,000ms stays in the current segment. This is a continuity
+cutoff, not an execution delay. The label horizon remains 50 updates, roughly
+five seconds, and warm-up remains 300 updates.
+
+Training uses data through November 3 IST; November 4 selects early stopping
+and decision thresholds; November 5 onward is the inspected test period.
+Targets crossing calendar boundaries are purged and the first 100 raw updates
+of each subsequent period are embargoed. The current test has already been
+reviewed; use new future data for a fresh final evaluation after further tuning.
+
+Recorded execution totals in the pipeline are exploratory overlapping signals,
+not a realistic account PnL. Classification scores do not establish profitability.

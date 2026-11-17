@@ -10,7 +10,7 @@ This document serves as the immutable contract between the Python offline modeli
 | :--- | :--- | :--- |
 | **Instrument** | `BTCUSDT` (Binance Spot) | `@depth10@100ms` WebSocket stream |
 | **Nominal Tick Interval** | `100 ms` (`10 ticks = 1s`) | Rolling windows are defined strictly by integer tick count |
-| **Contiguous Segment Rule** | `timestamp_ms[t] - timestamp_ms[t-1] <= 500` | Any gap `> 500 ms` begins a new segment (resets ring buffers) |
+| **Contiguous Segment Rule** | `timestamp_ms[t] - timestamp_ms[t-1] <= 1000` | Any gap `> 1000 ms` begins a new segment (resets ring buffers) |
 | **Warm-up Period** | `300 ticks` (`~30 seconds`) | First 300 ticks of any segment warm up buffers; no predictions emitted |
 | **Prediction Horizon ($k$)** | `50 ticks` (`~5 seconds`) | Target evaluates `mid_px[t + 50] - mid_px[t]` |
 | **Label Threshold ($\theta$)** | `$0.50` (`50 cents`) | `Down (0): < -0.50`, `Flat (1): [-0.50, +0.50]`, `Up (2): > +0.50` |
@@ -111,7 +111,7 @@ The caller supplies finite, valid book snapshots in timestamp order. An update
 consumes one snapshot, maintaining OFI, mid-price history and volatility in fixed
 storage. It returns `false` for the first 300 snapshots of each segment and
 leaves `output` untouched. Snapshot 301 returns `true` and writes all 11 features.
-A gap strictly greater than 500ms clears history **before** processing the new
+A gap strictly greater than 1000ms clears history **before** processing the new
 snapshot, which becomes the first warm-up snapshot of a new segment.
 
 Equal timestamps still count as distinct updates. Negative or decreasing
@@ -125,3 +125,12 @@ The C++ golden test streams the complete input fixture through this API, checks
 every readiness flag, and compares all ready features with the Python reference
 using the strict `< 1e-6` absolute tolerance. It does not yet test C++ model
 probabilities; model loading and evaluation are separate milestones.
+
+## Locked training snapshot
+
+`training_manifest.json` enumerates 435 files (3,855,454 snapshots). Only those
+files are used for export and pipeline evaluation. Training ends before
+2026-11-04 00:00 IST; validation is November 4; testing starts November 5.
+Targets must end inside their training/validation period, with a 100-raw-update
+embargo at each subsequent boundary. Test scores never select the tree count
+or conviction threshold. The gap cutoff is 1,000ms; it does not add latency.

@@ -100,17 +100,17 @@ TEST(FeatureEngine, AllBidAndAskOFIBranches) {
   }
 }
 
-TEST(FeatureEngine, Exactly500msDoesNotResetBut501msDoes) {
+TEST(FeatureEngine, Exactly1000msDoesNotResetBut1001msDoes) {
   lob::FeatureEngine engine;
   lob::FeatureVector f{};
   warm_up(engine, f);  // Last timestamp = 29,900.
-  ASSERT_TRUE(engine.update(book(30'400), f));
+  ASSERT_TRUE(engine.update(book(30'900), f));
   f.fill(-7.0);
   const auto before = f;
-  ASSERT_FALSE(engine.update(book(30'901, 25.0), f));
+  ASSERT_FALSE(engine.update(book(31'901, 25.0), f));
   EXPECT_EQ(f, before);
-  for (int i = 1; i < 300; ++i) ASSERT_FALSE(engine.update(book(30'901 + i * 100, 25.0), f));
-  ASSERT_TRUE(engine.update(book(60'901, 25.0), f));
+  for (int i = 1; i < 300; ++i) ASSERT_FALSE(engine.update(book(31'901 + i * 100, 25.0), f));
+  ASSERT_TRUE(engine.update(book(61'901, 25.0), f));
   // The price jump across the gap must not leak into OFI, returns or volatility.
   for (std::size_t i = lob::kOfi10; i < lob::kNumFeatures; ++i) EXPECT_DOUBLE_EQ(f[i], 0.0);
 }

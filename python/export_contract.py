@@ -20,13 +20,13 @@ if __package__:
     from .lob_features import (
         EPS, MAX_GAP_MS, WARMUP_TICKS, HORIZON_TICKS, LABEL_THRESHOLD,
         EMBARGO_TICKS, FEATURE_COLS, RAW_COLS, segment_snapshots,
-        engineer_features, modeling_frame,
+        engineer_features, modeling_frame, prepare_modeling_frame, calendar_split,
     )
 else:
     from lob_features import (
         EPS, MAX_GAP_MS, WARMUP_TICKS, HORIZON_TICKS, LABEL_THRESHOLD,
         EMBARGO_TICKS, FEATURE_COLS, RAW_COLS, segment_snapshots,
-        engineer_features, modeling_frame,
+        engineer_features, modeling_frame, prepare_modeling_frame, calendar_split,
     )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -91,6 +91,8 @@ def validate_raw(raw: pd.DataFrame) -> None:
 
 def load_snapshot(manifest: dict, root: Path = ROOT) -> pd.DataFrame:
     """Read exactly the listed files, including checks against partial changes."""
+    if manifest.get("max_gap_ms", MAX_GAP_MS) != MAX_GAP_MS:
+        raise ValueError("Manifest gap cutoff does not match the feature contract")
     if not manifest.get("files"):
         raise ValueError("Manifest must contain a nonempty files list")
     frames, seen = [], set()
@@ -110,7 +112,7 @@ def load_snapshot(manifest: dict, root: Path = ROOT) -> pd.DataFrame:
         if len(frame) != item["rows"]:
             raise ValueError(f"Input row count mismatch: {relative}")
         frames.append(frame[RAW_COLS])
-    raw = pd.concat(frames, ignore_index=True).sort_values("timestamp_ms").reset_index(drop=True)
+    raw = pd.concat(frames, ignore_index=True).sort_values("timestamp_ms", kind="stable").reset_index(drop=True)
     validate_raw(raw)
     return raw
 
@@ -124,13 +126,9 @@ def classify(prob: np.ndarray, tau: float) -> np.ndarray:
 
 def train_reference(raw: pd.DataFrame):
     """Recreate the established model once; tune the decision rule on validation."""
-    features = engineer_features(segment_snapshots(raw))
-    clean = modeling_frame(features)
+    clean = prepare_modeling_frame(raw)
     n = len(clean)
-    train_end, val_end = int(n * .70), int(n * .85)
-    train = clean.iloc[:train_end]
-    val = clean.iloc[train_end + EMBARGO_TICKS:val_end]
-    test = clean.iloc[val_end + EMBARGO_TICKS:]
+    train, val, test = calendar_split(clean, raw.timestamp_ms.to_numpy())
     if train.empty or val.empty or test.empty or set(train.label.unique()) != {0, 1, 2}:
         raise ValueError("Insufficient labelled data for the established chronological split")
     x = train[FEATURE_COLS].to_numpy()
@@ -150,9 +148,12 @@ def train_reference(raw: pd.DataFrame):
         "best_iteration": model.best_iteration, "raw_rows": len(raw), "clean_rows": n,
         "train_rows": len(train), "validation_rows": len(val), "test_rows": len(test),
         "embargo_ticks": EMBARGO_TICKS, "validation_macro_f1": float(max(scores)),
+        "split": {"train_through_IST": "2026-11-03", "validation_IST": "2026-11-04",
+                  "test_from_IST": "2026-11-05", "purge_cross_boundary_targets": True},
         "threshold_search": {"min": .20, "max": .45, "step": .01, "split": "validation"},
     }
     # Begin at a true segment boundary so replay does not need hidden history.
+    features = segment_snapshots(raw)
     longest = features.segment_id.value_counts().sort_index().idxmax()
     segment = features.loc[features.segment_id == longest, RAW_COLS].reset_index(drop=True)
     info["golden_segment_id"] = int(longest)
