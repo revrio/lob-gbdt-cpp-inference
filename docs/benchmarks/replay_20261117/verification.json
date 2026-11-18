@@ -1,0 +1,11 @@
+{
+  "independent_expected_counts": {
+    "snapshots": 3855454,
+    "warmup_rows": 455864,
+    "predictions": 3399590,
+    "gap_resets": 3200
+  },
+  "prediction_sha256": "caddc63f92ce1a4569185e0a51618410d93874120c0b0b6f6e7600d80264bce7",
+  "profile_and_unprofiled_csv_identical": true,
+  "profile_and_no_output_summaries_agree": true
+}

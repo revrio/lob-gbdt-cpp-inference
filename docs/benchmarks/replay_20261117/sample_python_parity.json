@@ -1,0 +1,7 @@
+{
+  "raw_rows": 168887,
+  "predictions": 117836,
+  "class_mismatches": 0,
+  "max_score_error": 0.0,
+  "max_probability_error": 0.0
+}

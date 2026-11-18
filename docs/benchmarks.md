@@ -2,6 +2,9 @@
 
 This is the straightforward evaluator baseline, measured on November 17, 2026.
 It measures a warm in-memory fixture, not file replay or exchange-to-screen latency.
+This historical baseline predates the compensated OFI sum correction. The
+[replay report](replay-benchmarks.md) records a fresh engine measurement for the updated code; do not attribute
+differences between these sessions solely to a code change.
 No model/evaluator optimization is included in this milestone.
 
 ## Reproduce
@@ -80,7 +83,7 @@ larger-dataset benchmarks must be reported separately.
 
 ## Next measurements
 
-After the replay executable exists, measure loading/parsing and full-file replay
-separately. Before and after any evaluator optimization, rerun parity and this
+Full-file replay, loading and aggregate parsing/output timings are now recorded
+in the [terminal replay report](replay-benchmarks.md). Before and after any evaluator optimization, rerun parity and this
 same baseline on the same inputs and build settings under comparable conditions.
 Keep live arrival timing, queueing and dashboard publication measurements separate.

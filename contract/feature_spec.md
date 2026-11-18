@@ -167,3 +167,27 @@ branches. The Python formulas, frozen model and fixtures are unchanged.
 The prediction parity test checks both stored Python features and streamed C++
 features for all ready golden rows. Raw-score/probability absolute errors must
 be below 1e-6 and class IDs must agree exactly.
+
+## Terminal replay interface
+
+`CsvSnapshotReader` reads the canonical raw input schema (row_id plus the 42
+raw fields) one row at a time. `row_id` starts at zero and increases by one;
+update IDs strictly increase and timestamps are nonnegative/nondecreasing.
+Numbers must parse completely; prices/quantities are finite and positive, ladders
+strictly ordered, and best bid is below best ask. CRLF and an unterminated final
+line are supported. Blank/malformed/oversized rows stop replay with source/line
+context. The reader accepts valid gaps and leaves reset policy to FeatureEngine.
+
+`lob_replay` emits ready rows only, preserving their original row IDs, timestamps
+and update IDs, followed by the raw scores, probabilities and class. It does not
+trim unlabelled segment tails. The JSON summary counts all parsed snapshots,
+warm-up rows, predictions, segments and gap resets; `snapshots = warmup_rows +
+predictions`. An optional profiling mode reports aggregate stage durations; it
+does not report per-update percentiles.
+
+Rolling OFI sums now use separate compensated removals and additions, matching
+the reference's order and constant-window handling. This is necessary for
+consistent tree branches even when uncompensated feature errors are <1e-6.
+An additional 168,887-snapshot multi-session check compares 117,836 ready
+predictions to Python with zero score/probability/class differences on that
+sample. Model parameters and Python reference formulas remain frozen.

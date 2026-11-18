@@ -13,7 +13,7 @@ FetchContent_Declare(googletest
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
-add_library(lob STATIC src/tree.cpp src/model.cpp)
+add_library(lob STATIC src/tree.cpp src/model.cpp src/csv_reader.cpp)
 target_include_directories(lob PUBLIC include)
 
 add_executable(tests
@@ -23,7 +23,8 @@ add_executable(tests
   tests/test_feature_engine.cpp
   tests/test_feature_parity.cpp
   tests/test_tree.cpp
-  tests/test_model.cpp)
+  tests/test_model.cpp
+  tests/test_csv_reader.cpp)
 target_link_libraries(tests lob GTest::gtest_main)
 target_compile_definitions(tests PRIVATE LOB_CONTRACT_DIR="${CMAKE_CURRENT_SOURCE_DIR}/../contract")
 include(GoogleTest)
@@ -37,3 +38,10 @@ target_compile_definitions(lob_bench PRIVATE
   LOB_BENCH_COMPILER="${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}"
   LOB_BENCH_BUILD_TYPE="${CMAKE_BUILD_TYPE}"
   LOB_BENCH_FLAGS="${CMAKE_CXX_FLAGS}\ ${CMAKE_CXX_FLAGS_${LOB_BENCH_CONFIG}}")
+
+add_executable(lob_replay app/replay.cpp)
+target_link_libraries(lob_replay PRIVATE lob)
+find_package(Python3 REQUIRED COMPONENTS Interpreter)
+add_test(NAME ReplayCLI COMMAND ${Python3_EXECUTABLE}
+  ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_replay_cli.py
+  --exe $<TARGET_FILE:lob_replay> --contract ${CMAKE_CURRENT_SOURCE_DIR}/../contract)

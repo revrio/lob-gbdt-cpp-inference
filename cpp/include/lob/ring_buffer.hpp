@@ -44,26 +44,50 @@ template <std::size_t N>
 class RollingSum {
  public:
   void push(double x) {
+    const bool full = buf_.full();
     double old = buf_.push(x);  // 0.0 until the window is full
-    sum_ += x - old;
+    // Match the Python reference's separate compensated deletion/addition.
+    // Combining x-old changes rounding and can cross a learned tree threshold.
+    if (full) accumulate(-old, remove_compensation_);
+    accumulate(x, add_compensation_);
+    if (x == previous_) {
+      if (same_count_ < N) ++same_count_;
+    } else {
+      same_count_ = 1;
+    }
+    previous_ = x;
     sum_sq_ += x * x - old * old;
   }
   bool full() const { return buf_.full(); }
-  double sum() const { return sum_; }
+  double sum() const {
+    return buf_.size() && same_count_ >= buf_.size()
+        ? previous_ * static_cast<double>(buf_.size()) : sum_;
+  }
 
   // Population std dev, as in the spec (ddof = 0).
   double std_pop() const {
-    double mean = sum_ / N;
+    double mean = sum() / N;
     double var = sum_sq_ / N - mean * mean;
     return std::sqrt(var > 0.0 ? var : 0.0);
   }
 
-  void clear() { buf_.clear(); sum_ = 0.0; sum_sq_ = 0.0; }
+  void clear() {
+    buf_.clear(); sum_ = sum_sq_ = add_compensation_ = remove_compensation_ = previous_ = 0;
+    same_count_ = 0;
+  }
 
  private:
+  void accumulate(double value, double& compensation) {
+    const double corrected = value - compensation;
+    const double next = sum_ + corrected;
+    compensation = (next - sum_) - corrected;
+    sum_ = next;
+  }
   RingBuffer<double, N> buf_;
   double sum_ = 0.0;
   double sum_sq_ = 0.0;
+  double add_compensation_ = 0.0, remove_compensation_ = 0.0, previous_ = 0.0;
+  std::size_t same_count_ = 0;
 };
 
 // Compensated rolling Welford variance for finite inputs. The operation order

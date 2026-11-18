@@ -1,0 +1,109 @@
+{
+  "date_IST": "2026-11-17",
+  "git_base_commit": "4f1212147f7cf11f4a7c51489c8de537732023cb",
+  "working_tree_note": "Uncommitted terminal replay and compensated OFI changes; hashes identify the measured implementation.",
+  "kernel": "7.2.13-200.fc44.x86_64",
+  "system": "Linux",
+  "compiler": "GNU-16.2.1",
+  "build_type": "Release",
+  "configured_cxx_flags": " -O3 -DNDEBUG",
+  "cpu": "Intel(R) Core(TM) 5 210H",
+  "hardware_threads": 12,
+  "source_sha256": {
+    "cpp/CMakeLists.txt": "49fd6f013cc920655a7b6a02215a3b01db9cdf164d201754ffc621ace25577fb",
+    "cpp/app/replay.cpp": "ffc38b5d540a80174ee21bcf79178482d877ff9b1b8f717402906ee428ef87b7",
+    "cpp/bench/benchmark.cpp": "a1d94f45fc2ae0f2cf323827c4aee9636e58db51fa1a706aabb2be1e955c5507",
+    "cpp/include/lob/csv_reader.hpp": "6f78b7851b3e9e3cd87ea63c73452aa15b6955c6da3917ddd35e3a10a19f9485",
+    "cpp/include/lob/feature_engine.hpp": "b0014b86575a326d8e5895528b46d161b61a32df5e842db42315b729ad385725",
+    "cpp/include/lob/features.hpp": "3e0c1d00a46fbb6f0fa8d194117ab512cf917f5f6e6a3680306966e277fe3688",
+    "cpp/include/lob/model.hpp": "d02095ac0d9abf2bbe34e889b44f665b880e97b216cf55770d449cd34bb50972",
+    "cpp/include/lob/ring_buffer.hpp": "8b342f05202c97a470c7ecfb61f634a209b022e1004613507711473bc63cee8c",
+    "cpp/include/lob/tree.hpp": "a438ebb309d6468ccdc24e0518064074fb82eeb6699f011ae667c5224889a15b",
+    "cpp/include/lob/types.hpp": "62665af2cba350bef218b5d1a01603c257cce72ec02e3766716a291ddae348a6",
+    "cpp/src/csv_reader.cpp": "4c359205f7fb8546d1c63d4feb2e67b9eca229c6da04b14ac2aa5a00f5fd6ae4",
+    "cpp/src/model.cpp": "fdf45ac388f13b3b04781d67621f00effdc48342689876c1ecaa21d6a9192948",
+    "cpp/src/tree.cpp": "c3dd84a9ee94c3adfd7f1d2ac4eaa3730dc87d2dd23cd5cfeef6577d8e269390",
+    "cpp/tests/test_csv_reader.cpp": "8b453a2937a79e93934416901e7d9a3dcb111ac86252d25807c2023b30f73684",
+    "cpp/tests/test_feature_engine.cpp": "e4b304d8f7c66918a8c81a0c1b617c230e988c94cc848c69914acab81ae1a2d7",
+    "cpp/tests/test_feature_parity.cpp": "d593f28a92441a36b5dafa3488a2fbcf2e7d0c5551bd6a1e75e36141a7901786",
+    "cpp/tests/test_features.cpp": "f466bfd3736c4a3334e7f30699dd6d703fd009ca1668c40b42ddba33307d2ce1",
+    "cpp/tests/test_model.cpp": "3526c3efd8137d6740ee9ebf29f28fc10ed97262597282d7ea8a5c7df42f902c",
+    "cpp/tests/test_ring_buffer.cpp": "32fc48c4b094b4dc8e746ac987bbe7b5699300e45fea6d1d379c683b6b9442a6",
+    "cpp/tests/test_smoke.cpp": "ea77a5608b2a0e6d0ac5336c6a7a132cc8a2069c61b8036b121fa2c7562b7f79",
+    "cpp/tests/test_tree.cpp": "c04747e3d3cb0000558ffb575dbf1c682dc38d8fe30ec60b849ed58763897e04",
+    "python/export_contract.py": "d40aa92efe7bd95f95365ba915c157a6a5f2c8b4155f8ebf6e4f912c049b7c9f",
+    "python/export_replay.py": "ae2dbc224fd6086d75120c4d73c62df1959c421020d6a64cd1fd9b7fa819d173",
+    "python/lob_features.py": "88274a6230e2dad4d71e7fe2ac4ba32215a5acddbe733513e1ddd0092dcdf3a1"
+  },
+  "input_sha256": {
+    "contract/model.txt": "b4ee2a9efbd3af20f2a81eda96dd74e2654366414d18481ac5ea3d6fe6843bda",
+    "contract/metadata.json": "8b68d00faaf9a562d8cd13f340b9a332544f0837e5c736b47c974142a512f28e",
+    "contract/training_manifest.json": "7726ba146558f4792af5577aec0056b9f918958eba693add49000665c8a800cd",
+    "contract/golden_input_lob.csv": "e8847038e5b69293cb5b40ca329f57e3872f4a15ee4c601c9e404ad9a3188736"
+  },
+  "full_replay_csv_sha256": "7b7d5a12093717a85adc6c9b284b7a6eb72851531cc3b678e8e002c983675291",
+  "binary_sha256": {
+    "cpp/build/lob_replay": "93bcf54d80bae4addee69046a633ba98eb4506963bf8dd4d24d247c071710d6e",
+    "cpp/build/lob_bench": "d3d65256450d693ab7c1de4986914449b2cf2284eb247119e9c3cecfa449442e"
+  },
+  "file_sizes_bytes": {
+    "locked_snapshots.csv": 2990692594,
+    "all_predictions.csv": 536527078
+  },
+  "python_version": "3.14.8",
+  "python_packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "pyarrow": "26.0.0",
+    "lightgbm": "4.7.0"
+  },
+  "commands": {
+    "export": [
+      ".venv/bin/python",
+      "python/export_replay.py",
+      "--output",
+      "instructions/replay_20261117/locked_snapshots.csv"
+    ],
+    "no_output": [
+      "cpp/build/lob_replay",
+      "--input",
+      "instructions/replay_20261117/locked_snapshots.csv",
+      "--tau",
+      "0.31",
+      "--no-output"
+    ],
+    "output": [
+      "cpp/build/lob_replay",
+      "--input",
+      "instructions/replay_20261117/locked_snapshots.csv",
+      "--tau",
+      "0.31",
+      "--output",
+      "instructions/replay_20261117/all_predictions.csv"
+    ],
+    "profile": [
+      "cpp/build/lob_replay",
+      "--input",
+      "instructions/replay_20261117/locked_snapshots.csv",
+      "--tau",
+      "0.31",
+      "--output",
+      "instructions/replay_20261117/all_predictions_profile.csv",
+      "--profile"
+    ],
+    "engine": [
+      "cpp/build/lob_bench",
+      "--tau",
+      "0.31",
+      "--passes",
+      "20",
+      "--latency-passes",
+      "5"
+    ]
+  },
+  "full_replay_repetitions_per_mode": 1,
+  "parallel_benchmark_processes": 1,
+  "conditions": "Normal laptop session. Sequential runs, no CPU pinning, frequency or background-load controls; no page-cache control. /usr/bin/time -v collected process peak RSS. No live networking.",
+  "sample_selection": "Keep the first three files of each recording session in original manifest order (or all files if fewer). Session is the filename prefix before _part. This leaves 23 files, 168887 rows. Segment again at >1000ms and compare every ready row with the frozen Python feature/model reference.",
+  "full_count_verification": "Count raw timestamps independently: each first row or >1000ms gap starts a segment; first 300 rows per segment are warm-up. Compare counts, class totals and checksums across all modes; hash both prediction CSVs to confirm byte equality."
+}

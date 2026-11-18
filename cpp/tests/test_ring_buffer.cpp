@@ -46,3 +46,20 @@ TEST(RollingVariance, PopulationVarianceAndReset) {
   for (int i = 0; i < 10; ++i) variance.push(7);
   EXPECT_DOUBLE_EQ(variance.std_pop(), 0);
 }
+
+TEST(RollingSum, CompensatedRoundingAndConstantWindowMatchPython) {
+  // pandas 3.1.0 rolling(3).sum(), including cancellation and eviction.
+  const std::array<double, 15> values{.1,.2,-.3,5.5,-2.2,-3.3,0,0,0,1e10,1,-1e10,.1,.2,-.3};
+  const std::array<double, 13> expected{0,5.4000000000000004,3,4.4408920985006262e-16,
+      -5.5,-3.2999999999999998,0,1e10,10000000001.,1,-9999999998.8999996,-9999999999.7000008,0};
+  lob::RollingSum<3> sum;
+  for (std::size_t i = 0; i < values.size(); ++i) {
+    sum.push(values[i]);
+    if (i >= 2) {
+      EXPECT_DOUBLE_EQ(sum.sum(), expected[i - 2]) << i;
+    }
+  }
+  sum.clear();
+  sum.push(1); sum.push(1); sum.push(1);
+  EXPECT_DOUBLE_EQ(sum.sum(), 3);
+}

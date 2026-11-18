@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "snapshots": 3855454,
+  "warmup_rows": 455864,
+  "predictions": 3399590,
+  "gap_resets": 3200,
+  "segments": 3201,
+  "first_timestamp_ms": 1792781396403,
+  "last_timestamp_ms": 1794030804466,
+  "classes_down_flat_up": [898949,1680319,820322],
+  "tau": 0.31,
+  "trees": 549,
+  "max_gap_ms": 1000,
+  "output_enabled": true,
+  "profiled": true,
+  "model_load_ns": 13630338,
+  "replay_wall_ns": 79744161538,
+  "snapshots_per_second": 48347.790303905618,
+  "predictions_per_second": 42631.208786112998,
+  "profile_stage_ns": {"parse_validate":11008533639,"features":422656459,"inference":57039092410,"output":10774330277},
+  "checksum": -6829765.5086841499
+}
