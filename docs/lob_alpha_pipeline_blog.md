@@ -6,7 +6,7 @@ While Python is the standard environment for exploratory quantitative research, 
 
 In this article, we examine the end-to-end development of a high-frequency trading pipeline predicting Bitcoin price movements over a 5-second horizon ($t + 5\text{s}$) using 100ms Limit Order Book (LOB) snapshots from Binance:
 1. **The Quantitative Track (Python):** Streaming and cleaning Binance WebSocket data, engineering 11 microstructure features, addressing severe multicollinearity in depth features, handling class imbalance through Macro-F1 optimization, tuning conviction thresholds ($\tau$), and validating via cost-adjusted economic backtesting.
-2. **The Systems & Inference Track (C++20):** Codifying an immutable mathematical contract, implementing zero-allocation circular ring buffers (`RingBuffer<T, N>`, `RollingSum<N>`) for $O(1)$ streaming feature updates, flattening Gradient Boosted Decision Tree (LightGBM) ensembles into cache-friendly contiguous arrays, testing branchless tree traversal, and enforcing strict numerical parity ($< 10^{-6}$) through automated GoogleTest suites.
+2. **The Systems & Inference Track (C++20):** Codifying a frozen mathematical contract, implementing zero-allocation ring buffers (`RingBuffer<T, N>`, `RollingSum<N>`, `RollingVariance<N>`) for $O(1)$ streaming feature updates that reproduce pandas' rounding behaviour, loading and strictly validating a 549-tree LightGBM model from its text export, evaluating the ensemble with a straightforward tree evaluator, enforcing numerical parity ($< 10^{-6}$ on features and probabilities, exact class matches) through automated GoogleTest suites, and measuring a full replay of 3.86 million snapshots.
 
 ```
                       END-TO-END SYSTEM ARCHITECTURE
@@ -14,11 +14,11 @@ In this article, we examine the end-to-end development of a high-frequency tradi
  ┌────────────────────────────────────────────────────────────────────────┐
  │                      OFFLINE RESEARCH TRACK (PYTHON)                   │
  │                                                                        │
- │  Binance WebSocket ──► Data Hygiene ──► 11 Microstructure Features    │
- │   (@depth10@100ms)     (500ms split)    (Zoned Imbalance, OFI, Vol)    │
+ │  Binance WebSocket ──► Data Hygiene ──► 11 Microstructure Features     │
+ │   (@depth10@100ms)      (1s split)      (Zoned Imbalance, OFI, Vol)    │
  │                                                       │                │
- │  Validation & Embargo ◄── Conviction Tuning ◄── LightGBM Training     │
- │  (Macro-F1 Metric)        (Threshold τ=0.26)    (Multinomial 3-Class)  │
+ │  Validation & Embargo ◄── Conviction Tuning ◄── LightGBM Training      │
+ │  (Macro-F1 Metric)        (Threshold τ=0.31)    (Multinomial 3-Class)  │
  └───────────────────────────────────┬────────────────────────────────────┘
                                      │
                      FROZEN MATHEMATICAL CONTRACT
@@ -33,8 +33,8 @@ In this article, we examine the end-to-end development of a high-frequency tradi
  │  Incoming Book Update ──► Zero-Heap State Engine ──► Stateless + O(1)  │
  │   (BookSnapshot)           (RingBuffer<T, N>)         Rolling Sums     │
  │                                                             │          │
- │  Sub-µs Prediction   ◄── Softmax Probabilities ◄── Flattened Branchless│
- │  (Down / Flat / Up)      (P(Down), P(Flat), P(Up))  GBDT Evaluator     │
+ │  Class Decision (τ)  ◄── Softmax Probabilities ◄── LightGBM Ensemble   │
+ │  (Down / Flat / Up)      (P(Down), P(Flat), P(Up))  (549 Trees)        │
  └────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -89,18 +89,18 @@ We collected **136,636 raw snapshots** (approximately 4 hours of 100ms updates) 
 * **Price Monotonicity Check:** Verifying $P_1^B > P_2^B > \dots > P_{10}^B$ and $P_1^A < P_2^A < \dots < P_{10}^A$ (0 violations found).
 * **Positive Quantity Check:** Verifying $q_i^B > 0$ and $q_i^A > 0$ across all 10 levels (0 violations found).
 
-### The 500ms Segmentation Rule
+### The 1s Segmentation Rule
 WebSocket connections can experience transport latency spikes or disconnections. In high-frequency time series, computing rolling statistics (such as a 30-second Order Flow Imbalance) across a multi-second disconnect introduces corrupt signals. 
 
-To eliminate this issue, we partition the dataset into contiguous segments whenever the time delta between consecutive messages exceeds 500ms:
+To eliminate this issue, we partition the dataset into contiguous segments whenever the time delta between consecutive messages exceeds 1s:
 
-$$\text{timestamp\_ms}[t] - \text{timestamp\_ms}[t-1] \le 500\text{ ms}$$
+$$\text{timestamp\_ms}[t] - \text{timestamp\_ms}[t-1] \le 1000\text{ ms}$$
 
-Whenever a gap $> 500\text{ms}$ occurs, a new segment begins. Within each segment:
+Whenever a gap $> 1000\text{ms}$ occurs, a new segment begins. Within each segment:
 1. The first **300 ticks** ($\sim 30$ seconds) are used exclusively to warm up rolling state buffers and are excluded from model training.
 2. The final **50 ticks** are dropped because their 5-second future labels cannot be evaluated within the same segment.
 
-This filtering yields **121,801 contiguous, fully warmed feature rows**.
+This filtering yields **3,363,397 contiguous, fully warmed feature rows** from 3,855,454 raw snapshots across 3,201 segments.
 
 ---
 
@@ -259,57 +259,61 @@ Each zoned feature provides an orthogonal signal corresponding to a distinct mar
 
 ## 5. Model Optimization & Economic Validation (The Offline Track)
 
-### Target Distribution & The Accuracy Paradox
-Using a threshold $\theta = \$0.50$ over the 5-second horizon yields an imbalanced distribution:
-* **Down (0):** $16.17\%$
-* **Flat (1):** $70.36\%$
-* **Up (2):** $13.47\%$
+### Target Distribution & Why Accuracy Isn't Enough
+Using a threshold $\theta = \$0.50$ over the 5-second horizon yields a three-class target across the 3,363,397 clean modelling rows:
+* **Down (0):** $23.95\%$
+* **Flat (1):** $53.15\%$
+* **Up (2):** $22.91\%$
 
-In imbalanced time-series classification, raw accuracy is deceptive. A trivial baseline that always predicts "Flat" achieves **$73.38\%$ accuracy** on the test set while generating zero useful trading signals. Standard Logistic Regression achieves **$73.91\%$ accuracy**, but predicts "Flat" **$96.6\%$** of the time, missing approximately $90\%$ of real price moves.
-
-To penalize models that hide in the majority class, we evaluate using **Macro-F1**:
+On the test set, Flat is $50.92\%$ of rows, so a trivial "Always Flat" model reaches **$50.92\%$ accuracy** while generating zero trading signals. Accuracy rewards sitting in the majority class, so we evaluate with **Macro-F1**:
 
 $$\text{Macro-F1} = \frac{\text{F1}_{\text{Down}} + \text{F1}_{\text{Flat}} + \text{F1}_{\text{Up}}}{3}$$
 
-Under Macro-F1, the "Always Flat" model scores a baseline of **$0.2821$**.
+Under Macro-F1, "Always Flat" scores only **$0.2249$**.
 
 ### Zero-Leakage Chronological Split & Embargo
-1. **Chronological Splitting:** Sequential partition into Train (70%, $85,260$ ticks), Validation (15%, $18,170$ ticks), and Test (15%, $18,171$ ticks).
-2. **100-Tick Embargo Buffer:** Because our prediction horizon is 50 ticks (5 seconds), we place an embargo window of **100 ticks ($10\text{ seconds}$)** between Train and Validation, and between Validation and Test, completely preventing label overlap leakage.
+1. **Calendar-based chronological split (IST):** Train through 3 Nov (2,101,898 rows), Validation on 4 Nov (450,212 rows), and Test from 5 Nov onward (811,231 rows). Validation selects early stopping (best iteration 183) and the conviction threshold; the test period is never used for tuning.
+2. **Purge and embargo:** Any target whose 50-tick horizon crosses a calendar boundary is purged, and the first 100 raw updates (about 10 seconds) of each subsequent period are embargoed, preventing label overlap leakage.
 
 ### Conviction Threshold Tuning ($\tau$)
-For each tick $t$, LightGBM outputs predicted class probabilities $\mathbf{p}(t) = \left[ P(\text{Down}), P(\text{Flat}), P(\text{Up}) \right]$. Default `argmax` defaults to Flat because Flat represents $70\%$ of historical samples. 
+[keep your existing decision-rule formula and explanation unchanged]
 
-We tune an asymmetric **Conviction Threshold ($\tau$)**:
-$$\hat{y}(t) = \begin{cases} \text{Up (2)}, & \text{if } P(\text{Up}) > \tau \text{ and } P(\text{Up}) > P(\text{Down}) \\ \text{Down (0)}, & \text{if } P(\text{Down}) > \tau \text{ and } P(\text{Down}) > P(\text{Up}) \\ \text{Flat (1)}, & \text{otherwise} \end{cases}$$
-
-Tuning $\tau$ across the range $[0.15, 0.45]$ strictly on the **Validation set** reveals an optimum at $\tau^* = 0.260$:
+Tuning $\tau$ across $[0.20, 0.45]$ in steps of 0.01 strictly on the **Validation set** selects $\tau^* = 0.31$, with a validation Macro-F1 of **0.5389**. Because $\tau$ maximizes this score, it is a selection figure, not a performance estimate.
 
 ![Conviction Threshold Tuning Curve](docs/plots/conviction_tuning_curve.png)
 
-Applying this locked threshold $\tau = 0.260$ to the unseen **Test set** increases Macro-F1 from $0.3928$ (raw argmax) to **$0.5403$**, with test recall on Up moves expanding from $12\%$ to $44.8\%$.
+Applying the locked $\tau = 0.31$ to the unseen **Test set** raises Macro-F1 from $0.5539$ (raw argmax) to **$0.5848$**, at a small cost in accuracy ($63.28\%$ to $62.02\%$). Per-class test results at $\tau = 0.31$:
+
+| Class | Precision | Recall | F1 | Support |
+| :--- | :---: | :---: | :---: | :---: |
+| Down (0) | 0.5057 | 0.5343 | 0.5196 | 201,757 |
+| Flat (1) | 0.7465 | 0.7113 | 0.7284 | 413,100 |
+| Up (2) | 0.4964 | 0.5168 | 0.5064 | 196,374 |
+
+The tuned model recovers about $53\%$ of Down moves and $52\%$ of Up moves, with precision of roughly $50\%$ on both. Flat is the easiest class (F1 $0.7284$), while the directional classes are harder (F1 $\approx 0.51$–$0.52$).
 
 ### Feature Importance
-Inspecting total information Gain across tree splits reveals the primary predictive drivers:
+Inspecting total information Gain across all 549 trees reveals the primary predictive drivers:
 
 ![Feature Importance Gain](docs/plots/feature_importance_gain.png)
 
-`micro_minus_mid` (Gain: 130,366) and `imb_l1` (Gain: 81,976) dominate, followed by `vol_50` (Gain: 45,187), which acts as a regime switch modulating the impact of depth signals.
+`micro_minus_mid` (Gain: 2,915,966, about $38.5\%$ of the total) dominates, followed by `vol_50` ($1{,}497{,}567$, $19.8\%$) and `imb_l1` ($1{,}058{,}324$, $14.0\%$). Together these three account for roughly $72\%$ of total gain. The three order-flow imbalance windows (`ofi_10`, `ofi_50`, `ofi_300`) add another $19\%$ combined, with the longest window the strongest. Deeper-book imbalance (`imb_l2_3`, `imb_l4_10`), `span_asym` and `spread` contribute little.
 
-### Economic Backtest Results
-We simulate 1 BTC execution across the 18,171 test ticks, deducting full half-spread slippage ($\text{spread}(t) / 2$) on every trade:
+Gain measures how much a feature improves the training loss through its splits; it does not establish causation, and it can favour features that offer many useful split points.
 
-![Economic PnL Comparison](docs/plots/economic_pnl_comparison.png)
+### Economic Signal Diagnostic
+**These figures are an overlapping-signal diagnostic, not account PnL.** Each of the 811,231 test ticks produces an independent 1 BTC signal over a 5-second horizon, with half-spread slippage deducted, so consecutive trades overlap and the totals cannot be realized by one account.
 
-| Model / Strategy | Test Accuracy | Test Macro-F1 | Trades Executed | Gross PnL | Net PnL (After Slippage) |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **Baseline 0 (Always Flat)** | $73.38\%$ | $0.2821$ | 0 ($0.0\%$) | $\$0.00$ | **$\$0.00$** |
-| **Baseline 2 (Logistic Regression)** | **$73.91\%$** | $0.4057$ | 1,076 ($5.9\%$) | $\$4,090.64$ | **$\$4,081.75$** |
-| **Baseline 1 (L1 Imbalance Rule)** | $70.39\%$ | $0.5109$ | 3,807 ($21.0\%$) | $\$12,351.99$ | **$\$12,329.45$** |
-| **LightGBM (Raw Argmax)** | $73.80\%$ | $0.3928$ | 974 ($5.4\%$) | $\$3,648.61$ | **$\$3,643.28$** |
-| **LightGBM (Tuned $\tau = 0.26$)** | $69.65\%$ | **$0.5403$** | **5,062 ($27.9\%$)** | **$\$14,922.81$** | **$\$14,893.99$** |
+| Model / Strategy | Test Accuracy | Test Macro-F1 | Trades | Win Rate | Gross PnL | Net PnL (After Slippage) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Baseline 0 (Always Flat) | 50.92% | 0.2249 | 0 (0.0%) | n/a | $0 | $0 |
+| Baseline 1 (L1 Imbalance Rule, c = 0.75) | 52.83% | 0.4970 | 385,632 (47.5%) | 46.8% | $1,388,482 | $1,386,232 |
+| Baseline 2 (Logistic Regression) | 61.10% | 0.5066 | 213,123 (26.3%) | 56.9% | $929,275 | $927,811 |
+| Logistic (tuned threshold 0.33) | n/a | 0.5709 | 380,704 (46.9%) | 52.1% | $1,430,820 | $1,428,518 |
+| LightGBM (Raw Argmax) | 63.28% | 0.5539 | 262,927 (32.4%) | 58.5% | $1,184,407 | $1,182,693 |
+| **LightGBM (Tuned $\tau = 0.31$)** | 62.02% | **0.5848** | 417,600 (51.5%) | 51.9% | **$1,513,936** | **$1,511,449** |
 
-While Logistic Regression had the highest raw accuracy ($73.91\%$), it only generated $\$4,081.75$ because it sat idle 94% of the time. Tuned LightGBM executed 5,062 trades, capturing active rallies and drops to generate **$\$14,893.99$ Net PnL**—a 3.6x improvement over linear baselines.
+Tuned LightGBM has the best Macro-F1 and the highest diagnostic PnL, but the margins over a threshold-tuned logistic regression are modest (Macro-F1 0.5848 vs 0.5709, PnL about 6% higher). Most of the gain over the untuned models comes from tuning the decision threshold, and LightGBM adds a smaller edge on top. The test period has already been inspected, so a fresh evaluation on new data is still needed before drawing profitability conclusions.
 
 ---
 
