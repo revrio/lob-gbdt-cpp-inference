@@ -1,22 +1,30 @@
+#include <algorithm>
 #include <array>
 #include <charconv>
 #include <chrono>
 #include <cmath>
+#include <csignal>
 #include <cstdint>
+#include <cstdlib>
 #include <filesystem>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <locale>
 #include <memory>
+#include <optional>
 #include <set>
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <thread>
+#include <unistd.h>
 
 #include "lob/csv_reader.hpp"
 #include "lob/feature_engine.hpp"
 #include "lob/model.hpp"
+#include "playback.hpp"
+#include "terminal_view.hpp"
 
 namespace {
 using Clock = std::chrono::steady_clock;
@@ -26,6 +34,8 @@ struct Options {
   std::filesystem::path model = "contract/model.txt", input, output, summary;
   double tau = -1;
   bool no_output = false, profile = false;
+  bool watch = false, keep_gaps = false;
+  double speed = 1;
 };
 
 Options options(int argc, char** argv) {
@@ -36,6 +46,8 @@ Options options(int argc, char** argv) {
     if (!seen.insert(key).second) throw std::invalid_argument("Repeated option: " + key);
     if (key == "--no-output") o.no_output = true;
     else if (key == "--profile") o.profile = true;
+    else if (key == "--watch") o.watch = true;
+    else if (key == "--keep-gaps") o.keep_gaps = true;
     else {
       if (i + 1 == argc) throw std::invalid_argument("Missing value for " + key);
       const std::string value = argv[++i];
@@ -46,13 +58,49 @@ Options options(int argc, char** argv) {
       else if (key == "--tau") {
         const auto [end, error] = std::from_chars(value.data(), value.data() + value.size(), o.tau);
         if (error != std::errc{} || end != value.data() + value.size()) throw std::invalid_argument("Invalid --tau");
+      } else if (key == "--speed") {
+        const auto [end, error] = std::from_chars(value.data(), value.data() + value.size(), o.speed);
+        if (error != std::errc{} || end != value.data() + value.size()) throw std::invalid_argument("Invalid --speed");
       } else throw std::invalid_argument("Unknown option: " + key);
     }
   }
   if (o.input.empty()) throw std::invalid_argument("--input is required");
   if (!std::isfinite(o.tau) || o.tau < 0 || o.tau > 1) throw std::invalid_argument("Supply --tau in [0,1] from metadata.json");
+  if (!std::isfinite(o.speed) || o.speed < 0.01 || o.speed > 1000) throw std::invalid_argument("--speed must be in [0.01,1000]");
+  if (!o.watch && (seen.contains("--speed") || o.keep_gaps)) throw std::invalid_argument("--speed and --keep-gaps require --watch");
+  if (o.watch && o.profile) throw std::invalid_argument("Use --profile without --watch to measure unpaced stage timings");
+  if (o.watch && o.output.empty()) o.no_output = true;
   if (o.no_output == !o.output.empty()) throw std::invalid_argument("Choose exactly one of --output PATH or --no-output");
   return o;
+}
+
+volatile std::sig_atomic_t stop_requested = 0;
+void request_stop(int) { stop_requested = 1; }
+
+class InterruptGuard {
+ public:
+  InterruptGuard() {
+    stop_requested = 0;
+    previous_ = std::signal(SIGINT, request_stop);
+    if (previous_ == SIG_ERR) throw std::runtime_error("Cannot install playback interrupt handler");
+  }
+  ~InterruptGuard() { std::signal(SIGINT, previous_); }
+ private:
+  using Handler = void (*)(int);
+  Handler previous_;
+};
+
+struct ReplayInterrupted : std::runtime_error { using std::runtime_error::runtime_error; };
+
+double wait_for_playback(Clock::time_point deadline) {
+  const auto start = Clock::now();
+  auto now = start;
+  while (!stop_requested && now < deadline) {
+    // A preserved overnight gap must still respond promptly to Ctrl+C.
+    std::this_thread::sleep_until(std::min(deadline, now + std::chrono::milliseconds(50)));
+    now = Clock::now();
+  }
+  return ns(now - start);
 }
 
 // Results are published only after successful EOF and flush. Existing output
@@ -110,10 +158,13 @@ struct Statistics {
   std::int64_t first_timestamp = 0, last_timestamp = 0;
   double parse_ns = 0, features_ns = 0, inference_ns = 0, output_ns = 0, wall_ns = 0;
   double checksum = 0;
+  std::uint64_t skipped_gaps = 0;
+  double pacing_wait_ns = 0, display_ns = 0;
 };
 
 Statistics replay(std::istream& input, const std::string& source, const lob::LightGBMModel& model,
-                  double tau, AtomicOutput* output, bool profile) {
+                  const Options& options, AtomicOutput* output) {
+  const bool profile = options.profile;
   Statistics stats;
   const auto start = Clock::now();
   auto stage = profile ? Clock::now() : Clock::time_point{};
@@ -128,36 +179,85 @@ Statistics replay(std::istream& input, const std::string& source, const lob::Lig
   lob::FeatureEngine engine;
   lob::FeatureVector features{};
   lob::SnapshotRecord record;
+  std::optional<lob::app::PlaybackTimeline> timeline;
+  std::unique_ptr<lob::app::TerminalView> view;
+  lob::app::ReplayViewState view_state;
+  std::uint64_t segment_updates = 0;
+  if (options.watch) {
+    timeline.emplace(options.speed, options.keep_gaps);
+    const char* term = std::getenv("TERM");
+    const bool interactive = ::isatty(STDERR_FILENO) && (!term || std::string(term) != "dumb");
+    view = std::make_unique<lob::app::TerminalView>(std::cerr, interactive,
+        options.speed, options.tau, options.keep_gaps);
+  }
   for (;;) {
+    if (options.watch && stop_requested) {
+      throw ReplayInterrupted("Playback interrupted after " + std::to_string(stats.rows) +
+                              " snapshots; output files were not published");
+    }
     stage = profile ? Clock::now() : Clock::time_point{};
     const bool exists = reader.next(record);
     if (profile) stats.parse_ns += ns(Clock::now() - stage);
     if (!exists) break;
+    double lag_ms = 0;
+    if (timeline) {
+      const auto step = timeline->next(record.book.timestamp_ms, Clock::now());
+      if (step.skipped_gap) ++stats.skipped_gaps;
+      stats.pacing_wait_ns += wait_for_playback(step.deadline);
+      if (stop_requested) {
+        throw ReplayInterrupted("Playback interrupted after " + std::to_string(stats.rows) +
+                                " snapshots; output files were not published");
+      }
+      lag_ms = std::max(0., ns(Clock::now() - step.deadline) / 1e6);
+    }
+    const bool gap = stats.rows && record.book.timestamp_ms - stats.last_timestamp > lob::kMaxGapMs;
     if (!stats.rows) stats.first_timestamp = record.book.timestamp_ms;
-    else if (record.book.timestamp_ms - stats.last_timestamp > lob::kMaxGapMs) ++stats.resets;
+    if (gap) { ++stats.resets; segment_updates = 0; }
     stats.last_timestamp = record.book.timestamp_ms;
     ++stats.rows;
+    ++segment_updates;
+    const auto engine_start = options.watch ? Clock::now() : Clock::time_point{};
     stage = profile ? Clock::now() : Clock::time_point{};
     const bool ready = engine.update(record.book, features);
     if (profile) stats.features_ns += ns(Clock::now() - stage);
-    if (!ready) { ++stats.warmup; continue; }
-    stage = profile ? Clock::now() : Clock::time_point{};
-    const auto prediction = model.predict(features, tau);
-    if (profile) stats.inference_ns += ns(Clock::now() - stage);
-    ++stats.predictions;
-    ++stats.classes[static_cast<std::size_t>(prediction.class_id)];
-    for (double value : prediction.raw_scores) stats.checksum += value;
-    for (double value : prediction.probabilities) stats.checksum += value;
-    stats.checksum += prediction.class_id;
-    if (output) {
+    lob::Prediction prediction{};
+    if (ready) {
       stage = profile ? Clock::now() : Clock::time_point{};
-      auto& stream = output->stream();
-      stream << record.row_id << ',' << record.book.timestamp_ms << ',' << record.last_update_id;
-      for (double score : prediction.raw_scores) stream << ',' << score;
-      for (double probability : prediction.probabilities) stream << ',' << probability;
-      stream << ',' << prediction.class_id << '\n';
-      if (profile) stats.output_ns += ns(Clock::now() - stage);
+      prediction = model.predict(features, options.tau);
+      if (profile) stats.inference_ns += ns(Clock::now() - stage);
     }
+    const double engine_us = options.watch ? ns(Clock::now() - engine_start) / 1000 : 0;
+    if (!ready) ++stats.warmup;
+    else {
+      ++stats.predictions;
+      ++stats.classes[static_cast<std::size_t>(prediction.class_id)];
+      for (double value : prediction.raw_scores) stats.checksum += value;
+      for (double value : prediction.probabilities) stats.checksum += value;
+      stats.checksum += prediction.class_id;
+      if (output) {
+        stage = profile ? Clock::now() : Clock::time_point{};
+        auto& stream = output->stream();
+        stream << record.row_id << ',' << record.book.timestamp_ms << ',' << record.last_update_id;
+        for (double score : prediction.raw_scores) stream << ',' << score;
+        for (double probability : prediction.probabilities) stream << ',' << probability;
+        stream << ',' << prediction.class_id << '\n';
+        if (profile) stats.output_ns += ns(Clock::now() - stage);
+      }
+    }
+    if (view) {
+      const auto display_start = Clock::now();
+      view_state = {record, ready ? std::optional(prediction) : std::nullopt,
+                    stats.rows, stats.predictions, stats.resets, stats.skipped_gaps,
+                    segment_updates, engine_us, lag_ms};
+      // Force a frame on resets and first readiness, even at high playback speed.
+      view->update(view_state, gap || segment_updates == lob::kWarmupTicks + 1);
+      stats.display_ns += ns(Clock::now() - display_start);
+    }
+  }
+  if (view && stats.rows) {
+    const auto display_start = Clock::now();
+    view->update(view_state, true);
+    stats.display_ns += ns(Clock::now() - display_start);
   }
   if (output) {
     stage = profile ? Clock::now() : Clock::time_point{};
@@ -185,6 +285,12 @@ std::string summary(const Statistics& s, const Options& o, std::size_t trees, do
       << ",\n  \"max_gap_ms\": " << lob::kMaxGapMs
       << ",\n  \"output_enabled\": " << (o.no_output ? "false" : "true")
       << ",\n  \"profiled\": " << (o.profile ? "true" : "false")
+      << ",\n  \"playback\": " << (o.watch ? "true" : "false")
+      << ",\n  \"playback_speed\": " << (o.watch ? o.speed : 0)
+      << ",\n  \"preserve_gap_waits\": " << (o.watch && o.keep_gaps ? "true" : "false")
+      << ",\n  \"gap_waits_skipped\": " << s.skipped_gaps
+      << ",\n  \"pacing_wait_ns\": " << s.pacing_wait_ns
+      << ",\n  \"display_ns\": " << s.display_ns
       << ",\n  \"model_load_ns\": " << load_ns
       << ",\n  \"replay_wall_ns\": " << s.wall_ns
       << ",\n  \"snapshots_per_second\": " << (s.wall_ns > 0 ? static_cast<double>(s.rows) * 1e9 / s.wall_ns : 0)
@@ -200,12 +306,18 @@ std::string summary(const Statistics& s, const Options& o, std::size_t trees, do
 int main(int argc, char** argv) {
   if (argc == 2 && std::string(argv[1]) == "--help") {
     std::cout << "Usage: lob_replay --input recording.csv --tau 0.31 [--model contract/model.txt]\n"
-                 "                  (--output predictions.csv | --no-output) [--summary result.json] [--profile]\n"
-                 "Replay runs at maximum speed. Existing outputs are never overwritten.\n";
+                 "                  [--watch [--speed 1] [--keep-gaps]]\n"
+                 "                  [--output predictions.csv | --no-output] [--summary result.json] [--profile]\n"
+                 "Default: maximum-speed replay; choose --output or --no-output.\n"
+                 "--watch: paced recorded playback on stderr, default 1x, no CSV unless --output is set.\n"
+                 "--speed: 0.01..1000, requires --watch. Gaps >1000ms are skipped unless --keep-gaps is set.\n"
+                 "Ctrl+C stops playback without publishing partial files. Existing outputs are never overwritten.\n";
     return 0;
   }
   try {
     const auto o = options(argc, argv);
+    std::unique_ptr<InterruptGuard> interrupt;
+    if (o.watch) interrupt = std::make_unique<InterruptGuard>();
     // Existing paths (including input/model) are protected by AtomicOutput.
     if (!o.summary.empty() && !o.output.empty() &&
         std::filesystem::weakly_canonical(o.summary) == std::filesystem::weakly_canonical(o.output)) {
@@ -219,7 +331,11 @@ int main(int argc, char** argv) {
     std::unique_ptr<AtomicOutput> output, summary_file;
     if (!o.no_output) output = std::make_unique<AtomicOutput>(o.output);
     if (!o.summary.empty()) summary_file = std::make_unique<AtomicOutput>(o.summary);
-    const auto stats = replay(input, o.input.string(), model, o.tau, output.get(), o.profile);
+    const auto stats = replay(input, o.input.string(), model, o, output.get());
+    if (o.watch && stop_requested) {
+      throw ReplayInterrupted("Playback interrupted after " + std::to_string(stats.rows) +
+                              " snapshots; output files were not published");
+    }
     const auto json = summary(stats, o, model.num_trees(), load_ns);
     if (summary_file) { summary_file->stream() << json; summary_file->flush(); }
     if (output) output->publish();
@@ -227,6 +343,9 @@ int main(int argc, char** argv) {
     std::cout << json;
     std::cout.flush();
     if (!std::cout) throw std::runtime_error("Cannot write terminal summary");
+  } catch (const ReplayInterrupted& error) {
+    std::cerr << error.what() << '\n';
+    return 130;
   } catch (const std::exception& error) {
     std::cerr << "Replay error: " << error.what() << '\n';
     return 1;

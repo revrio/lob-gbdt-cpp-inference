@@ -191,3 +191,10 @@ consistent tree branches even when uncompensated feature errors are <1e-6.
 An additional 168,887-snapshot multi-session check compares 117,836 ready
 predictions to Python with zero score/probability/class differences on that
 sample. Model parameters and Python reference formulas remain frozen.
+
+The optional `--watch` mode changes playback scheduling and terminal presentation
+only. Speeds scale waits, not feature windows, label horizons or input timestamps.
+Skipping waits for >1,000ms gaps does not skip rows or suppress feature resets.
+Every ready prediction is identical to unpaced replay. The display clears its
+probabilities during each segment's warm-up. Paced wall time includes waits and
+display work; use unpaced replay or `lob_bench` for compute performance.

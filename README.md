@@ -5,7 +5,7 @@ Predicting short-horizon (`t + 50` updates, approximately 5s) mid-price directio
 ## Repository Structure
 - `python/` — Async WebSocket LOB recorder, feature engineering, LightGBM training, and golden vector exporter.
 - `contract/` — Frozen feature specification (`feature_spec.md`), exported LightGBM `model.txt`, and golden test vectors.
-- `cpp/` — Implemented: all eleven streaming features, validated LightGBM loading, tree/ensemble evaluation, probabilities, decision rules, and Python/C++ feature and prediction parity. Also implemented: streaming CSV replay, a checksummed Parquet-to-CSV exporter, CLI integration tests, and in-memory baseline benchmarks. Remaining: live ingestion, dashboard integration, and measured optimization.
+- `cpp/` — Implemented: all eleven streaming features, validated LightGBM loading, tree/ensemble evaluation, probabilities, decision rules, and Python/C++ feature and prediction parity. Also implemented: streaming CSV replay, paced terminal playback, a checksummed Parquet-to-CSV exporter, CLI integration tests, and in-memory baseline benchmarks. Remaining: live ingestion, dashboard integration, and measured optimization.
 - `docs/` — Project workflow, benchmark plots, and write-up.
 
 ## Setup (Python Data & Modeling)
@@ -201,7 +201,7 @@ It exports raw snapshots only; C++ computes features and predictions. The reader
 requires the exact canonical unquoted numeric CSV schema; it does not read
 Parquet directly or accept arbitrary CSV layouts.
 
-Replay runs at maximum speed. Receive-time gaps >1,000ms reset feature history
+By default, replay runs at maximum speed. Receive-time gaps >1,000ms reset feature history
 and start another 300-update warm-up. Equal timestamps are accepted when update
 IDs increase. Invalid rows stop with a source filename and line number. No rows
 are silently skipped. Predictions and summaries are each published as complete
@@ -224,14 +224,14 @@ time. Its per-stage timer overhead is included, so compare unprofiled runs for
 throughput. Replay wall time includes CSV reading, validation, processing,
 checksum bookkeeping, output formatting/writing and flush; model loading is
 reported separately. Input opening, output staging setup/publication and summary
-printing are outside replay wall time. Flush is not fsync. No playback pacing,
-network latency or exchange execution is simulated.
+printing are outside replay wall time. Flush is not fsync. Network latency and
+exchange execution are not simulated. For paced playback, see the watch mode below.
 
 The modelling frame removes the last 50 updates of a segment to construct future
 labels; replay does not. Expect more predictions than labelled modelling rows.
-The CTest `ReplayCLI` entry checks the actual executable with seven integration
-cases, including Python golden probabilities/classes, gap boundaries and failure
-cleanup. The CI C++ job runs it without access to raw recordings.
+The CTest `ReplayCLI` entry checks the actual executable, including Python golden
+probabilities/classes, gap boundaries, failure cleanup, playback parity and
+interrupts. The CI C++ job runs it without access to raw recordings.
 
 The engine now also matches the reference's compensated rolling OFI sums. A wider
 multi-session check exposed threshold crossings from rounding in the earlier
@@ -242,3 +242,65 @@ The frozen Python model and prediction fixtures did not change.
 The [full replay benchmark report](docs/replay-benchmarks.md) records the complete
 3,855,454-snapshot replay, stage timings, memory use, correctness checks and
 reproduction commands. Large generated CSVs stay outside Git.
+
+## Watch recorded playback in the terminal
+
+```bash
+cpp/build/lob_replay --input contract/golden_input_lob.csv --tau 0.31 \
+  --watch --speed 10
+```
+
+This shows the ten book levels, recorded UTC time, mid-price, spread, warm-up
+progress, probabilities and the threshold-selected direction in a changing
+terminal screen. `--watch` defaults to no prediction CSV. Add `--output PATH`
+to also save every ready prediction after successful completion. The final JSON
+summary remains on stdout; the display uses stderr. Redirected stderr or a
+`TERM=dumb` terminal receives periodic plain-text lines without cursor controls.
+
+`--speed 1` preserves recorded intervals within each segment; `--speed 10`
+plays them ten times faster. Allowed speeds are 0.01–1000. The golden sample
+lasts approximately eight minutes at 1x or 50 seconds at 10x. Its first 300
+updates are warm-up (about 30 seconds at 1x / three seconds at 10x). After a
+history reset, the view clears the old prediction and shows warm-up again.
+
+By default, intervals >1,000ms are removed from the playback clock. This avoids
+waiting through recording outages or overnight breaks. No input snapshots are
+removed, and the original timestamps still reset the feature engine exactly as
+before. Exactly 1,000ms is retained. Use `--keep-gaps` to preserve all waits:
+
+```bash
+cpp/build/lob_replay --input contract/golden_input_lob.csv --tau 0.31 \
+  --watch --speed 1 --keep-gaps
+```
+
+The scheduler uses `steady_clock` and absolute deadlines from the first snapshot,
+rather than adding processing time to every sleep. If processing falls behind,
+it continues in order without discarding snapshots. `schedule_lag_ms` reports
+lateness at the start of the engine update. The screen refreshes about five times
+per second, with extra frames for resets, first readiness and completion; every
+snapshot still reaches the engine. This is recorded playback, not a Binance feed.
+
+`engine_update_us` measures features and, when ready, model prediction for the
+current snapshot. It includes timer/dispatch overhead and excludes waits,
+prediction CSV output and display work. It is a single observation, not a p99
+benchmark. The direction uses tau and can differ from the largest probability.
+
+Press **Ctrl+C** to stop. The terminal cursor/screen is restored, temporary
+prediction/summary files are removed, and the process exits with status 130.
+Interrupted runs do not publish partial result files or a final JSON summary.
+On normal completion the view closes and the final summary prints.
+
+The summary adds `playback`, `playback_speed`, `preserve_gap_waits`,
+`gap_waits_skipped`, `pacing_wait_ns` and `display_ns`. In watch mode replay wall
+time and its throughput include the intentional waits and display work.
+`display_ns` includes refresh checks and formatting/writing frames. Use the
+default unpaced mode for throughput and `--profile` for aggregate stage timing;
+`--profile` cannot be combined with `--watch`. The engine-only `lob_bench`
+executable also remains separate from playback and display.
+
+Implementation: `cpp/app/playback.hpp` calculates deadlines without sleeping;
+`cpp/app/terminal_view.hpp`/`.cpp` format and refresh the display; `replay.cpp`
+connects them to the existing reader and engine. They do not change model or
+feature calculations. Unit tests use artificial time to check speed, gap policy
+and drift. CLI tests also compare paced/unpaced prediction CSVs byte for byte
+and interrupt a preserved hour-long gap without actually waiting for it.
