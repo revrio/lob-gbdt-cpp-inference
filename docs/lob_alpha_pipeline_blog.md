@@ -318,148 +318,68 @@ Tuned LightGBM has the best Macro-F1 and the highest diagnostic PnL, but the mar
 ---
 
 ## 6. The Interface Contract: Bridging Python and C++
-
-Deploying high-frequency trading models in production environments requires that the online execution engine (implemented in C++) produces predictions identical to the offline research environment (implemented in Python). 
-
-To eliminate implementation drift, all parameters, formulas, and edge cases are formalized in an immutable feature specification contract (`contract/feature_spec.md`):
-
-1. **Fixed Feature Indices:** Features are indexed from `0` to `10` in a fixed array layout, matching the input schema expected by the tree model.
-2. **Deterministic Numerical Safeguards:** Denominators in all ratio calculations include $\epsilon = 10^{-9}$ to eliminate branch mispredictions and division-by-zero exceptions.
-3. **Threshold Direction:** LightGBM branches to the left child when $\text{feature\_value} \le \text{threshold}$, and to the right child when $\text{feature\_value} > \text{threshold}$. The C++ evaluator strictly mirrors this rule.
-4. **Golden Test Vectors:** The Python pipeline exports 5,000 raw book rows (`contract/golden_input_lob.csv`), their expected feature outputs (`contract/golden_features.csv`), and the model's raw probability predictions (`contract/golden_predictions.csv`).
-
+ 
+A production engine must produce the same predictions as the research code that trained the model. To remove implementation drift, everything the C++ side needs is frozen in a **contract bundle** (`contract/`), and the C++ engine is written against that bundle, not against the training code:
+ 
+1. **Feature specification** (`feature_spec.md`): the 11 features in a fixed index order (0 to 10), plus the numerical rules for each.
+2. **Deterministic safeguards:** denominators in ratio features include $\epsilon = 10^{-9}$, so empty or degenerate books produce finite values instead of `NaN` or a division by zero.
+3. **The model** (`model.txt`): the exported LightGBM ensemble, 183 boosting rounds × 3 classes = **549 trees**.
+4. **The decision threshold** (`metadata.json`): $\tau = 0.31$, selected on the validation set. It is stored separately because `model.txt` does not contain it.
+5. **Golden vectors:** 5,000 raw book rows (`golden_input_lob.csv`) with the expected features, raw scores, probabilities and class IDs from Python. The first 300 rows are warm-up, so 4,700 rows carry expected outputs. Files are joined by `row_id`.
+6. **Split direction:** LightGBM sends a row to the left child when `feature <= threshold`, and the C++ evaluator mirrors this exactly.
+Retraining experiments can therefore change the Python side freely without changing what the C++ engine is tested against. The bundle can be verified without raw recordings (`python python/export_contract.py verify --bundle contract`), and the contract's `metadata.json` records SHA-256 hashes for each file.
+ 
 ---
 
-## 7. C++ Low-Latency Inference Engine Architecture
-
-The C++ inference engine is designed around three core principles:
-1. **Zero Dynamic Allocation in the Hot Path:** All buffers and state engines are stack-allocated or preallocated at startup.
-2. **$O(1)$ Incremental State Updates:** Rolling statistics are maintained via running sums rather than re-traversing lookback windows.
-3. **Cache-Friendly Tree Layout:** Decision tree nodes are stored in contiguous memory to eliminate pointer indirection.
-
-### A. Zero-Allocation Circular Ring Buffer (`RingBuffer` & `RollingSum`)
-
-To maintain rolling lookback windows without allocating memory on heap, we implement a fixed-capacity template ring buffer:
-
+## 7. The C++ Inference Engine
+ 
+The engine has three parts: a streaming feature engine, a validated model loader, and an ensemble evaluator. It is built as a static library (`lob`) with a command-line replay tool on top.
+ 
+### A. Streaming features
+ 
+`FeatureEngine` connects the stateless feature functions to fixed-capacity rolling buffers, so it performs no allocation per update. Snapshots are supplied one at a time:
+ 
 ```cpp
-template <typename T, std::size_t N>
-class RingBuffer {
- public:
-  // Pushes x and returns the value it evicted (T{} if not full yet)
-  T push(T x) {
-    T evicted{};
-    if (size_ == N) evicted = buf_[head_];
-    else ++size_;
-    buf_[head_] = x;
-    if (++head_ == N) head_ = 0;
-    return evicted;
-  }
-
-  bool full() const { return size_ == N; }
-  std::size_t size() const { return size_; }
-  const T& back(std::size_t k) const { return buf_[(head_ + N - 1 - k) % N]; }
-  const T& oldest() const { return buf_[size_ == N ? head_ : 0]; }
-  void clear() { head_ = 0; size_ = 0; }
-
- private:
-  std::array<T, N> buf_{};
-  std::size_t head_ = 0;
-  std::size_t size_ = 0;
-};
+lob::FeatureEngine engine;      // created once; owns the recent history
+lob::FeatureVector features{};
+if (engine.update(snapshot, features)) {
+  // all eleven features are ready here
+}
 ```
-
-For rolling Order Flow Imbalance (`ofi_10`, `ofi_50`, `ofi_300`) and Realized Volatility (`vol_50`), we build an $O(1)$ incremental rolling accumulator on top of `RingBuffer`:
-
+ 
+It mirrors the segmentation rule from Section 2 exactly:
+- The first 300 snapshots of each segment return `false` and leave the output untouched. Snapshot 301 writes a complete vector and returns `true`.
+- A receive-time gap greater than 1,000 ms restarts warm-up. A gap of exactly 1,000 ms stays in the segment.
+- Equal timestamps are accepted. Negative or decreasing timestamps are rejected without changing engine state.
+The rolling OFI sums and the 50-tick volatility use **compensated arithmetic** that follows the order of operations of the pandas reference (see Section 8 for why this matters).
+ 
+### B. Loading the model
+ 
+`LightGBMModel::load("contract/model.txt")` reconstructs the 549 trees once at startup. It does not train anything. The loader is strict, and rejects malformed arrays, invalid indices, cyclic, shared or unreachable nodes, non-finite parameters, incomplete iterations, categorical or linear trees, averaged ensembles and missing-value split modes. A model the evaluator can't reproduce faithfully therefore fails at load time, with an exception, and never silently at prediction time.
+ 
+### C. Evaluating the ensemble
+ 
 ```cpp
-template <std::size_t N>
-class RollingSum {
- public:
-  void push(double x) {
-    double old = buf_.push(x);  // 0.0 until window is full
-    sum_ += x - old;
-    sum_sq_ += x * x - old * old;
-  }
-
-  bool full() const { return buf_.full(); }
-  double sum() const { return sum_; }
-
-  // Population standard deviation (ddof = 0) in O(1)
-  double std_pop() const {
-    double mean = sum_ / N;
-    double var = sum_sq_ / N - mean * mean;
-    return std::sqrt(var > 0.0 ? var : 0.0);
-  }
-
-  void clear() { buf_.clear(); sum_ = 0.0; sum_sq_ = 0.0; }
-
- private:
-  RingBuffer<double, N> buf_;
-  double sum_ = 0.0;
-  double sum_sq_ = 0.0;
-};
+const auto model = lob::LightGBMModel::load("contract/model.txt");  // once
+const double tau = 0.31;                                            // from metadata.json
+if (engine.update(snapshot, features)) {
+  const auto result = model.predict(features, tau);
+  // result.raw_scores, result.probabilities: Down, Flat, Up
+  // result.class_id: 0 = Down, 1 = Flat, 2 = Up
+}
 ```
-
-When a new tick arrives:
-- New $x$ is pushed in $O(1)$.
-- The oldest value $x_{\text{old}}$ is evicted in $O(1)$.
-- Running $\sum x$ and $\sum x^2$ update via single subtraction and addition.
-- Realized volatility is evaluated via $\sqrt{\frac{\sum x^2}{N} - \mu^2}$ without looping over 50 ticks!
-
----
-
-### B. Tree Evaluator Architecture: Pointer vs Flattened Memory
-
-In standard implementations, decision trees are represented as recursive pointer structures:
-
-```cpp
-struct NaiveNode {
-  int feature_index;
-  double threshold;
-  NaiveNode* left_child;
-  NaiveNode* right_child;
-  double leaf_value;
-};
-```
-
-In high-frequency trading, pointer-based tree traversal is a major latency bottleneck:
-1. **Cache Misses:** Tree nodes allocated on the heap are scattered across memory addresses. Following `node->left_child` causes L1/L2 cache misses.
-2. **Branch Mispredictions:** Evaluating `if (features[node->feature_index] <= node->threshold)` causes speculative execution flushes when the CPU predicts the branch incorrectly.
-
-#### The Flattened Array Layout
-Instead of pointer trees, we parse LightGBM's text export (`model.txt`) into flat, contiguous arrays per tree:
-
-```
- CONTIGUOUS TREE MEMORY (Fits within L1 CPU Cache)
- ┌────────────────────────────────────────────────────────┐
- │ Feature Index:  [   1,   2,   0,   0,   0,   0,   0 ]  │
- │ Threshold:      [ 0.2, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0 ]  │
- │ Left Child:     [   1,   3,  -1,  -1,  -1,  -1,  -1 ]  │  (-1 = Leaf)
- │ Right Child:    [   2,   4,  -1,  -1,  -1,  -1,  -1 ]  │
- │ Leaf Values:    [ 0.0, 0.0, 1.2, -0.8, 0.4, 0.0, 0.0]  │
- └────────────────────────────────────────────────────────┘
-```
-
-Because node structures are stored contiguously, the entire tree ensemble resides directly in the CPU's L1 cache line ($64\text{ bytes}$), eliminating cache latency.
-
-#### Branchless Traversal
-For shallow trees (e.g., depth $\le 4$), traversal can be executed branchlessly using conditional arithmetic rather than jumps:
-
-```cpp
-// Branchless index update using conditional move (CMOV)
-int next_node = (features[feat_idx] <= threshold) ? left_idx : right_idx;
-```
-
-This prevents the CPU instruction pipeline from stalling on branch mispredictions.
-
-#### Probability Aggregation
-For 3-class classification, LightGBM trains trees in triplets ($T_0, T_1, T_2$). The raw scores are accumulated and converted into class probabilities via Softmax:
-
-$$\text{score}_c = \sum_{t \in \text{Trees}_c} \text{leaf\_value}_t(\mathbf{x})$$
-
-$$P(c) = \frac{e^{\text{score}_c}}{\sum_{j=0}^2 e^{\text{score}_j}}$$
-
-The conviction threshold $\tau = 0.260$ is then applied to emit the final prediction.
-
+ 
+Prediction follows LightGBM's semantics:
+1. Each tree walks from its root and returns one leaf score (left child when `feature <= threshold`).
+2. The tree index modulo 3 picks the class that accumulates the score.
+3. A numerically stable softmax converts the three raw scores into probabilities:
+$$P(c) = \frac{e^{s_c - \max_j s_j}}{\sum_{j=0}^{2} e^{s_j - \max_k s_k}}$$
+ 
+4. The conviction rule from Section 5 is applied with $\tau = 0.31$.
+Leaf values already include the learning rate and the initial bias, so neither is applied a second time. Prediction requires finite features and a threshold in $[0, 1]$, and valid predictions read immutable trees and perform no allocation.
+ 
+This evaluator is deliberately **straightforward**: no flattened layout, no branchless traversal, no SIMD. The first goal was a correct, validated baseline. Optimization comes only after parity and measurements exist to compare against (Section 9).
+ 
 ---
 
 ## 8. Numerical Parity Testing & GoogleTest Verification
